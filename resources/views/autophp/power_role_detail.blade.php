@@ -45,7 +45,7 @@
 		    		@endforeach
 		    		@endif
 		        </table>			
-			</span><li><label class="display_name">创建时间:</label><span>{{$detail->created_time}}</span></li><li class="clearfix"></li><li class="ml35"><input class="kbutton" type="button" value="编辑" id="btn_edit"  onclick="javascript:location.href='./{{$detail->power_role_id}}/edit'"/><input class="kbutton" type="button" value="删除" id="btn_delete"  onclick="javascript:confirm('确认需要删除此记录！！！')? deleteItem('/autophp/power_role/{{$detail->power_role_id}}', {'_method':'DELETE'}) : null;"/></li>
+			</span><li><label class="display_name">可浏览公司:</label><span>{{$detail->company_ids}}</span></li><li><label class="display_name">创建时间:</label><span>{{$detail->created_time}}</span></li><li class="clearfix"></li><li class="ml35"><input class="kbutton" type="button" value="编辑" id="btn_edit"  onclick="javascript:location.href='./{{$detail->power_role_id}}/edit'"/><input class="kbutton" type="button" value="删除" id="btn_delete"  onclick="javascript:confirm('确认需要删除此记录！！！')? deleteItem('/autophp/power_role/{{$detail->power_role_id}}', {'_method':'DELETE'}) : null;"/></li>
 		</ul>
 	</form>
 </fieldset>

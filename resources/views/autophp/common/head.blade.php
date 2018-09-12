@@ -11,8 +11,8 @@
 -->
 <script type="text/javascript" src="/autophp/easyui/jquery-1.4.4.min.js"></script>
 {{--<script type="text/javascript" src="/autophp/easyui/jquery.easyui.min.js"></script>--}}
-<script type="text/javascript" src="/autophp/js/jquery.validate.js"></script>
 <script src="/autophp/js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-<script type="text/javascript" src="/autophp/js/json.js"></script>
 <script src="/autophp/js/common.js" type="text/javascript" language="javascript"></script>
 <script src="/autophp/js/jquery.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" src="/autophp/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/autophp/js/json.js"></script>
