@@ -30,7 +30,7 @@ export PROJECT="test.mjutech.com";
 # 1、启动数据库。
 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d ccr.ccs.tencentyun.com/miaoju/mysql:5.6
 # 2、启动项目开发容器（这里使用80端口，确认80端口未被占用或使用其它端口）
-docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-framework" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
+docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-blade" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
 # 3、设置hosts（加入一行：192.168.99.100 test.mjutech.com ）
 # 4、访问：http://test.mjutech.com
 ```
@@ -45,7 +45,7 @@ $PROJECT="test.mjutech.com";
 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d ccr.ccs.tencentyun.com/miaoju/mysql:5.6
 # 2、启动项目开发容器（这里使用80端口，确认80端口未被占用或使用其它端口）
 mkdir www  #docker没有权限创建目录，需要手工创建
-docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-framework" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
+docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-blade" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
 # 3、设置hosts（加入一行：127.0.0.1 test.mjutech.com）
 # 4、访问：http://test.mjutech.com
 ```
@@ -59,7 +59,7 @@ export PROJECT="test.mjutech.com";
 # 1、启动数据库。
 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d ccr.ccs.tencentyun.com/miaoju/mysql:5.6
 # 2、启动项目开发容器（这里使用80端口，确认80端口未被占用或使用其它端口）
-docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-framework" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
+docker run -d --name $PROJECT --link mysql:mysql -e git="git@gitlab.mjutech.com:base/laravel-autophp-blade" -e project="$PROJECT" -e frame='laravel' -v $HOME/www:/data/web/yaf  -p 80:80 ccr.ccs.tencentyun.com/miaoju/php:7.1.8-dev 
 # 3、设置hosts
 sudo echo "127.0.0.1 test.mjutech.com" >> /etc/hosts
 # 4、访问：http://test.mjutech.com
