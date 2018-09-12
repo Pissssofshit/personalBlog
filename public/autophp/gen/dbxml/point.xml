@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="currency" shortname="cu" user="dev" password="dev" hosts="%" title="货币服务" namespace="com.mj.currency">
+	<!--开始-->
+	<table name="order" engine="innodb" comment="订单表" charset="utf8" autoIncrementStartFrom="10000000" enableCache="false" isDict="true" group="订单" >
+		<columns>
+			<column name="order_id" type="int(11)" nullable="false" extra="auto_increment" displayName="订单ID" queryType="precise"/>
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="game_id" type="int(11)" nullable="false" displayName="游戏ID" displayType="text" queryType="precise"/>
+			<column name="game_order_id" type="varchar(255)" nullable="false" displayName="游戏订单号" displayType="text"/>
+			<column name="ucode" type="int(11)"  nullable="true" displayName="游戏包标识1" displayType="text"/>
+			<column name="subucode" type="varchar(255)"   nullable="true" displayName="游戏包标识2" displayType="text"/>
+			<column name="server_id" type="varchar(255)"  nullable="true" displayName="服务器标识" displayType="text"/>
+			<column name="role_name" type="varchar(255)"  nullable="true" displayName="角色" displayType="text"/>
+			<column name="desc" type="varchar(255)" nullable="true" displayName="订单描述" displayType="text"/>
+			<column name="order_coin" type="varchar(50)" nullable="true" displayName="游戏币数量" displayType="text"/>
+			<column name="order_money" type="varchar(200)" nullable="false" displayName="订单金额" displayType="text" />
+			<column name="pay_channel_id" type="tinyint(2)" nullable="true" displayName="支付方式：平台为0；" displayType="text" />
+			<column name="pay_point" type="int(10)" nullable="true" displayName="支付平台币数量" displayType="text" />
+			<column name="pay_point_free" type="int(10)" nullable="true" displayName="支付赠送平台币数量" displayType="text" />
+			<column name="pay_money" type="int(10)" nullable="true" displayName="支付金额" displayType="text" />
+			<column name="pay_virtual_point" type="int(10)" nullable="true" displayName="支付专有货币的数量" displayType="text" />
+			<column name="extra" type="varchar(255)" nullable="true" displayName="SDK提交的需透传的字段" displayType="textarea" />
+			<column name="create_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="update_time" type="int(10) unsigned" nullable="true" displayName="更新时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="order_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="order_log" engine="innodb" comment="订单状态日志" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="订单">
+		<columns>
+			<column name="order_log_id" type="int(11)" nullable="false"  extra="auto_increment" displayName="ID"/>
+			<column name="order_id" type="int(11)" nullable="false" displayName="订单ID" queryType="precise"/>
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="action_name" type="varchar(255)"  nullable="false" displayName="动作名称" displayType="" queryType="precise"/>
+			<column name="action_req" type="varchar(10)"  nullable="false" displayName="版本号" displayType="text"/>
+			<column name="action_res" type="int(4)"  default="0" displayName="版本状态" displayType="select" queryType="precise"/>
+			<column name="create_by" type="varchar(10)" nullable="false" displayName="创建者" displayType="text" track="create"/>
+			<column name="create_time" type="int(10)" nullable="false" displayName="创建时间" displayType="time" track="create"/>
+			<column name="comment" type="varchar(1000)"  nullable="false" displayName="描述说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="order_log_id"/>
+			</key>
+			<key type="fk" name="fk_log_order">
+				<column name="order_id" referencedTable="order" referencedColumn="order_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="point"  engine="innodb" comment="平台币" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="货币">
+		<columns>
+			<column name="point_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="账户"/>
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="point" type="int(10) unsigned"  nullable="false" displayName="付费平台币" displayType="select" queryType="precise"/>
+			<column name="point_free" type="varchar(10)"  nullable="false" displayName="免费平台币" displayType="text" queryType="precise"/>
+			<column name="last_pay_game_id" type="varchar(10)"  nullable="false" displayName="最后付费游戏" displayType="text" queryType="precise"/>
+			<column name="last_pay_server_id" type="varchar(255)"  nullable="false" displayName="最后付费服务器" displayType="text" queryType="precise"/>
+			<column name="last_pay_channel_id" type="varchar(255)"  nullable="false" displayName="最后付费渠道" displayType="text" queryType="precise"/>
+			<column name="last_pay_money" type="float(10,2)"  nullable="false" displayName="最后支付金额" displayType="text" queryType="precise"/>
+
+			<column name="create_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="update_time" type="int(10) unsigned" nullable="true" displayName="更新时间" displayType="time" track="update"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="point_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="point_log" engine="innodb" comment="平台币日志" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="货币">
+		<columns>
+			<column name="point_log_id" type="int(11)" nullable="false" extra="auto_increment" displayName="ID"/>
+			<column name="point_id" type="int(11)"  nullable="false" displayName="账户" displayType="text" queryType="precise" />
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="point" type="int(10)"  nullable="false" displayName="变更平台币（付费:）" displayType="select" queryType="precise"/>
+			<column name="point_before" type="int(10) unsigned"  nullable="false" displayName="变更前（付费）" displayType="text" queryType="precise"/>
+			<column name="point_after" type="int(10) unsigned"  nullable="false" displayName="变更后（付费）" displayType="text" queryType="precise"/>
+			<column name="point_free" type="int(10)"  nullable="false" displayName="变更平台币（免费）" displayType="text" queryType="precise"/>
+			<column name="point_free_before" type="int(10) unsigned"  nullable="false" displayName="变更前（免费）" displayType="text" queryType="precise"/>
+			<column name="point_free_after" type="int(10) unsigned"  nullable="false" displayName="变更后（免费）" displayType="text" queryType="precise"/>
+			<column name="type" type="varchar(255)"  nullable="false" displayName="变更类型" displayType="text" queryType="precise"/>
+			<column name="desc" type="varchar(255)"  nullable="false" displayName="变更说明" displayType="textarea"/>
+			<column name="create_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="point_log_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="point_limit"  engine="innodb" comment="定向币" charset="utf8" autoIncrementStartFrom="1000000" enableCache="false" group="货币">
+		<columns>
+			<column name="point_limit_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="ID"/>
+
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="point" type="int(10) unsigned"  nullable="false" displayName="付费平台币" displayType="select" queryType="precise"/>
+			<column name="game_id" type="int(10)"  nullable="false" displayName="定向游戏" displayType="text" queryType="precise"/>
+
+			<column name="create_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="update_time" type="int(10) unsigned" nullable="true" displayName="更新时间" displayType="time" track="update"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="point_limit_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="point_limit_log" engine="innodb" comment="定向币日志" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="货币">
+		<columns>
+			<column name="point_limit_log_id" type="int(11)" nullable="false" extra="auto_increment" displayName="ID"/>
+			<column name="point_limit_id" type="int(11)"  nullable="false" displayName="账户" displayType="text" queryType="precise" />
+			<column name="user_id" type="int(11)" nullable="false" displayName="用户ID" displayType="text" queryType="precise" />
+			<column name="point" type="int(10)"  nullable="false" displayName="变更平台币（付费:）" displayType="select" queryType="precise"/>
+			<column name="point_before" type="int(10) unsigned"  nullable="false" displayName="变更前（付费）" displayType="text" queryType="precise"/>
+			<column name="point_after" type="int(10) unsigned"  nullable="false" displayName="变更后（付费）" displayType="text" queryType="precise"/>
+			<column name="type" type="varchar(255)"  nullable="false" displayName="变更类型" displayType="text" queryType="precise"/>
+			<column name="desc" type="varchar(255)"  nullable="false" displayName="变更说明" displayType="textarea"/>
+			<column name="create_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="point_limit_log_id"/>
+			</key>
+		</keys>
+	</table>
+
+
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>
+

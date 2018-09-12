@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="xunion" shortname="xunion" user="xunion" password="xunion_joyport" hosts="%" title="广告系统">
+	<!--开始-->
+	<table name="advertise" engine="MyISAM" comment="广告投放" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="广告管理">
+		<columns>
+			<column name="advertise_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="广告ID"/>
+			<column name="advertise_name" type="varchar(20)" nullable="false" displayName="广告名称" displayType="text" queryType="fuzzy" />
+			<column name="title" type="varchar(50)" nullable="true" displayName="广告标题" displayType="text" />
+			<column name="platform_id" type="int(4)" default="1" displayName="投放平台" displayType="select"  queryType="precise"/>
+			<column name="game_id" type="int(4) unsigned" nullable="false" displayName="游戏" displayType="select"  queryType="precise"/>
+			<column name="server_id" type="int(6) unsigned" nullable="false" displayName="服务器" displayType="select"  queryType="precise"/>
+			<column name="meterial_id" type="int(10)" nullable="false" displayName="素材" displayType="select"  queryType="precise"/>
+			<column name="jump_direct" type="boolean" default="0" displayName="直接跳转" displayType="radio"/>
+			<column name="time_start" type="int(10) unsigned" nullable="false" queryType="range" displayName="投放开始时间" displayType="time"/>
+			<column name="time_end" type="int(10) unsigned" nullable="false" queryType="range" displayName="投放结束时间" displayType="time"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="created_by" type="int(10) unsigned" nullable="true" displayName="创建者" displayType="text" track="create"/>
+			<column name="channel_id" type="varchar(1000)" nullable="false" displayName="投放渠道" displayType="checkbox"/>
+			<!--
+			<column name="created_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="创建时间" displayType="time" track="create"/>
+			<column name="updated_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="更新时间" displayType="time" track="update"/>
+			<column name="created_by" type="int(10) unsigned" nullable="true" queryType="precise" displayName="创建者" displayType="text" track="create"/>
+			<column name="updated_by" type="int(10) unsigned" nullable="true" queryType="precise" displayName="更新者" displayType="text" track="update"/>
+			-->
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="advertise_id"/>
+			</key>
+			<key type="fk" name="fk_advertise_server">
+				<column name="server_id" referencedTable="server" referencedColumn="server_id"/>
+			</key>
+			<key type="fk" name="fk_advertise_meterial">
+				<column name="meterial_id" referencedTable="meterial" referencedColumn="meterial_id"/>
+			</key>
+			<key type="fk" name="fk_advertise_platform">
+				<column name="platform_id" referencedTable="platform" referencedColumn="platform_id"/>
+			</key>
+			<key type="fk" name="fk_advertise_channel">
+				<column name="channel_id" referencedTable="channel" referencedColumn="channel_id"/>
+			</key>
+			<key type="fk" name="fk_advertise_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="advertise_channel" engine="MyISAM" comment="渠道投放管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="advertise_channel_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="ID"/>
+			<column name="advertise_id" type="int(10) unsigned"  nullable="false" displayName="广告" displayType="select"/>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" displayName="投放渠道" displayType="select"/>
+			<column name="price" type="float(6,2)" nullable="false" displayName="费率"/>
+			<column name="channel_rate_type_id" type="int(4) unsigned" nullable="false" displayName="计费方式"/>
+			<column name="fee_period" type="int(10) unsigned" nullable="false" displayName="计费到期时间"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="advertise_channel_id"/>
+			</key>
+			<key type="fk" name="fk_channel_advertise">
+				<column name="advertise_id" referencedTable="advertise" referencedColumn="advertise_id"/>
+			</key>
+			<key type="fk" name="fk_channel_costrate">
+				<column name="channel_rate_type_id" referencedTable="channel_rate_type" referencedColumn="channel_rate_type_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="platform" engine="MyISAM" comment="平台管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="platform_id" type="int(4)" nullable="false" extra="auto_increment" displayName="平台ID"/>
+			<column name="platform_name" type="varchar(20)" nullable="false" displayName="平台名称" displayType="text"/>
+			<column name="domain" type="varchar(255)" nullable="false" displayName="平台域名" displayType="text"/>
+			<column name="desc" type="varchar(255)" nullable="true" displayName="平台描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="platform_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="server" engine="MyISAM" comment="服务器管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="server_id" type="int(6) unsigned" nullable="false" extra="auto_increment" displayName="服务器ID"/>
+			<column name="server_name" type="varchar(32)" nullable="false" displayName="服务器名" displayType="text"/>
+			<column name="server_no" type="int(6) unsigned" nullable="false" displayName="服务器序号" displayType="text"/>
+			<column name="game_id" type="int(4) unsigned" nullable="false" displayName="游戏名" displayType="select" queryType="precise"/>
+			<column name="domain" type="varchar(255)" nullable="false" displayName="服务器域名" displayType="text"/>
+			<column name="open_time" type="int(10) unsigned" nullable="false" displayName="开放时间" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="server_id"/>
+			</key>
+			<key type="fk" name="fk_server_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="game" engine="MyISAM" comment="游戏管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="game_id" type="int(4) unsigned" nullable="false" extra="auto_increment" displayName="游戏ID"/>
+			<column name="game_name" type="varchar(20)" nullable="false" displayName="游戏名" displayType="text"/>
+			<column name="url" type="varchar(255)" displayName="官网" displayType="text"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="game_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="meterial" engine="MyISAM" comment="素材管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="广告管理">
+		<columns>
+			<column name="meterial_id" type="int(10) unsigned" default="1" nullable="false" extra="auto_increment" displayName="素材ID"/>
+			<column name="meteria_name" type="varchar(32)" nullable="false" displayName="素材名称" displayType="text" queryType="fuzzy" />
+			<column name="meterial_category_id" type="int(10) unsigned" nullable="false" displayName="类别" displayType="select"  queryType="precise"/>
+			<column name="reg_pop_id" type="int(2) unsigned" default="0" displayName="弹出注册框" displayType="select" />
+			<column name="bar" type="boolean" default="1" displayName="通栏" displayType="radio" />
+			<column name="title_flash" type="boolean" default="0" displayName="标题闪烁" displayType="radio" />
+			<column name="status" type="boolean" default="0" displayName="素材状态" displayType="radio"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="上传时间" displayType="time" track="create"/>
+			<column name="updated_time" type="int(10) unsigned" nullable="true" displayName="更新时间" displayType="time" track="update"/>
+			<column name="created_by" type="int(10) unsigned" nullable="true" queryType="precise" displayName="上传者" displayType="text" track="create"/>
+			<column name="updated_by" type="int(10) unsigned" nullable="true" displayName="更新者" displayType="text" track="update"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="meterial_id"/>
+			</key>
+			<key type="fk" name="fk_meterial_category">
+				<column name="meterial_category_id" referencedTable="meterial_category" referencedColumn="meterial_category_id"/>
+			</key>
+			<key type="fk" name="fk_meterial_regpop">
+				<column name="reg_pop_id" referencedTable="reg_pop" referencedColumn="reg_pop_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="reg_pop" engine="MyISAM" comment="弹出窗管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="reg_pop_id" type="int(2) unsigned" default="1" nullable="false" extra="auto_increment" displayName="注册框ID"/>
+			<column name="reg_pop_name" type="varchar(32)" nullable="false" displayName="注册框名称" displayType="text"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="reg_pop_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="meterial_category" engine="MyISAM" comment="素材分类管理" charset="utf8" autoIncrementStartFrom="1" isDict="true" enableCache="false" group="广告管理">
+		<columns>
+			<column name="meterial_category_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="素材分类ID"/>
+			<column name="meterial_category_name" type="varchar(20)" nullable="false" displayName="分类名称" displayType="text" queryType="fuzzy" />
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="meterial_category_id"/>
+			</key>
+		</keys>
+	 </table>
+
+	<table name="channel" engine="MyISAM" comment="渠道管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="广告管理">
+		<columns>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="渠道ID"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" displayName="广告合作商" displayType="select" queryType="precise"/>
+			<column name="channel_type_id" type="int(10) unsigned" nullable="false" displayName="渠道类型" displayType="select" queryType="precise"/>
+			<column name="is_push" type="boolean" default="0" displayName="体验式渠道" displayType="radio"/>
+			<column name="domain" type="varchar(255)" nullable="false" displayName="投放站点" displayType="text"/>
+			<column name="ad_url" type="varchar(255)" nullable="false" displayName="广告URL" displayType="text"/>
+			<column name="price" type="float(6,2)" nullable="false" displayName="费率" displayType="text" />
+			<column name="channel_rate_type_id" type="int(4) unsigned" nullable="false" displayName="计费方式" displayType="select" queryType="precise"/>
+			<column name="fee_period" type="int(10) unsigned" nullable="false" displayName="计费到期时间" displayType="time"/>
+			<column name="track_view_url" type="varchar(255)" nullable="true" displayName="显示回调代码" displayType="textarea"/>
+			<column name="track_click_url" type="varchar(255)" nullable="true" displayName="点击回调代码" displayType="textarea"/>
+			<column name="track_reg_url" type="varchar(255)" nullable="true" displayName="注册回调代码" displayType="textarea"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="channel_id"/>
+			</key>
+			<key type="fk" name="fk_channel_type">
+				<column name="channel_type_id" referencedTable="channel_type" referencedColumn="channel_type_id"/>
+			</key>
+			<key type="fk" name="fk_channel_ratetype">
+				<column name="channel_rate_type_id" referencedTable="channel_rate_type" referencedColumn="channel_rate_type_id"/>
+			</key>
+			<key type="fk" name="fk_channel_partner">
+				<column name="partner_id" referencedTable="partner" referencedColumn="partner_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="channel_rate_type"  engine="MyISAM" comment="渠道费率类型管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据管理">
+		<columns>
+			<column name="channel_rate_type_id" type="int(4) unsigned" nullable="false" extra="auto_increment" displayName="渠道ID"/>
+			<column name="channel_rate_type_name" type="varchar(32)" nullable="false" displayName="渠道计费方式" displayType="text"/>
+			<column name="unit" type="varchar(32)"  nullable="false" displayName="计费单位" displayType="text"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="channel_rate_type_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="channel_type" engine="MyISAM" comment="渠道类型管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="广告管理">
+		<columns>
+			<column name="channel_type_id" type="int(10) unsigned" nullable="false" displayName="渠道类型ID" displayType="text"/>
+			<column name="channel_type_name" type="varchar(32)" nullable="false" displayName="渠道类型名称" displayType="text"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="channel_type_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="partner"  engine="MyISAM" comment="合作商管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="广告管理">
+		<columns>
+			<column name="partner_id"  type="int(10) unsigned" nullable="false"  displayName="ID编号" displayType="text"/>
+			<column name="partner_name"  type="varchar(32)" nullable="false" displayName="合作商名称" displayType="text" queryType="fuzzy"/>
+			<column name="account" type="varchar(32)" nullable="false" displayName="合作商用户名" displayType="text"/>
+			<column name="password" type="varchar(32)" nullable="false" displayName="合作商密码" displayType="password"/>
+			<column name="contact" type="varchar(100)" displayName="联系人方式" displayType="textarea"/>
+			<column name="desc" type="varchar(500)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="partner_id"/>
+			</key>
+		</keys>
+	</table>
+	<!--投放管理结束//-->
+	
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="game_id" type="varchar(500)" displayName="游戏分配" displayType="checkbox"/>
+			<column name="partner_id" type="varchar(500)" displayName="合作商分配" displayType="checkbox"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+			<key type="fk" name="fk_user_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+			<key type="fk" name="fk_user_partner">
+				<column name="partner_id" referencedTable="partner" referencedColumn="partner_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+
+	<!--报表开始-->
+	<table name="stat_day"  engine="MyISAM" comment="天最小粒度数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="广告报表">
+		<columns>
+			<!--记录标识字段-->
+			<column name="stat_day_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+
+			<!--数据粒度字段-->
+			<column name="day" type="varchar(10)" nullable="false"  displayName="时间/天" displayType="text" queryType="precise"/>
+			<column name="channel_id" type="int(10) unsigned" nullable="false"  displayName="渠道" displayType="select"  queryType="precise"/>
+			<column name="channel_id_sub" type="int(10) unsigned" nullable="false"  displayName="子渠道"/>
+			
+			<!--冗余统计查询字段-->
+			<column name="advertise_id" type="int(10) unsigned" nullable="false"  displayName="广告ID" displayType="select"  queryType="precise"/>
+			<column name="platform_id" type="int(4)" default="1" displayName="投放平台" displayType="select"  queryType="precise"/>
+			<column name="game_id" type="int(4) unsigned" nullable="false" displayName="游戏" displayType="select"  queryType="precise"/>
+			<column name="server_id" type="int(6) unsigned" nullable="false" displayName="服务器" displayType="select"  queryType="precise"/>
+			<column name="meterial_id" type="int(10)" nullable="false" displayName="素材" displayType="select"  queryType="precise"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" displayName="广告合作商" displayType="select" queryType="precise"/>
+			<column name="channel_type_id" type="int(10) unsigned" nullable="false" displayName="渠道类型" displayType="select" queryType="precise"/>
+
+			<!--冗余费用字段-->
+			<column name="price" type="float(6,2)" nullable="false" displayName="费率"/>
+			<column name="channel_rate_type_id" type="int(4) unsigned" nullable="false" displayName="计费方式"/>
+			<column name="fee_period" type="int(10) unsigned" nullable="false" displayName="计费到期时间"/>
+
+			<!--独立统计字段-->
+			<column name="n_pop_pv" type="int(10) unsigned" default="0" displayName="弹出PV"/>
+			<column name="n_pop_uv" type="int(10) unsigned" default="0" displayName="弹出UV"/>
+			<column name="n_reach_pv" type="int(10) unsigned" default="0" displayName="到达PV"/>
+			<column name="n_reach_uv" type="int(10) unsigned" default="0" displayName="到达UV"/>
+			<column name="n_click_pv" type="int(10) unsigned" default="0" displayName="点击PV"/>
+			<column name="n_click_uv" type="int(10) unsigned" default="0" displayName="点击UV"/>
+			<column name="n_fraud_pv" type="int(10) unsigned" default="0" displayName="作弊PV"/>
+			<column name="n_fraud_uv" type="int(10) unsigned" default="0" displayName="作弊UV"/>
+
+			<!--藕合用户中心统计字段-->
+			<column name="n_reg_pv" type="int(10) unsigned" default="0" displayName="注册PV"/>
+			<column name="n_reg_uv" type="int(10) unsigned" default="0" displayName="注册UV"/>
+			<column name="n_login" type="int(10) unsigned" default="0" displayName="登陆数"/>
+			<column name="n_role" type="int(10) unsigned" default="0" displayName="角色数"/>
+
+			<!--藕合充值中心统计字段-->
+			<column name="n_pay_sum"  type="int(10) unsigned" default="0" displayName="充值总额"/>
+			<column name="n_pay_user"  type="int(10) unsigned" default="0" displayName="充值人数"/>
+
+			<!--藕合用户中心统计字段：用户留存-->
+			<column name="n_subsist_1"  type="int(10) unsigned" default="0" displayName="1日留存"/>
+			<column name="n_subsist_3"  type="int(10) unsigned" default="0" displayName="3日留存"/>
+			<column name="n_subsist_5"  type="int(10) unsigned" default="0" displayName="5日留存"/>
+			<column name="n_subsist_7"  type="int(10) unsigned" default="0" displayName="7日留存"/>
+			<column name="n_subsist_14"  type="int(10) unsigned" default="0" displayName="14日留存"/>
+			<column name="n_subsist_21"  type="int(10) unsigned" default="0" displayName="21日留存"/>
+			<column name="n_subsist_28"  type="int(10) unsigned" default="0" displayName="28日留存"/>
+			<column name="n_subsist_35"  type="int(10) unsigned" default="0" displayName="35日留存"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="stat_day_id"/>
+			</key>	
+
+			<key type="fk" name="fk_stat_server">
+				<column name="server_id" referencedTable="server" referencedColumn="server_id"/>
+			</key>
+			<key type="fk" name="fk_stat_meterial">
+				<column name="meterial_id" referencedTable="meterial" referencedColumn="meterial_id"/>
+			</key>
+			<key type="fk" name="fk_stat_platform">
+				<column name="platform_id" referencedTable="platform" referencedColumn="platform_id"/>
+			</key>
+			<key type="fk" name="fk_stat_channel">
+				<column name="channel_id" referencedTable="channel" referencedColumn="channel_id"/>
+			</key>
+			<key type="fk" name="fk_stat_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+			<key type="fk" name="fk_stat_type">
+				<column name="channel_type_id" referencedTable="channel_type" referencedColumn="channel_type_id"/>
+			</key>
+			<key type="fk" name="fk_stat_partner">
+				<column name="partner_id" referencedTable="partner" referencedColumn="partner_id"/>
+			</key>
+		</keys>
+	</table>
+	<!--报表结束-->		
+</database>
+

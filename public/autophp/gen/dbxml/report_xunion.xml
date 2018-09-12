@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="ad_data" shortname="">
+	<table name="hour_unit_data" engine="MyISAM" comment="小时粒度数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" displayName="编号" extra="auto_increment"/>
+			<column name="ucode" type="int(5)" nullable="false" displayName="渠道"/>
+			<column name="subucode" type="int(10)" nullable="false" displayName="子渠道号"/>
+			<column name="adid" type="int(10)" nullable="false" displayName="广告ID"/>
+			<column name="day" type="varchar(10)" nullable="false" displayName="时间天"/>
+			<column name="hour" type="int(2)" nullable="false" displayName="时间小时"/>
+			<column name="game_id" type="int(2)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(2)" nullable="true" displayName="服务器ID"/>
+			<column name="rate" type="decimal(8,6)" nullable="true" displayName="UV比重"/>
+			<column name="rate_reg" type="decimal(8,6)" nullable="true" displayName="注册比重"/>
+			<column name="num_pv" type="int(10)" nullable="true" displayName="弹窗数"/>
+			<column name="num_uv" type="int(10)" nullable="true" displayName="独立弹窗数"/>
+			<column name="num_pv_reach" type="int(10)" nullable="true" displayName="到达数"/>
+			<column name="num_uv_reach" type="int(10)" nullable="true" displayName="独立到达数"/>
+			<column name="num_pv_click" type="int(10)" nullable="true" displayName="点击数"/>
+			<column name="num_uv_click" type="int(10)" nullable="true" displayName="独立点击数"/>
+			<column name="num_pv_reg" type="int(10)" nullable="true" displayName="PV注册数" />
+			<column name="num_uv_reg" type="int(10)" nullable="true" displayName="独立注册数" />
+			<column name="num_reg" type="int(10)" nullable="true" displayName="DB注册数" />
+			<column name="price" type="decimal(10,2)" default="0" nullable="true" displayName="计价" />
+			<column name="price_type" type="tinyint(1)" default="-1" nullable="true" displayName="计价类型" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="uk" name="uk_ucode_adid_day_hour">
+				<column name="ucode"/>
+				<column name="subucode"/>
+				<column name="adid"/>
+				<column name="day"/>
+				<column name="hour"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="day_unit_data" engine="MyISAM" comment="天粒度数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" displayName="编号" extra="auto_increment"/>
+			<column name="ucode" type="int(5)" nullable="false" displayName="渠道"/>
+			<column name="adid" type="int(10)" nullable="false" displayName="广告ID"/>
+			<column name="day" type="varchar(10)" nullable="false" displayName="时间天"/>
+			<column name="game_id" type="int(5)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="material_id" type="int(6)" nullable="false" displayName="素材ID"/>
+			<column name="num_pv" type="int(10)" nullable="true" displayName="弹窗数"/>
+			<column name="num_uv" type="int(10)" nullable="true" displayName="独立弹窗数"/>
+			<column name="rate" type="decimal(8,6)" nullable="true" displayName="UV比重"/>
+			<column name="rate_reg" type="decimal(8,6)" nullable="true" displayName="注册比重"/>
+			<column name="num_pv_reach" type="int(10)" nullable="true" displayName="到达数"/>
+			<column name="num_uv_reach" type="int(10)" nullable="true" displayName="独立到达数"/>
+			<column name="num_pv_click" type="int(10)" nullable="true" displayName="点击数"/>
+			<column name="num_uv_click" type="int(10)" nullable="true" displayName="独立点击数"/>
+			<column name="num_pv_reg_click" type="int(10)" nullable="true" displayName="注册点击" />
+			<column name="num_uv_reg_click" type="int(10)" nullable="true" displayName="独立注册点击" />
+			<column name="num_pv_reg" type="int(10)" nullable="true" displayName="PV注册数" />
+			<column name="num_uv_reg" type="int(10)" nullable="true" displayName="独立注册数" />
+			<column name="num_reg" type="int(10)" nullable="true" displayName="注册数" />
+			<column name="num_uv_pay" type="int(10)" nullable="true" displayName="结算弹窗" />
+			<column name="num_game_login" type="int(10)" nullable="true" displayName="登陆游戏数" />
+			<column name="num_role_create" type="int(10)" nullable="true" displayName="角色创建数" />
+			<column name="num_user_junior" type="int(10)" nullable="true" displayName="初级有效用户" />
+			<column name="num_user_senior" type="int(10)" nullable="true" displayName="高级有效用户" />
+			<column name="num_reserve_1" type="int(10)" nullable="true" displayName="1日存留数" /> 
+			<column name="num_reserve_2" type="int(10)" nullable="true" displayName="2日存留数" />
+			<column name="num_reserve_3" type="int(10)" nullable="true" displayName="3日存留数" />
+			<column name="num_reserve_5" type="int(10)" nullable="true" displayName="5日存留数" />
+			<column name="num_reserve_7" type="int(10)" nullable="true" displayName="7日存留数" />
+			<column name="num_reserve_14" type="int(10)" nullable="true" displayName="14日存留数" /> 
+			<column name="num_reserve_21" type="int(10)" nullable="true" displayName="21日存留数" />
+			<column name="num_reserve_28" type="int(10)" nullable="true" displayName="28日存留数" />
+			<column name="num_reserve_35" type="int(10)" nullable="true" displayName="35日存留数" />
+			<column name="num_income_1" type="decimal(12,2)" nullable="true" displayName="1日充值" />
+			<column name="num_income_3" type="decimal(12,2)" nullable="true" displayName="3日充值" />
+			<column name="num_income_5" type="decimal(12,2)" nullable="true" displayName="5日充值" />
+			<column name="num_income_7" type="decimal(12,2)" nullable="true" displayName="7日充值" />
+			<column name="num_income_14" type="decimal(12,2)" nullable="true" displayName="14日充值" />
+			<column name="num_income_21" type="decimal(12,2)" nullable="true" displayName="21日充值" />
+			<column name="num_income_28" type="decimal(12,2)" nullable="true" displayName="28日充值" />
+			<column name="num_income_35" type="decimal(12,2)" nullable="true" displayName="35日充值" />
+			<column name="num_payuser_1" type="int(6)" nullable="true" displayName="1日充值人数" />
+			<column name="num_payuser_3" type="int(6)" nullable="true" displayName="3日充值人数" />
+			<column name="num_payuser_5" type="int(6)" nullable="true" displayName="5日充值人数" />
+			<column name="num_payuser_7" type="int(6)" nullable="true" displayName="7日充值人数" />
+			<column name="num_payuser_14" type="int(6)" nullable="true" displayName="14日充值人数" />
+			<column name="num_payuser_21" type="int(6)" nullable="true" displayName="21日充值人数" />
+			<column name="num_payuser_28" type="int(6)" nullable="true" displayName="28日充值人数" />
+			<column name="num_payuser_35" type="int(6)" nullable="true" displayName="35日充值人数" />
+			<column name="num_income" type="decimal(12,2)" nullable="true" displayName="用户充值" />
+			<column name="num_income_cost"  type="decimal(12,2)" nullable="true" displayName="充值渠道成本" />
+			<column name="num_pay_user" type="int(10)" nullable="true" displayName="充值人数" />
+			<column name="num_expense" type="decimal(12,2)" nullable="true" displayName="支付成本" />
+			<column name="expense_status" type="tinyint(1)" default="0" displayName="是否为估算成本" />
+			<column name="price" type="decimal(10,2)" default="0" nullable="true" displayName="计价" />
+			<column name="price_type" type="tinyint(1)" default="-1" nullable="true" displayName="计价类型" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="uk" name="uk_ucode_adid_day">
+				<column name="ucode"/>
+				<column name="adid"/>
+				<column name="day"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="subucode_unit_data" engine="MyISAM" comment="天粒度数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" displayName="编号" extra="auto_increment"/>
+			<column name="ucode" type="int(5)" nullable="false" displayName="渠道"/>
+			<column name="subucode" type="varchar(20)" nullable="false" displayName="子渠道"/>
+			<column name="adid" type="int(10)" nullable="false" displayName="广告ID"/>
+			<column name="day" type="varchar(10)" nullable="false" displayName="时间天"/>
+			<column name="game_id" type="int(5)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="material_id" type="int(6)" nullable="false" displayName="素材ID"/>
+			<column name="num_pv" type="int(10)" nullable="true" displayName="弹窗数"/>
+			<column name="num_uv" type="int(10)" nullable="true" displayName="独立弹窗数"/>
+			<column name="rate" type="decimal(8,6)" nullable="true" displayName="UV比重"/>
+			<column name="rate_reg" type="decimal(8,6)" nullable="true" displayName="注册比重"/>
+			<column name="num_pv_reach" type="int(10)" nullable="true" displayName="到达数"/>
+			<column name="num_uv_reach" type="int(10)" nullable="true" displayName="独立到达数"/>
+			<column name="num_pv_click" type="int(10)" nullable="true" displayName="点击数"/>
+			<column name="num_uv_click" type="int(10)" nullable="true" displayName="独立点击数"/>
+			<column name="num_pv_reg_click" type="int(10)" nullable="true" displayName="注册点击" />
+			<column name="num_uv_reg_click" type="int(10)" nullable="true" displayName="独立注册点击" />
+			<column name="num_pv_reg" type="int(10)" nullable="true" displayName="PV注册数" />
+			<column name="num_uv_reg" type="int(10)" nullable="true" displayName="独立注册数" />
+			<column name="num_reg" type="int(10)" nullable="true" displayName="注册数" />
+			<column name="num_uv_pay" type="int(10)" nullable="true" displayName="结算弹窗" />
+			<column name="num_game_login" type="int(10)" nullable="true" displayName="登陆游戏数" />
+			<column name="num_role_create" type="int(10)" nullable="true" displayName="角色创建数" />
+			<column name="num_user_junior" type="int(10)" nullable="true" displayName="初级有效用户" />
+			<column name="num_user_senior" type="int(10)" nullable="true" displayName="高级有效用户" />
+			<column name="num_reserve_1" type="int(10)" nullable="true" displayName="1日存留数" /> 
+			<column name="num_reserve_2" type="int(10)" nullable="true" displayName="2日存留数" />
+			<column name="num_reserve_3" type="int(10)" nullable="true" displayName="3日存留数" />
+			<column name="num_reserve_5" type="int(10)" nullable="true" displayName="5日存留数" />
+			<column name="num_reserve_7" type="int(10)" nullable="true" displayName="7日存留数" />
+			<column name="num_reserve_14" type="int(10)" nullable="true" displayName="14日存留数" /> 
+			<column name="num_reserve_21" type="int(10)" nullable="true" displayName="21日存留数" />
+			<column name="num_reserve_28" type="int(10)" nullable="true" displayName="28日存留数" />
+			<column name="num_reserve_35" type="int(10)" nullable="true" displayName="35日存留数" />
+			<column name="num_income_1" type="decimal(12,2)" nullable="true" displayName="1日充值" />
+			<column name="num_income_3" type="decimal(12,2)" nullable="true" displayName="3日充值" />
+			<column name="num_income_5" type="decimal(12,2)" nullable="true" displayName="5日充值" />
+			<column name="num_income_7" type="decimal(12,2)" nullable="true" displayName="7日充值" />
+			<column name="num_income_14" type="decimal(12,2)" nullable="true" displayName="14日充值" />
+			<column name="num_income_21" type="decimal(12,2)" nullable="true" displayName="21日充值" />
+			<column name="num_income_28" type="decimal(12,2)" nullable="true" displayName="28日充值" />
+			<column name="num_income_35" type="decimal(12,2)" nullable="true" displayName="35日充值" />
+			<column name="num_payuser_1" type="int(6)" nullable="true" displayName="1日充值人数" />
+			<column name="num_payuser_3" type="int(6)" nullable="true" displayName="3日充值人数" />
+			<column name="num_payuser_5" type="int(6)" nullable="true" displayName="5日充值人数" />
+			<column name="num_payuser_7" type="int(6)" nullable="true" displayName="7日充值人数" />
+			<column name="num_payuser_14" type="int(6)" nullable="true" displayName="14日充值人数" />
+			<column name="num_payuser_21" type="int(6)" nullable="true" displayName="21日充值人数" />
+			<column name="num_payuser_28" type="int(6)" nullable="true" displayName="28日充值人数" />
+			<column name="num_payuser_35" type="int(6)" nullable="true" displayName="35日充值人数" />
+			<column name="num_income" type="decimal(12,2)" nullable="true" displayName="用户充值" />
+			<column name="num_income_cost"  type="decimal(12,2)" nullable="true" displayName="充值渠道成本" />
+			<column name="num_pay_user" type="int(10)" nullable="true" displayName="充值人数" />
+			<column name="num_expense" type="decimal(12,2)" nullable="true" displayName="支付成本" />
+			<column name="expense_status" type="tinyint(1)" default="0" displayName="是否为估算成本" />
+			<column name="price" type="decimal(10,2)" default="0" nullable="true" displayName="计价" />
+			<column name="price_type" type="tinyint(1)" default="-1" nullable="true" displayName="计价类型" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="uk" name="uk_ucode_ucode_adid_day">
+				<column name="ucode"/>
+				<column name="subucode"/>
+				<column name="adid"/>
+				<column name="day"/>
+			</key>
+		</keys>
+	</table>
+</database>

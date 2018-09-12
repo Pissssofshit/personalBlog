@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="groupEdit" mode="custom">    
+		<inputs>
+            <field type="variable" name="idArray"/>
+            <field type="variable" name="statusId"/>                                
+        </inputs>
+        <query>
+        	UPDATE FROM `order` SET `account_status_id` = :statusId
+        	WHERE `order_id` IN (:idArray)
+        </query>
+	</action> 
+	
+	<action name="getOrderList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="order_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `order_id`, pe.`profile_id`, CONCAT(`lastname`,`firstname`) as `fullname`, `bill_id`, `canceled_time`, `ordered_time`, `paid_time`, `confirmed_time`, `deleted_time`,
+					`total_price`, `payment_id`, o_s.`order_status_id`, o_s.`order_status_name`
+				FROM `order` as or
+					JOIN `profile` as pe ON or.`profile_id` = pe.`profile_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (CONCAT(`lastname`, `firstname`) = :fullname OR '' = :fullname)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+				ORDER BY `order_id`
+		</query>
+	</action>
+	
+	<action name="getOrderCount" mode="select" resultType="one">    
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="order_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`order_id`)
+				FROM `order` as or
+					JOIN `profile` as pe ON or.`profile_id` = pe.`profile_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (CONCAT(`lastname`, `firstname`) = :fullname OR '' = :fullname)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+		</query>
+	</action>
+	
+	
+	<action name="getUserOrderList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_id`, `username`, or.`profile_id`, `bill_id`, `canceled_time`, `ordered_time`, `paid_time`, `confirmed_time`, `deleted_time`,
+					`total_price`, pt.`payment_id`, pt.`payment_name`, o_s.`order_status_id`, o_s.`order_status_name`
+				FROM `account` as at
+					JOIN `order` as or ON at.`profile_id` = or.`profile_id`
+					JOIN `payment` as pt ON or.`payment_id` = pt.`payment_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (`account_id` = :accountId OR '' = :accountId)
+					AND(`username` = :userName OR '' = :userName)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+				ORDER BY `order_id`
+		</query>
+	</action>
+	
+	<action name="getUserOrderCount" mode="select" resultType="one">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`account_id`)
+				FROM `account` as at
+					JOIN `order` as or ON at.`profile_id` = or.`profile_id`
+					JOIN `payment` as pt ON or.`payment_id` = pt.`payment_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (`account_id` = :accountId OR '' = :accountId)
+					AND(`username` = :userName OR '' = :userName)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

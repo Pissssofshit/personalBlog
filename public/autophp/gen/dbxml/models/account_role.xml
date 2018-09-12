@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getRoleList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="account_role_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_role_id`, `account_role_name`, `account_role_acl`, `comment`, `created_time`, `updated_time`, `created_by`, `updated_by`
+				FROM `account_role`
+				WHERE (`account_role_name` = :roleName OR '' = :roleName)
+				ORDER BY `account_role_id`
+		</query>
+	</action>
+	
+	<action name="getRoleCount" mode="select" resultType="one">    
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="account_role_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`account_role_id`)
+				FROM `account_role`
+				WHERE (`account_role_name` = :roleName OR '' = :roleName)
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

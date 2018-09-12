@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="cms" shortname="cms" user="cms" password="cms" hosts="%">
+	<table name="news" engine="MyISAM" comment="分类" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="news_id" type="int(10) unsigned"  nullable="false" extra="auto_increment" displayName="新闻ID"/>
+			<column name="title" type="varchar(50)" nallable="false" displayName="新闻标题" displayType="text" queryType="fuzzy"/>
+			<column name="summary" type="varchar(100)" nullable="true" displayName="新闻简介" displayType="textarea"/>
+			<column name="content" type="text" nallable="false" displayName="新闻内容" displayType="textarea"/>
+			<column name="category_id" type="int(10) unsigned" nullable="false" displayName="分类" queryType="precise" displayType="select"/>
+			<column name="ctime" type="int(10) unsigned" nullable="true" queryType="range" displayName="创建时间" displayType="time" track="create"/>
+			<column name="utime" type="int(10) unsigned" nullable="true" queryType="range" displayName="更新时间" displayType="time" track="update"/>
+			<column name="cby" type="int(10) unsigned" nullable="true" queryType="precise" displayName="创建者" displayType="text" track="create"/>
+			<column name="uby" type="int(10) unsigned" nullable="true" queryType="precise" displayName="更新者" displayType="text" track="update"/>
+			<column name="is_show" type="boolean" default="1" displayName="是否显示"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="news_id"/>
+			</key>
+			<key type="fk" name="fk_news_cate">
+				<column name="category_id" referencedTable="category" referencedColumn="category_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="category" engine="MyISAM" comment="分类" charset="utf8" autoIncrementStartFrom="1" isDict="true" enableCache="false">
+		<columns>
+			<column name="category_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="类别ID"/>
+			<column name="category_name" type="char(10)" nullable="false" displayName="类别名称" displayType="text"/>
+			<column name="pid" type="int(10) unsigned" nullable="true" displayName="父类别ID" displayType="text"/>
+			<column name="path_id" type="varchar(1024)" nullable="true" displayName="类别路径"/>
+			<column name="comment" type="varchar(100)" nullable="true" displayName="附加说明" displayType="text"/>
+			<column name="is_show" type="boolean" default="1" displayName="是否显示" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="category_id"/>
+			</key>
+		</keys>
+	 </table>
+
+	<table name="matrix" engine="MyISAM" comment="碎片样本" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="matrix_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="碎片ID"/>
+			<column name="matrix_pid" type="int(10) unsigned" nullable="false" displayName="碎片模板ID"/>
+			<column name="matrix_name" type="varchar(20)" nullable="false" displayName="碎片名称" displayType="text"/>
+			<column name="desc" type="varchar(100)" nullable="true" displayName="碎片描述" displayType="textarea"/>
+			<column name="content" type="text" nullable="false" displayName="碎片内容" displayType="textarea"/>
+			<column name="property" type="varchar(10)" default="base" displayName="碎片标识"/>
+			<column name="ctime" type="int(10) unsigned" nullable="false" displayName="创建时间" />
+			<column name="utime" type="int(10) unsigned" displayName="更新时间" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="matrix_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="matrix_category" engine="MyISAM" comment="碎片,分组关系表" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="matrix_id" type="int(10) unsigned" nullable="false" displayName="碎片ID"/>
+			<column name="category_id" type="int(10) unsigned" nullable="false" displayName="类别ID"/>
+		</columns>
+		<keys>
+			<column name="matrix_copy_id"/>
+			<column name="category_id"/>
+		</keys>
+	</table>
+
+	<table name="matrix_history"  engine="MyISAM" comment="碎片修改记录" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="matrix_history_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="matrix_id" type="int(10) unsigned" nullable="false"  displayName="碎片ID"/>
+			<column name="content" type="text" nullable="false" displayName="碎片内容" displayType="textarea"/>
+			<column name="vtime" type="int(10) unsigned" nullable="false" displayName="修改时间" />
+			<column name="uid" type="int(10) unsigned" nullable="false" displayName="修改者ID" />
+			<column name="username" type="varchar(32)" nullable="false" displayName="修改者" /> 
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="matrix_history_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="page_zt" engine="MyISAM" comment="专题页面" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="page_zt_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+			<column name="zt_name" type="varchar(100)" nullable="false" displayName="名称" />
+			<column name="category_id" type="int(10) unsigned" nullable="false" displayName="类别ID"/>
+			<column name="dirname" type="varchar(10)" nullable="false" displayName="专题文录名" />
+			<column name="is_template" type="tinyint(1)" default="0" displayName="是否为模板" />
+			<column name="ctime" type="int(10) unsigned" nullable="false" displayName="创建时间" />
+			<column name="utime" type="int(10) unsigned" nullable="false" displayName="更新时间" />
+			<column name="update_user" type="varchar(32)" nullable="false" displayName="更新者" />
+ 		</columns>
+		<keys>
+			<key type="pk">
+				<column name="page_zt_id"/>
+			</key>
+		</keys>
+	</table>
+ 
+</database>

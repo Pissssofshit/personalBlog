@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="dist" shortname="dist" user="dist" password="dist" hosts="%" title="乐都网自动开服系统">
+	<table name="server" engine="MyISAM" comment="服务器管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="开服管理">
+		<columns>
+			<column name="server_id" type="int(10)" nullable="false" displayName="游戏服ID" displayType="text" queryType="precise"/>
+			<column name="server_sn" type="int(10)" default="1" displayName="游戏服序号" displayType="text"/>
+			<column name="game_id" type="int(10)" nullable="false" displayName="游戏" displayType="select" queryType="precise"/>
+			<column name="partner_id" type="int(10)" default="1" displayName="合作商" displayType="select" queryType="precise"/>
+			<column name="port_id" type="int(10)"  displayName="端口ID" displayType="text"/>
+			<column name="port" type="int(10)"  displayName="游戏服端口" displayType="text"/>
+			<column name="server_name" type="char(32)" nullable="false" displayName="服名称" displayType="text"/>
+			<column name="web_server" type="varchar(50)" nullable="false" displayName="BIN IP" displayType="text"/>
+			<column name="db_server" type="varchar(50)" nullable="false" displayName="DB IP" displayType="text"/>
+			<column name="open_time"  type="int(10) unsigned" nullable="false" displayName="开服时间" displayType="time"/>
+			<column name="state" default="0" type="boolean" displayName="开服状态" displayType="radio"/>
+			<column name="mod_server" type="int(10) unsigned" displayName="合服ID" displayType="text"/>
+			<column name="mod_port" type="int(10) unsigned" default="0" displayName="合服端口" displayType="text"/>
+			<column name="url" type="varchar(99)" displayName="游戏URL" displayType="text"/>
+			<column name="idc_room_id" type="tinyint(4)"  displayName="所在机房" displayType="select" queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="server_id"/>
+			</key>
+			<key type="fk" name="fk_server_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+			<key type="fk" name="fk_server_idc">
+				<column name="idc_room_id" referencedTable="idc_room" referencedColumn="idc_room_id"/>
+			</key>
+			<key type="fk" name="fk_server_partner">
+				<column name="partner_id" referencedTable="platform" referencedColumn="plat_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="idc_room" engine="MyISAM" comment="机房管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="开服管理">
+		<columns>
+			<column name="idc_room_id" type="int(10)" nullable="false"  displayName="机房ID"  displayType="text"/>
+			<column name="idc_room_name" type="varchar(32)" nullable="false"  displayName="机房名称" displayType="text"/>
+			<column name="ssh_port" type="char(5)" default="22" displayName="管理端口" displayType="text"/>
+			<column name="manage_ip" type="varchar(255)" displayName="机房中控IP" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="idc_room_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="game" engine="MyISAM" comment="游戏管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="开服管理">
+		<columns>
+			<column name="game_id" type="int(10)" nullable="false"  displayName="游戏ID" displayType="text"/>
+			<column name="cn_name" type="varchar(32)" nullable="false"  displayName="游戏名称" displayType="text"/>
+			<column name="en_name" type="varchar(10)" nullable="false"  displayName="英文名称" displayType="text"/>
+			<column name="is_show" type="boolean" default="0" displayName="是否显示" displayType="radio"/>
+			<column name="web_conf_path" type="varchar(255)" displayName="游戏API配目录" displayType="text"/>
+			<column name="bin_conf_path" type="varchar(255)" displayName="游戏配置目录" displayType="text"/>
+			<column name="log_gen_path" type="varchar(255)" displayName="LC数据目录" displayType="text"/>
+			<column name="base_port" type="int(5)" default="10000" displayName="端口基数" displayType="text"/>
+			<column name="db_api_url" type="varchar(32)" default="" displayName="更新数据库配置API" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="game_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="platform" engine="MyISAM" comment="合作商管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="开服管理">
+		<columns>
+			<column name="plat_id" type="int(10)" nullable="false" displayName="平台合作商ID" queryType="precise" displayType="text"/>
+			<column name="plat_name" type="varchar(32)" nullable="false" displayName="平台名称" displayType="text" queryType="fuzzy"/>
+			<column name="plat_host" type="varchar(32)" displayName="平台游戏首页" displayType="text"/>
+			<column name="plat_login_url" type="varchar(255)" displayName="平台登陆URL" displayType="text"/>
+			<column name="plat_auth_key" type="varchar(255)" displayName="平台密钥" displayType="text"/>
+			<column name="pay_ip" type="varchar(1000)"  displayName="充值IP白名单" displayType="text"/>
+			<column name="pay_url" type="varchar(255)" displayName="充值页面URL" displayType="text"/>
+			<column name="vip_url" type="varchar(255)" displayName="VIP页面URL" displayType="text"/>
+			<column name="fcm_url" type="varchar(255)" displayName="防迷页面URL" displayType="text"/>
+			<column name="act_url" type="varchar(255)" displayName="活动URL" displayType="text"/>
+			<column name="fcm_enable" type="boolean" default="0" displayName="防迷启用"/>
+			<column name="first_mail_content" type="varchar(2000)" displayName="新手信内容" displayType="textarea"/>
+			<column name="ext" type="varchar(2000)" displayName="扩展配置" displayType="textarea"/>
+			<column name="platform_group_id" type="int(4)" default="1" displayName="平台分类" displayType="select" queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plat_id"/>
+			</key>
+			<key type="fk" name="fk_platform_group">
+				<column name="platform_group_id" referencedTable="platform_group" referencedColumn="platform_group_id"/>
+			</key>
+		</keys>
+	</table>
+
+
+	<table name="plat_set" engine="MyISAM" comment="游戏联运配置" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="开服管理">
+		<columns>
+			<column name="plat_set_id" type="int(10)" nullable="false" displayName="序号ID" extra="auto_increment"/>
+			<column name="game_id" type="int(10)" nullable="false"  displayName="游戏" displayType="select" queryType="precise"/>
+			<column name="plat_id" type="int(10)" nullable="false" displayName="平台" displayType="select" queryType="precise"/>
+			<column name="plat_host" type="varchar(32)" displayName="平台游戏首页" displayType="text"/>
+			<column name="plat_login_url" type="varchar(255)" displayName="平台登陆URL" displayType="text"/>
+			<column name="plat_auth_key" type="varchar(255)" displayName="平台密钥" displayType="text"/>
+			<column name="pay_ip" type="varchar(1000)"  displayName="充值IP白名单" displayType="text"/>
+			<column name="pay_url" type="varchar(255)" displayName="充值页面URL" displayType="text"/>
+			<column name="vip_url" type="varchar(255)" displayName="VIP页面URL" displayType="text"/>
+			<column name="fcm_url" type="varchar(255)" displayName="防迷页面URL" displayType="text"/>
+			<column name="act_url" type="varchar(255)" displayName="活动URL" displayType="text"/>
+			<column name="fcm_enable" type="boolean" default="0" displayName="防迷启用" displayType="radio" queryType="precise"/>
+			<column name="first_mail_content" type="varchar(2000)" displayName="新手信内容" displayType="textarea"/>
+			<column name="ext" type="varchar(2000)" displayName="扩展配置" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plat_set_id"/>
+			</key>
+			<key type="fk" name="fk_set_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+			<key type="fk" name="fk_set_plat">
+				<column name="plat_id" referencedTable="platform" referencedColumn="plat_id"/>
+			</key>
+			<key type="uk" name="uk_game_plat">
+				<column name="game_id"/>
+				<column name="plat_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="platform_group" engine="MyISAM" comment="合作商分组" charset="utf8" autoIncrementStartFrom="0" enableCache="false" isDict="true" group="字典表">
+		<columns>
+			<column name="platform_group_id" type="int(10)" nullable="false"  extra="auto_increment" displayName="合作商分组ID"/>
+			<column name="name" type="varchar(32)" nullable="false" displayName="平台名称" displayType="text" queryType="fuzzy"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="platform_group_id"/>
+			</key>
+		</keys>
+	</table>
+
+	
+
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="precise"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text" queryType="precise"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="game_id" type="varchar(1000)" displayName="游戏权限" displayType="checkbox"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+			<key type="fk" name="fk_user_game">
+				<column name="game_id" referencedTable="game" referencedColumn="game_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>

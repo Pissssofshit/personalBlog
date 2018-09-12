@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="oledudb">
+  <table name="account" engine="InnoDB" comment="账户信息" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="account_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="username" type="varchar(32)" nullable="false" displayName="用户名"/>
+      <column name="password" type="char(255)" nullable="false" displayName="密码"/>
+      <column name="password_salt" type="char(8)" nullable="false" displayName="密码确认"/>
+      <column name="secure_mail" type="varchar(50)" nullable="true" displayName="安全邮箱"/>
+      <column name="secure_question" type="varchar(200)" nullable="true" displayName="安全提问"/>
+      <column name="secure_answer" type="varchar(200)" nullable="true" displayName="安全答案"/>
+      <column name="profile_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="account_role_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="account_status_id" type="tinyint(2) unsigned" nullable="true"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_id"/>
+      </key>
+      <key type="uk" name="uk_account_username">
+        <column name="username"/>
+      </key>
+      <key type="fk" name="fk_account_profile">
+        <column name="profile_id" referencedTable="profile" referencedColumn="profile_id"/>
+      </key>
+      <key type="fk" name="fk_account_role">
+        <column name="account_role_id" referencedTable="account_role" referencedColumn="account_role_id"/>
+      </key>
+      <key type="fk" name="fk_account_status">
+        <column name="account_status_id" referencedTable="account_status" referencedColumn="account_status_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="account_acl" engine="InnoDB" comment="账户权限设置" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="account_acl_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="account_acl_name" type="varchar(50)" nullable="false" displayName="用户角色名称"/>
+      <column name="account_acl_value" type="varchar(50)" nullable="false" displayName="用户角色值"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_acl_id"/>
+      </key>
+      <key type="uk" name="uk_account_acl_name">
+        <column name="account_acl_name"/>
+      </key>
+      <key type="uk" name="uk_account_acl_value">
+        <column name="account_acl_value"/>
+      </key>
+    </keys>
+  </table>
+  <table name="account_history" engine="InnoDB" comment="账户信息修改记录" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="account_history_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="username" type="varchar(32)" nullable="true" displayName="用户名"/>
+      <column name="password" type="char(255)" nullable="true" displayName="密码"/>
+      <column name="secure_mail" type="varchar(50)" nullable="true" displayName="安全邮箱"/>
+      <column name="secure_question" type="varchar(200)" nullable="true" displayName="安全提问"/>
+      <column name="secure_answer" type="varchar(200)" nullable="true" displayName="安全回答"/>
+      <column name="account_role_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="account_status_id" type="tinyint(2) unsigned" nullable="true"/>
+      <column name="comment" type="varchar(100)" nullable="true"  displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_history_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="account_role" engine="InnoDB" comment="账户角色" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="account_role_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="account_role_name" type="varchar(50)" nullable="false" displayName="用户角色名称"/>
+      <column name="account_role_acl" type="text" nullable="true" displayName="用户角色"/>
+      <column name="comment" type="varchar(100)" nullable="true"  displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_role_id"/>
+      </key>
+      <key type="uk" name="uk_account_role_name">
+        <column name="account_role_name"/>
+      </key>
+    </keys>
+  </table>
+  <table name="account_status" engine="InnoDB" comment="账户状态" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="account_status_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="account_status_name" type="varchar(50)" nullable="false" displayName="用户状态名称"/>
+      <column name="comment" type="varchar(100)" nullable="true"  displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_status_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="card" engine="InnoDB" comment="虚拟卡" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="card_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="card_agency_id" type="smallint(5) unsigned" nullable="false"/>
+      <column name="card_no" type="char(20)" nullable="false" displayName="卡号"/>
+      <column name="card_password" type="char(20)" nullable="true" displayName="密码"/>
+      <column name="card_type_id" type="tinyint(2) unsigned" nullable="false" displayName="类型"/>
+      <column name="card_value" type="decimal(10,2)" nullable="true " displayName="面值"/>
+      <column name="bind_product_id" type="int(10) unsigned" nullable="true"/>
+      <column name="card_status_id" type="tinyint(2) unsigned" nullable="false" />
+      <column name="expiration_time" type="date" nullable="true" displayName="有效期"/>
+      <column name="enabled_time" type="date" nullable="true" displayName="可用日期"/>
+      <column name="disabled_time" type="date" nullable="true" displayName="失效期"/>
+      <column name="used_time" type="date" nullable="true" displayName="使用日期"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="card_id"/>
+      </key>
+      <key type="uk" name="uk_card_no">
+        <column name="card_no"/>
+      </key>
+      <key type="fk" name="fk_card_agency">
+        <column name="card_agency_id" referencedTable="card_agency" referencedColumn="card_agency_id" />
+      </key>
+      <key type="fk" name="fk_card_status_id">
+        <column name="card_status_id" referencedTable="card_status" referencedColumn="card_status_id"/>
+      </key>
+      <key type="fk" name="fk_card_type">
+        <column name="card_type_id" referencedTable="card_type" referencedColumn="card_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="card_agency" engine="InnoDB" comment="经销商信息表" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="card_agency_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="card_agency_name" type="varchar(20)" nullable="false" displayName="经销商"/>
+      <column name="desc" type="varchar(100)" nullable="false" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="card_agency_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="card_status" engine="InnoDB" comment="虚拟卡状态" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="card_status_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="card_status_name" type="varchar(50)" nullable="false" displayName="卡状态"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="card_status_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="card_type" engine="InnoDB" comment="虚拟卡类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" isDict="true">
+    <columns>
+      <column name="card_type_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="card_type_name" type="varchar(50)" nullable="false" displayName="卡类型"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="card_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="charter" engine="InnoDB" comment="菜单" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="charter_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="parent_id" type="int(10) unsigned" nullable="false"/>
+      <column name="name" type="varchar(50)" nullable="false" displayName="章节名称"/>
+      <column name="route_path" type="varchar(100)" nullable="false" displayName="路径"/>
+      <column name="order" type="int(10) unsigned" nullable="false" displayName="订单"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="charter_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="course_grade" engine="InnoDB" comment="年级" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="course_grade_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment"  displayName="编号"/>
+      <column name="course_grade_name" type="varchar(50)" nullable="false"  displayName="年级"/>
+      <column name="comment" type="varchar(100)" nullable="true"  displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="course_grade_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="course_subject" engine="InnoDB" comment="科目" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="course_subject_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="course_subject_name" type="varchar(50)" nullable="false"   displayName="科目"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="course_subject_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="course_term" engine="InnoDB" comment="学期" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="course_term_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="course_term_name" type="varchar(50)" nullable="false" displayName="科目"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="course_term_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="course_type" engine="InnoDB" comment="课程类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="course_type_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="course_type_name" type="varchar(50)" nullable="false" displayName="课程类型"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="course_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="education" engine="InnoDB" comment="教育程度" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="education_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="education_name" type="varchar(50)" nullable="false" displayName="教育程度"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="education_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="education_histroy" engine="InnoDB" comment="教育经历" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="education_histroy_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="profile_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="school_id" type="int(10) unsigned" nullable="true"/>
+      <column name="education_id" type="tinyint(2) unsigned" nullable="true"/>
+      <column name="grade_name" type="varchar(10)" nullable="true"/>
+      <column name="class_name" type="varchar(10)" nullable="true" displayName="班级名称"/>
+      <column name="is_current" type="tinyint(1)" nullable="true" displayName="当前学历"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="education_histroy_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="gender" engine="InnoDB" comment="性别" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="gender_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="gender_name" type="varchar(50)" nullable="false" displayName="性别"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="gender_id"/>
+      </key>
+      <key type="uk" name="uk_gender_name">
+        <column name="gender_name"/>
+      </key>
+    </keys>
+  </table>
+  <table name="identity_type" engine="InnoDB" comment="身份类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="identity_type_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="identity_type_name" type="varchar(50)" nullable="false" displayName="身份类型"/>
+      <column name="expiration_date" type="date" nullable="true" displayName="有效期"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="identity_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="learning_service" engine="InnoDB" comment="学习服务" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="learning_service_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="learning_service_name" type="varchar(50)" nullable="false" displayName="学习相关"/>
+      <column name="product_id" type="int(10) unsigned" nullable="false"/>
+      <column name="charter_id" type="int(10) unsigned" nullable="false"/>
+      <column name="lecturer_id" type="int(10) unsigned" nullable="true"/>
+      <column name="service_type_id" type="tinyint(2) unsigned" nullable="false"/>
+      <column name="capacity" type="int(10) unsigned" nullable="true" displayName="身份"/>
+      <column name="unit_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="url" type="varchar(400)" nullable="false" displayName="网址"/>
+      <column name="free_url" type="varchar(400)" nullable="true" displayName="免费网址"/>
+      <column name="description" type="text" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="learning_service_id"/>
+      </key>
+      <key type="fk" name="fk_learning_service_product_service_type_id">
+        <column name="service_type_id" referencedTable="service_type" referencedColumn="service_type_id"/>
+      </key>
+      <key type="fk" name="fk_learning_service_charter_id">
+        <column name="charter_id" referencedTable="charter" referencedColumn="charter_id"/>
+      </key>
+      <key type="fk" name="fk_learning_service_lecturer_id">
+        <column name="lecturer_id" referencedTable="lecturer" referencedColumn="lecturer_id"/>
+      </key>
+      <key type="fk" name="fk_learning_service_product_id">
+        <column name="product_id" referencedTable="product" referencedColumn="product_id"/>
+      </key>
+      <key type="fk" name="fk_learning_service_unit_id">
+        <column name="unit_id" referencedTable="unit" referencedColumn="unit_id"/>
+      </key>
+    </keys>
+  </table>
+ <table name="ebook_data" engine="InnoDB" comment="电子书数据" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+	  <column name="ebook_data_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="learning_service_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="component_type_id" type="smallint(5) unsigned" nullable="false"/>
+      <column name="page" type="smallint(5) unsigned" nullable="true" displayName="页码"/>
+      <column name="data" type="text" nullable="true" displayName="电子书数据"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="ebook_data_id"/>
+      </key>
+	  <key type="fk" name="fk_learning_service_id">
+        <column name="learning_service_id" referencedTable="learning_service" referencedColumn="learning_service_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="lecturer" engine="InnoDB" comment="讲师" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="lecturer_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="profile_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="photo_url" type="varchar(400)" nullable="false" displayName="照片"/>
+      <column name="long_intro" type="text" nullable="false" displayName="介绍"/>
+      <column name="tags" type="text" nullable="false" displayName="标签"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="lecturer_id"/>
+      </key>
+      <key type="fk" name="fk_lecturer_profile_id">
+        <column name="profile_id" referencedTable="profile" referencedColumn="profile_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="login_history" engine="InnoDB" comment="登录记录" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="login_history_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="account_id" type="int(10) unsigned" nullable="false"/>
+      <column name="try_login_time" type="datetime" nullable="true" displayName="尝试登录时间"/>
+      <column name="login_time" type="datetime" nullable="true" displayName="登录时间"/>
+      <column name="logout_time" type="datetime" nullable="true" displayName="退出时间"/>
+      <column name="ip_address" type="varchar(20)" nullable="true" displayName="IP地址"/>
+      <column name="failed_count" type="smallint(5) unsigned" nullable="false" displayName="失败次数"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="login_history_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="login_session" engine="InnoDB" comment="登录会话" charset="utf8" autoIncrementStartFrom="" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="account_id" type="int(10) unsigned" nullable="false" displayName="编号"/>
+      <column name="login_time" type="datetime" nullable="false" displayName="登录时间"/>
+      <column name="session_token" type="varchar(32)" nullable="false" displayName="超时"/>
+      <column name="ip_address" type="varchar(20)" nullable="true" displayName="编号"/>
+      <column name="heartbeat_time" type="datetime" nullable="true" displayName="会话时间"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="account_id"/>
+      </key>
+      <key type="uk" name="uk_login_session_token">
+        <column name="session_token"/>
+      </key>
+    </keys>
+  </table>
+  <table name="order" engine="InnoDB" comment="订单" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="order_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="订单ID"/>
+      <column name="profile_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="bill_id" type="bigint(16) unsigned zerofill" nullable="false"/>
+      <column name="canceled_time" type="datetime" nullable="true" displayName="取消时间"/>
+      <column name="ordered_time" type="datetime" nullable="false" displayName="下单时间"/>
+      <column name="paid_time" type="datetime" nullable="true" displayName="支付时间"/>
+      <column name="invoiced_time" type="datetime" nullable="true" displayName="开发票时间"/>
+      <column name="confirmed_time" type="datetime" nullable="true" displayName="有效时间"/>
+      <column name="deleted_time" type="datetime" nullable="true" displayName="删除时间"/>
+      <column name="total_price" type="decimal(10,2)" nullable="false" displayName="总价"/>
+      <column name="payment_type_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="order_status_id" type="tinyint(2) unsigned" nullable="true"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="order_id"/>
+      </key>
+      <key type="fk" name="fk_order_user_profile_id">
+        <column name="profile_id" referencedTable="profile" referencedColumn="profile_id"/>
+      </key>
+      <key type="fk" name="fk_order_order_status_id">
+        <column name="order_status_id" referencedTable="order_status" referencedColumn="order_status_id"/>
+      </key>
+      <key type="fk" name="fk_order_payment_type_id">
+        <column name="payment_type_id" referencedTable="payment_type" referencedColumn="payment_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="order_status" engine="InnoDB" comment="订单状态" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="order_status_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="订单状态ID"/>
+      <column name="order_status_name" type="varchar(50)" nullable="false" displayName="订单状态名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="order_status_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="payment_type" engine="InnoDB" comment="支付方式" charset="utf8" autoIncrementStartFrom="" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="payment_type_id" type="smallint(5) unsigned" nullable="false" displayName="支付方式ID"/>
+      <column name="payment_name" type="varchar(10)" nullable="false" displayName="支付方式名称"/>
+      <column name="desc" type="varchar(100)" nullable="true" displayName="支付方式描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="payment_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product" engine="InnoDB" comment="产品" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="product_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="产品ID"/>
+      <column name="product_name" type="varchar(50)" nullable="false" displayName="产品名称"/>
+      <column name="product_type_id" type="tinyint(2) unsigned" nullable="false"/>
+      <column name="product_version_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="course_subject_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="course_grade_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="course_term_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="age_min" type="tinyint(2)" nullable="false" displayName="产品适应最小年龄段"/>
+      <column name="age_max" type="tinyint(2)" nullable="false" displayName="产品适应最大年龄段"/>
+      <column name="course_type_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="publisher_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="lecturers" type="varchar(50)" nullable="true" displayName="产品讲师"/>
+      <column name="school_stage_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="description" type="text" nullable="true" displayName="详细说明"/>
+      <column name="product_status_id" type="tinyint(2) unsigned" nullable="false"/>
+      <column name="is_free" type="tinyint(1)" nullable="false" displayName="是否免费"/>
+      <column name="is_package" type="tinyint(1)" nullable="false" displayName="是否有套装"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_id"/>
+      </key>
+      <key type="fk" name="fk_product_type_id">
+        <column name="product_type_id" referencedTable="product_type" referencedColumn="product_type_id"/>
+      </key>
+      <key type="fk" name="fk_product_course_grade_id">
+        <column name="course_grade_id" referencedTable="course_grade" referencedColumn="course_grade_id"/>
+      </key>
+      <key type="fk" name="fk_product_course_subject_id">
+        <column name="course_subject_id" referencedTable="course_subject" referencedColumn="course_subject_id"/>
+      </key>
+      <key type="fk" name="fk_product_course_term_id">
+        <column name="course_term_id" referencedTable="course_term" referencedColumn="course_term_id"/>
+      </key>
+      <key type="fk" name="fk_product_course_type_id">
+        <column name="course_type_id" referencedTable="course_type" referencedColumn="course_type_id"/>
+      </key>
+      <key type="fk" name="fk_product_publisher_id">
+        <column name="publisher_id" referencedTable="publisher" referencedColumn="publisher_id"/>
+      </key>
+      <key type="fk" name="fk_product_school_stage_id">
+        <column name="school_stage_id" referencedTable="school_stage" referencedColumn="school_stage_id"/>
+      </key>
+      <key type="fk" name="fk_product_status_id">
+        <column name="product_status_id" referencedTable="product_status" referencedColumn="product_status_id"/>
+      </key>
+      <key type="fk" name="fk_product_version_id">
+        <column name="product_version_id" referencedTable="product_version" referencedColumn="product_version_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product_package" engine="InnoDB" comment="产品套装" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="product_package_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="产品套装ID"/>
+      <column name="package_id" type="int(10) unsigned" nullable="false"/>
+      <column name="product_id" type="int(10) unsigned" nullable="false"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_package_id"/>
+      </key>
+      <key type="uk" name="uk_product_package_package_id">
+        <column name="package_id"/>
+        <column name="product_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product_pricing" engine="InnoDB" comment="产品定价" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="product_pricing_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="产品定价ID"/>
+      <column name="product_id" type="int(10) unsigned" nullable="false"/>
+      <column name="sale_type_id" type="tinyint(2) unsigned" nullable="false"/>
+      <column name="origina_price" type="decimal(10,2)" nullable="false" displayName="原价"/>
+      <column name="current_price" type="decimal(10,2)" nullable="false" displayName="现价"/>
+      <column name="is_default" type="tinyint(1) unsigned" nullable="false" displayName="是否有默认定价"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_pricing_id"/>
+      </key>
+      <key type="uk" name="uk_product_pricing_product_id">
+        <column name="product_id"/>
+        <column name="sale_type_id"/>
+      </key>
+      <key type="fk" name="fk_product_pricing_sale_type_id">
+        <column name="sale_type_id" referencedTable="sale_type" referencedColumn="sale_type_id"/>
+      </key>
+      <key type="fk" name="fk_product_pricing_product_id">
+        <column name="product_id" referencedTable="product" referencedColumn="product_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product_status" engine="InnoDB" comment="产品状态" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="product_status_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="产品状态ID"/>
+      <column name="product_status_name" type="varchar(50)" nullable="false" displayName="产品状态名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_status_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product_type" engine="InnoDB" comment="产品类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="product_type_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="产品类型ID"/>
+      <column name="product_type_name" type="varchar(50)" nullable="false" displayName="产品类型名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="product_version" engine="InnoDB" comment="版本" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="product_version_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="版本ID"/>
+      <column name="product_version_name" type="varchar(50)" nullable="false" displayName="版本名称"/>
+      <column name="tags" type="varchar(100)" nullable="false" displayName="版本标签"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="product_version_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="profile" engine="InnoDB" comment="个人信息" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="profile_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="个人信息ID"/>
+      <column name="lastname" type="varchar(20)" nullable="true" displayName="姓"/>
+      <column name="firstname" type="varchar(20)" nullable="true" displayName="名"/>
+      <column name="nickname" type="varchar(20)" nullable="true" displayName="昵称"/>
+      <column name="gender_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="birthday" type="date" nullable="true" displayName="生日"/>
+      <column name="email" type="varchar(50)" nullable="true" displayName="邮箱"/>
+      <column name="region_id" type="int(10) unsigned" nullable="true"/>
+      <column name="detail_address" type="varchar(50)" nullable="true" displayName="详细地址"/>
+      <column name="zipcode" type="varchar(10)" nullable="true" displayName="个人信息编号"/>
+      <column name="mobile" type="varchar(20)" nullable="true" displayName="移动电话"/>
+      <column name="phone" format="phone" type="varchar(20)" nullable="true" displayName="固定电话"/>
+      <column name="avatar_url" type="varchar(400)" nullable="true" displayName="具体url地址"/>
+      <column name="short_intro" type="varchar(200)" nullable="true" displayName="简短介绍"/>
+      <column name="parent_id" type="int(10) unsigned" nullable="true"/>
+      <column name="identity_type_id" type="smallint(5) unsigned" nullable="true"/>
+      <column name="identity_card_no" type="char(18)" nullable="true" displayName="身份证号"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="profile_id"/>
+      </key>
+      <key type="fk" name="fk_profile_identity_type_id">
+        <column name="identity_type_id" referencedTable="identity_type" referencedColumn="identity_type_id"/>
+      </key>
+      <key type="fk" name="fk_profile_gender_id">
+        <column name="gender_id" referencedTable="gender" referencedColumn="gender_id"/>
+      </key>
+      <key type="fk" name="fk_profile_parent_id">
+        <column name="parent_id" referencedTable="account" referencedColumn="account_id"/>
+      </key>
+      <key type="fk" name="fk_profile_region_id">
+        <column name="region_id" referencedTable="region" referencedColumn="region_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="publisher" engine="InnoDB" comment="出版社" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="publisher_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="出版社ID"/>
+      <column name="publisher_name" type="varchar(50)" nullable="false" displayName="出版社名称"/>
+      <column name="publisher_short_name" type="varchar(10)" nullable="true" displayName="出版社短名称"/>
+      <column name="tags" type="varchar(100)" nullable="false" displayName="出版社标签"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="出版社说明"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="publisher_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="region" engine="InnoDB" comment="国家地区" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="region_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="国家地区ID"/>
+      <column name="parent_id" type="int(10) unsigned" nullable="false"/>
+      <column name="name" type="varchar(50)" nullable="false" displayName="国家地区名称"/>
+      <column name="route_path" type="varchar(100)" nullable="false" displayName="国家地区路线"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="region_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="sale_type" engine="InnoDB" comment="销售类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="sale_type_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="销售类型ID"/>
+      <column name="sale_type_name" type="varchar(50)" nullable="false" displayName="销售类型名称"/>
+      <column name="expiration_date" type="varchar(50)" nullable="true" displayName="有效时间"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="sale_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="sales_record" engine="InnoDB" comment="销售记录" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="sales_record_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="销售记录ID"/>
+      <column name="sales_record_name" type="varchar(50)" nullable="false" displayName="销售记录名称"/>
+      <column name="product_pricing_id" type="int(10) unsigned" nullable="false"/>
+      <column name="order_id" type="int(10) unsigned" nullable="true"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="sales_record_id"/>
+      </key>
+      <key type="fk" name="fk_sales_record_order_id">
+        <column name="order_id" referencedTable="order" referencedColumn="order_id"/>
+      </key>
+      <key type="fk" name="fk_sales_record_product_pricing_id">
+        <column name="product_pricing_id" referencedTable="product_pricing" referencedColumn="product_pricing_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="school" engine="InnoDB" comment="学校" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true">
+    <columns>
+      <column name="school_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="学校ID"/>
+      <column name="school_stage_id" type="smallint(5) unsigned" nullable="false"/>
+      <column name="school_name" type="varchar(50)" nullable="false" displayName="学校名称"/>
+      <column name="region_id" type="int(10) unsigned" nullable="false"/>
+      <column name="detail_address" type="text" nullable="true" displayName="详细地址"/>
+      <column name="zipcode" type="char(6)" nullable="false" displayName="学校代号"/>
+      <column name="is_added_by_user" type="tinyint(1) unsigned" nullable="false" displayName="是否是用户添加"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="school_id"/>
+      </key>
+      <key type="fk" name="fk_school_stage_id">
+        <column name="school_stage_id" referencedTable="school_stage" referencedColumn="school_stage_id"/>
+      </key>
+      <key type="fk" name="fk_region_id">
+        <column name="region_id" referencedTable="region" referencedColumn="region_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="school_stage" engine="InnoDB" comment="学习阶段" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="school_stage_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="学习阶段ID"/>
+      <column name="school_stage_name" type="varchar(50)" nullable="false" displayName="学习阶段名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="学习阶段说明"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="school_stage_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="service_type" engine="InnoDB" comment="服务类型" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="service_type_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="服务类型ID"/>
+      <column name="service_type_name" type="varchar(50)" nullable="false" displayName="服务类型名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="服务类型说明"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="service_type_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="system_feature" engine="InnoDB" comment="系统功能" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" isDict="true">
+    <columns>
+      <column name="system_feature_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="系统功能ID"/>
+      <column name="system_feature_name" type="varchar(50)" nullable="false" displayName="系统功能名称"/>
+      <column name="system_feature_value" type="varchar(50)" nullable="false" displayName="系统功能值"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="system_feature_id"/>
+      </key>
+      <key type="uk" name="uk_system_feature_name">
+        <column name="system_feature_name"/>
+      </key>
+      <key type="uk" name="uk_system_feature_value">
+        <column name="system_feature_value"/>
+      </key>
+    </keys>
+  </table>
+  <table name="unit" engine="InnoDB" comment="计量单位" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false" isDict="true">
+    <columns>
+      <column name="unit_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="计量单位ID"/>
+      <column name="unit_type" type="varchar(50)" nullable="false" displayName="计量单位类型"/>
+      <column name="unit_name" type="varchar(50)" nullable="false" displayName="计量单位名称"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="unit_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="user_product" engine="InnoDB" comment="用户拥有的产品" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="user_product_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="用户拥有产品ID"/>
+      <column name="account_id" type="int(10) unsigned" nullable="false"/>
+	  <column name="product_id" type="int(10) unsigned" nullable="false"/>
+	  <column name="sales_record_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="expiration_date" type="datetime" nullable="true" displayName="有效时间"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="user_product_id"/>
+      </key>
+	  <key type="fk" name="fk_user_product_profile_id">
+        <column name="account_id" referencedTable="account" referencedColumn="account_id"/>
+      </key>
+	  <key type="fk" name="fk_user_product_id">
+        <column name="product_id" referencedTable="product" referencedColumn="product_id"/>
+      </key>
+	  <key type="fk" name="fk_user_product_sales_record_id">
+        <column name="sales_record_id" referencedTable="sales_record" referencedColumn="sales_record_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="learning_record" engine="InnoDB" comment="学习记录" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="learning_record_id" type="bigint(20) unsigned" nullable="false" extra="auto_increment" displayName="学习记录ID"/>
+      <column name="account_id" type="int(10) unsigned" nullable="false"/>
+	  <column name="learning_service_id" type="bigint(20) unsigned" nullable="false"/>
+      <column name="start_time" type="datetime" nullable="false" displayName="开始时间"/>
+	  <column name="end_time" type="datetime" nullable="true" displayName="结束时间"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="learning_record_id"/>
+      </key>
+	  <key type="fk" name="fk_learning_record_account_id">
+        <column name="account_id" referencedTable="account" referencedColumn="account_id"/>
+      </key>
+	  <key type="fk" name="fk_learning_record_learning_service_id">
+        <column name="learning_service_id" referencedTable="learning_service" referencedColumn="learning_service_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="qa_post" engine="InnoDB" comment="用户问答" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="false">
+    <columns>
+      <column name="qa_post_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+	  <column name="title" type="varchar(50)" nullable="false" displayName="标题"/>
+	  <column name="content" type="text" nullable="true" displayName="主题内容"/>
+	  <column name="qa_category_id" type="tinyint(2) unsigned" nullable="false"/>
+	  <column name="root_post_id" type="int(10) unsigned" nullable="false" displayName="父主题"/>
+	  <column name="account_id" type="int(10) unsigned" nullable="false" displayName="用户id"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="qa_post_id"/>
+      </key>
+      <key type="fk" name="fk_qa_post_account_id">
+        <column name="account_id" referencedTable="account" referencedColumn="account_id"/>
+      </key>
+	  <key type="fk" name="fk_qa_post_qa_category_id">
+        <column name="qa_category_id" referencedTable="qa_category" referencedColumn="qa_category_id"/>
+      </key>
+    </keys>
+  </table>
+  <table name="qa_category" engine="InnoDB" comment="问题类别" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="false" enableLogicalDeletion="false">
+    <columns>
+      <column name="qa_category_id" type="tinyint(2) unsigned" nullable="false" extra="auto_increment" displayName="问题类别ID"/>
+      <column name="qa_category_name" type="varchar(50)" nullable="false" displayName="问题类别名称"/>
+      <column name="comment" type="varchar(100)" nullable="true" displayName="描述"/>
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="qa_category_id"/>
+      </key>
+    </keys>
+  </table>
+</database>

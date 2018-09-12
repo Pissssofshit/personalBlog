@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+	
+	<action name="update" mode="default" />
+	
+	<action name="getList" mode="default"/>
+	
+	<action name="getDetail" mode="default"/>
+	
+	<action name="delete" mode="default" />
+</model>

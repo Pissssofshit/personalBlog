@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />
+	
+	<action name="getProductpricingByID" mode="select" resultType="row">
+		<inputs>
+			<field type="variable" name="product_name"/>
+			<field type="array" name="cond"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="product_pricing_id" type="int"/>
+			<field name="product_id" type="int"/>
+			<field name="sale_type_name" type="text"/>
+			<field name="origina_price" type="text"/>
+			<field name="current_price" type="text"/>
+			<field name="is_default" type="text"/>
+			<field name="is_deleted" type="text"/>
+			<field name="created_time" type="datetime"/>
+			<field name="updated_time" type="datetime"/>
+			<field name="created_by" type="text"/>
+			<field name="updated_by" type="text"/>
+		</outputs>
+		<query>
+			SELECT `product_pricing_id`, pp.`product_id`, `sale_type_name`, `origina_price`, `current_price`,`is_default`,
+			`is_deleted`, `created_time`, `updated_time`, `created_by`, `updated_by`
+			FROM `product_pricing` AS pp
+			LEFT JOIN `product` pt 	ON pp.`product_id` = pt.`product_id`
+			LEFT JOIN `sale_type` st ON pp.`sale_type_id` = st.`sale_type_id`
+			WHERE (pt.`product_name` = :product_name)
+			ORDER BY `updated_time`
+		</query>
+	</action>
+
+</model>

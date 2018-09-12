@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getLoginHistoryList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="account_history_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_history_id`, `username`, `secure_mail`, `secure_question`, `secure_answer`, a_e.`account_role_id`,
+					a_e.`account_role_name`, a_s.`account_status_id`, a_s.`account_status_name`, `comment`, `created_time`,
+					`updated_time`, `created_by`, `updated_by`
+				FROM `account_history` as a_y
+					JOIN `account_role` as a_e ON a_y.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON a_y.`account_status_id` = a_s.`account_status_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(`created_by` = :createdBy OR '' = :createdBy)
+					AND(`updated_by` = :updatedBy OR '' = :updatedBy)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+				ORDER BY `created_time` DESC
+		</query>
+	</action>
+	
+	<action name="getLoginHistoryCount" mode="select" resultType="one">    
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="account_history_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`account_history_id`)
+				FROM `account_history` as a_y
+					JOIN `account_role` as a_e ON a_y.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON a_y.`account_status_id` = a_s.`account_status_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(`created_by` = :createdBy OR '' = :createdBy)
+					AND(`updated_by` = :updatedBy OR '' = :updatedBy)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

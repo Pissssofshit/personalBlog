@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />	
+
+	<action name="getAccountProductLists" mode="select" resultType="list">
+		<inputs>
+			<field type="variable" name="account_id"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="produdt_id" type="int"/>
+			<field name="product_name" type="int"/>
+			<field name="sales_record_name" type="int"/>
+		</outputs>
+		<query>
+			SELECT pt.`product_id`,pt.`product_name`,sr.`sales_record_name`,st.`sale_type_name` FROM `user_product` up
+			LEFT JOIN `account` ac ON up.`account_id` = ac.`account_id`
+			LEFT JOIN `product` pt ON up.`product_id` = pt.`product_id`
+			LEFT JOIN `product_pricing` pp ON pt.`product_id` = pp.`product_id`
+			LEFT JOIN `sale_type` st ON pp.`sale_type_id` = st.`sale_type_id`
+			LEFT JOIN `sales_record` sr ON up.`sales_record_id` = sr.`sales_record_id`
+			WHERE ac.`account_id` = :account_id
+			AND DATE_ADD(UP.`expiration_date`,INTERVAL ST.`expiration_date` YEAR_MONTH) > NOW()
+			ORDER BY pt.`product_id`
+		</query>
+	</action>
+</model>

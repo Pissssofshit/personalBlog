@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="zeus" shortname="zeus" user="zeus" password="zeus_password" hosts="%" title="宙斯数据系统">
+	<table name="job" engine="MyISAM" comment="任务表" charset="utf8" autoIncrementStartFrom="100000" enableCache="false" isDict="true" group="任务管理">
+		<columns>
+			<column name="job_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="任务ID"/>
+			<column name="job_name" type="varchar(50)" displayName="任务名" displayType="text"/>
+			<column name="job_desc" type="varchar(1000)" displayName="任务描述" displayType="textarea"/>
+			<column name="status" type="int(4)" default="0" displayName="任务状态" displayType="select" queryType="precise"/>
+			<column name="conf" type="varchar(2000)" nullable="false" displayName="任务构建参数" displayType="textarea"/>
+			<column name="selector" type="varchar(1000)" displayName="任务条件选择器" />
+			<column name="picker" type="varchar(1000)" displayName="任务数据提取器"/>
+			<column name="url" type="varchar(1000)" default=""	 displayName="任务结果URL" displayType="textarea"/>
+			<column name="error" type="text" default=""	 displayName="任务错误信息" displayType="textarea"/>
+			<column name="email" type="varchar(100)" displayName="任务通知邮箱" displayType="text"/>
+			<column name="s_time" type="int(10)" displayName="任务结束时间" displayType="time"/>
+			<column name="u_time" type="int(10)" displayName="最后更新时间" displayType="time"/>
+
+			<column name="c_by" type="varchar(50)" displayName="创建者" displayType="text" track="create"/>
+			<column name="c_time" type="int(10)" nullable="false" displayName="任务创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="job_id"/>
+			</key>
+			<key type="fk" name="fk_job_status">
+				<column name="status" referencedTable="job_status" referencedColumn="job_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="job_status" engine="MyISAM"  comment="任务状态表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据">
+		<columns>
+			<column name="job_status_id" type="int(4)" nullable="false" displayName="任务状态ID"  displayType="text"/>
+			<column name="job_status_name" type="varchar(10)" nullable="false" displayName="任务状态名称" displayType="text"/>
+			<column name="desc" type="varchar(255)"  displayName="描述说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="job_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="job_template" engine="MyISAM" comment="任务模板表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="任务管理">
+		<columns>
+			<column name="job_template_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="模板ID"/>
+			<column name="name" type="varchar(50)" nullable="false" displayName="模板名" displayType="text"/>
+			<column name="desc" type="text" displayName="模板描述" displayType="textarea"/>
+			<column name="creator" type="varchar(50)" displayName="创建者" displayType="text" track="create"/>
+			<column name="ctime" type="int(10)" displayName="创建时间" displayType="time" track="create"/>
+			<column name="conf" type="text" nullable="false" displayName="任务构建的条件参数" displayType="textarea"/>
+			<column name="selector" type="varchar(1000)" displayName="任务条件选择器"/>
+			<column name="picker" type="varchar(1000)" displayName="任务数据提取器"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="job_template_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="job_log" engine="MyISAM" comment="任务日志表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="任务管理">
+		<columns>
+			<column name="job_log_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="日志ID"/>
+			<column name="job_id" type="int(10) unsigned" nullable="false" displayName="任务ID"/>
+			<column name="creator" type="varchar(50)" displayName="创建者"  displayType="text" track="create"/>
+			<column name="ctime" type="int(10)" displayName="日志产生时间" displayType="time" track="create"/>
+			<column name="type" type="varchar(50)" nullable="false" displayName="操作类型"/>
+			<column name="desc" type="text" displayName="描述"   displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="job_log_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="plugin" engine="MyISAM" comment="插件表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="任务管理">
+		<columns>
+			<column name="plugin_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="插件ID"/>
+			<column name="plugin_name" type="int(10) unsigned" nullable="false" displayName="任务ID"/>
+			<column name="creator" type="varchar(50)" displayName="插件开发者"  displayType="text" track="create"/>
+			<column name="ctime" type="int(10)" displayName="开发时间" displayType="time" track="create"/>
+			<column name="logo" type="varchar(100)"  displayName="插件logo"/>
+			<column name="version" type="varchar(20)"  displayName="插件版本"/>
+			<column name="desc" type="text" displayName="描述说明"   displayType="textarea"/>
+			<column name="status" type="int(4)" displayName="插件状态"   displayType="select" queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plugin_id"/>
+			</key>
+			<key type="fk" name="fk_plugin_status">
+				<column name="status" referencedTable="plugin_status" referencedColumn="plugin_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="plugin_status" engine="MyISAM"  comment="插件状态表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据">
+		<columns>
+			<column name="plugin_status_id" type="int(4)" nullable="false" displayName="插件状态ID"  displayType="text"/>
+			<column name="plugin_status_name" type="varchar(10)" nullable="false" displayName="插件状态名称" displayType="text"/>
+			<column name="desc" type="varchar(255)"  displayName="描述说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plugin_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>

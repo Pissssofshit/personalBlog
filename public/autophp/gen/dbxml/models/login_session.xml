@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getOnlineList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_id`, `username`, a_e.`account_role_id`, a_e.`account_role_name`, a_s.`account_status_id`, a_s.`account_status_name`,
+					`login_time`, `session_token`, `ip_address`, `heartbeat_time`
+				FROM `account` as at
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(`ip_address` = :ipAddress OR '' = :ipAddress)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+				ORDER BY `account_id`
+		</query>
+	</action>
+	
+	<action name="getOnlineCount" mode="select" resultType="one">    
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`account_id`)
+				FROM `account` as at
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(`ip_address` = :ipAddress OR '' = :ipAddress)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

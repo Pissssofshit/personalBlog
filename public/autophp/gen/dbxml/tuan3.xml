@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="activity" shortname="act">
+  <table name="tuan3info" engine="MyISAM" comment="团购信息" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" enableCache="false">
+    <columns>
+      <column name="tuan3info_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+      <column name="expire_time" type="int(10) unsigned" nullable="false" displayName="到期时间" displayType="time"/>
+      <column name="title" type="varchar(50)" nullable="false" displayName="活动名称" displayType="text"/>
+      <column name="content" type="varchar(255)" nullable="false" displayName="团购信息" displayType="textarea"/>
+      <column name="worth" type="int(5) unsigned" nullable="false" displayName="商品价值" displayType="text"/>
+      <column name="discount" type="float(4,2)" nullable="true" displayName="商品折扣" displayType="text"/>
+      <column name="price" type="int(5) unsigned" nullable="true" displayName="商品价格" displayType="text"/>
+	  <column name="base_buyer" type="int(10) unsigned" nullable="true" default="0" displayName="团购人数基数" displayType="text"/>
+	  <column name="email_title" type="varchar(150)" nullable="true" displayName="邀请邮件标题" displayType="text" />
+	  <column name="email_body" type="varchar(1000)" nullable="true" displayName="邀请邮件内容" displayType="textarea" />
+	  <column name="weibo_content" type="varchar(150)" nullable="true" displayName="微博" displayType="textarea" />
+    </columns>
+    <keys>
+      <key type="pk">
+        <column name="tuan3info_id"/>
+      </key>
+    </keys>
+  </table>
+
+  <table name="tuan3card"  engine="MyISAM" comment="点卡游戏卡" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+	<columns>
+		<column name="tuan3card_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号" />
+		<column name="card_sn" type="char(16)" nullable="false" displayName="卡密" displayType="text"/>
+		<column name="tuan3cardtype_id" type="smallint(1)" nullable="false" default="0" displayName="卡的类别" queryType="precise" displayType="select"/>
+		<column name="receiver" type="varchar(32)" nullable="true"  displayName="领用人" displayType="text" queryType="fuzzy"/>
+		<column name="order_name" type="varchar(20)" nullable="true"  displayName="订单号" displayType="text" queryType="precise"/>
+		<column name="status" type="tinyint(1)" default="0" queryType="precise" displayType="select" displayName="状态"/>
+	</columns>
+	<keys>
+      <key type="pk">
+        <column name="tuan3card_id"/>
+      </key>
+	  <key type="fk" name="fk_card_type">
+        <column name="tuan3cardtype_id" referencedTable="tuan3cardtype" referencedColumn="tuan3cardtype_id"/>
+      </key>
+    </keys>
+  </table>
+
+  <table name="tuan3cardtype"  engine="MyISAM" comment="卡类别" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true">
+	<columns>
+		<column name="tuan3cardtype_id" type="smallint(2) unsigned" nullable="false" extra="auto_increment" displayName="编号" />
+		<column name="tuan3_card_name" type="varchar(20)" nullable="false" displayName="名称" displayType="text"/>
+	</columns>
+	<keys>
+      <key type="pk">
+        <column name="tuan3cardtype_id"/>
+      </key>
+    </keys>
+  </table>
+
+  <table name="tuan3order" engine="MyISAM" comment="订单" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+	<columns>
+		<column name="tuan3order_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号" />
+		<column name="tuan3order_name" type="varchar(20)" nullable="false" displayName="订单名" queryType="precise" displayType="text"/>
+		<column name="username" type="varchar(32)" nullable="false" displayName="用户名" queryType="fuzzy" displayType="text"/>
+		<column name="uid" type="int(10) unsigned" nullable="false" displayName="用户ID" displayType="text"/>
+		<column name="status" type="tinyint(1)" default="0" displayName="订单状态" queryType="precise" displayType="select"/>
+		<column name="created_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="创建时间" displayType="time" track="create"/>
+		<column name="updated_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="更新时间" displayType="time" track="update"/>
+	</columns>
+	<keys>
+      <key type="pk">
+        <column name="tuan3order_id"/>
+      </key>
+	  <key type="fk" name="fk_order_status">
+        <column name="status" referencedTable="tuan3orderstatus" referencedColumn="tuan3orderstatus_id"/>
+      </key>
+    </keys>
+  </table>
+
+   <table name="tuan3orderstatus"  engine="MyISAM" comment="订单状态" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true">
+	<columns>
+		<column name="tuan3orderstatus_id" type="smallint(2) unsigned" nullable="false" extra="auto_increment" displayName="编号" />
+		<column name="status_name" type="varchar(20)" nullable="false" displayName="名称" displayType="text"/>
+	</columns>
+	<keys>
+      <key type="pk">
+        <column name="tuan3orderstatus_id"/>
+      </key>
+    </keys>
+  </table>
+
+</database>

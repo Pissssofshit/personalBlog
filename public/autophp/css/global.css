@@ -1,0 +1,174 @@
+/* Pretty Stuff
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+	border-width: 0; /* fix IE */
+}
+
+body {
+	font-size: 12px;
+	/*background:url(http://image.ledu.com/port/images/bgBody.gif) repeat-x #f7f7f7;*/
+	
+}
+
+/* Pretty - common Table
+================================== */
+.clear { clear:both; }
+.clearfix:after {content: ".";display: block; height: 0;clear: both;visibility: hidden; }
+.clearfix {zoom:1}
+
+table {
+  border-collapse: collapse;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  clear:both;
+}
+
+th, td {
+  padding: 2px;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  height:22px;
+  text-align:right;
+  text-decoration: none;
+}
+
+th {
+	background: none repeat scroll 0 0 #EEEEEE;
+    color: #000000;
+}
+
+/*
+.search_canvas {
+	padding: 10px;
+}*/
+fieldset {
+	margin: 10px 5px;
+	padding:5px;
+}
+
+.search_canvas li {
+	list-style:none;
+	float:left;
+	padding: 5px 0px;
+	white-space:nowrap; 
+	/*
+	min-width: 200px;
+	*/
+}
+.display_name {
+	width: 120px;
+	float: left;
+	text-align: right;
+}
+.searchlegend .display_name {
+	width: 120px;
+	float: left;
+	text-align: right;
+}
+.searchlegend .checker{
+	 display: inline-block;
+ }
+.searchlegend .radio{
+	display: inline-block;
+}
+legend {
+	font-size: 14px;
+}
+.admin_tab { line-height:20px; float:left; margin-left:10px; margin-top:10px; list-style:none; }
+.admin_tab a {
+	display:block ;
+	text-align:center;
+	border:1px solid #99BBE8;
+	background:#EEF2F5;
+	text-decoration:none;
+	width: 60px;
+	color:#000;
+	height: 20px;
+}
+.title_tab { line-height:20px; float:left; margin-left:10px; margin-top:10px; list-style:none; }
+.title_tab a {
+	display:block ;
+	text-align:center;
+	border:1px solid #99BBE8;
+	background:#EEF2F5;
+	text-decoration:none;
+	width: 200px;
+	color:#000;
+	height: 20px;
+}
+.selectedType{font-weight:bold;}
+
+.list_A { margin-top:10px; }
+.list_A li { list-style:none; line-height:20px; margin-bottom:10px;white-space:nowrap; min-height:20px; _height:20px; }
+.list_A li.ml35 { margin-left:35px; }
+.list_A li label { display:inline-block; margin:0 5px; vertical-align:middle; }
+.list_A li span.kk_group_checkbox {  width:870px; display:inline-block; white-space:normal; border:1px solid #ddd }
+.list_A li span.kk_group_checkbox label { display:inline-block;  width:180px;  white-space:nowrap; overflow:hidden; font-family: '����', Simsun;}
+.list_A li span.kk_group_checkbox label input { margin-right:5px; }
+.kbutton { width:66px; height:22px; background: url(../images/btn.png) no-repeat; border:0; cursor:pointer; margin-right:10px; }
+
+.kbutton_A { margin-left:30px; }
+
+.op_tip {padding:10px; font-size: 14px;}
+.op_tip li {list-style:none; line-height:30px;}
+.op_tip_success {color:green; font-weight:bold;}
+.op_tip_failed {color:red; font-weight:bold;}
+.op_tip_suggest {font-size: 12px;}
+
+.list_page a {
+	text-align:center;
+	border:1px solid #99BBE8;
+	background:#EEF2F5;
+	text-decoration:none;
+	color:#000;
+	width:20px;
+	height: 20px;
+	margin: 5px 5px;
+	padding: 0 3px;
+}
+
+.list_page .selected {
+	text-align:center;
+	border:1px solid #99BBE8;
+	background:#FFFFFF;
+	text-decoration:none;
+	color:#000;
+	width:20px;
+	height: 20px;
+	margin: 5px 5px;
+	padding: 0 5px;
+}
+
+.error{color:#c30;}	
+#navi {
+    border: 2px solid #99BBE8;
+    margin: 5px;
+    padding: 15px;
+}
+#navi a.current {
+    background: none repeat scroll 0 0 #E8F2FF;
+}
+#navi a {
+    border: 1px solid #99BBE8;
+    padding: 5px 10px;
+    color: #007BBB;
+    text-decoration: none;
+}
+#navi_2 {
+	float:right;
+	margin:0 20px 10px 0;
+}
+#navi_2 a{
+    color: #007BBB;
+}
+#navi_2 a.current{
+	color:#c30;
+}
+.tableListLine{
+	background-color:#E8F2FF;
+}

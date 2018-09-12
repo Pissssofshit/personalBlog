@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getUserList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_id`, `username`, a_e.`account_role_id`, a_e.`account_role_name`, a_s.`account_status_id`, a_s.`account_status_name`,
+					pe.`profile_id`, CONCAT(`lastname`,`firstname`) as `fullname`, `nickname`, `birthday`, `email`, `detail_address`, `zipcode`,
+					`mobile`, `phone`, `avatar_url`, `short_intro`, `identity_card_no`, gr.`gender_id`, gr.`gender_name`, rn.`region_id`,
+					rn.`name`, `parent_id`, i_e.`identity_type_id`, i_e.`identity_type_name`
+				FROM `account` as at
+					JOIN `profile` as pe ON at.`profile_id` = pe.`profile_id`
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+					JOIN `gender` as gr ON pe.`gender_id` = gr.`gender_id`
+					JOIN `region` as rn ON pe.`region_id` = rn.`region_id`
+					JOIN `identity_type` as i_e ON pe.`identity_type_id` = i_e.`identity_type_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(CONCAT(`lastname`, `firstname`) = :fullname OR '' = :fullname)
+					AND(`nickname` = :nickname OR '' = :nickname)
+					AND(`email` = :email OR '' = :email)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+					AND(`region_id` = :regionName OR -1 = :regionName)
+				ORDER BY `account_id`
+		</query>
+	</action>
+	
+	<action name="getUserCount" mode="select" resultType="one">    
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`account_id`)
+				FROM `account` as at
+					JOIN `profile` as pe ON at.`profile_id` = pe.`profile_id`
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+					JOIN `gender` as gr ON pe.`gender_id` = gr.`gender_id`
+					JOIN `region` as rn ON pe.`region_id` = rn.`region_id`
+					JOIN `identity_type` as i_e ON pe.`identity_type_id` = i_e.`identity_type_id`
+				WHERE (`username` = :username OR '' = :username)
+					AND(CONCAT(`lastname`, `firstname`) = :fullname OR '' = :fullname)
+					AND(`nickname` = :nickname OR '' = :nickname)
+					AND(`email` = :email OR '' = :email)
+					AND(`account_status_id` = :accountStatus OR -1 = :accountStatus)
+					AND(`region_id` = :regionName OR -1 = :regionName)
+		</query>
+	</action>
+	
+	<action name="getProfileDetail" mode="select" resultType="row">    
+		<inputs>
+			<field type="variable" name="profileId"/>
+        </inputs>
+		<outputs>
+            <field name="profile_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `profile_id`, CONCAT(`lastname`,`firstname`) as `fullname`, `nickname`, `birthday`, `email`, `detail_address`, `zipcode`, `mobile`,
+					`phone`, `avatar_url`, `short_intro`, `identity_card_no`, gr.`gender_id`, gr.`gender_name`, rn.`region_id`, rn.`name`,
+					`parent_id`, i_e.`identity_type_id`, i_e.`identity_type_name`
+				FROM `profile` as pe
+					JOIN `gender` as gr ON pe.`gender_id` = gr.`gender_id`
+					JOIN `region` as rn ON pe.`region_id` = rn.`region_id`
+					JOIN `identity_type` as i_e ON pe.`identity_type_id` = i_e.`identity_type_id`
+				WHERE `profile_id` = :profileId
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

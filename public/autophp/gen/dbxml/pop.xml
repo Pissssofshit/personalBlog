@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="pop" shortname="pop" user="pop_user" password="pop_password" hosts="%" host="mysql"  port="3306" title="广告系统">
+	<!--开始-->
+
+	<!--0-->
+
+	<table name="rem_account" engine="MyISAM" comment="账号列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="account_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="账号ID"/>
+			<column name="account_name" type="varchar(40)" nullable="false" displayName="账号名称" displayType="text" queryType="fuzzy"/>
+			<column name="account_url" type="varchar(255)" nullable="true" displayName="账号域名" displayType="text" default="new_p.ledu.com"/>
+			<column name="company_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="公司id" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="account_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--1-->
+
+	<table name="rem_game" engine="MyISAM" comment="游戏列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="game_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="游戏ID"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID"  displayType="text"/>
+			<column name="game_name" type="varchar(40)" nullable="false" displayName="游戏名" displayType="text" queryType="fuzzy"/>
+			<column name="state" type="boolean" default="0" displayName="是否启用" displayType="radio" queryType="precise"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+			<column name="game_url" type="varchar(255)" nullable="false" displayName="官网地址/包地址" displayType="text"/>
+			<column name="new_server" type="int(4) unsigned" nullable="false" displayName="是否最新服" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="game_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--2-->
+
+	<table name="rem_site" engine="MyISAM" comment="站点列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="site_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="站点ID"/>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="渠道ID"  displayType="text"/>
+			<column name="site_name" type="varchar(40)" nullable="false" displayName="站点名" displayType="text" queryType="fuzzy"/>
+			<column name="state" type="boolean" default="0" displayName="是否启用" displayType="radio" queryType="precise"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+			<column name="pay_way_id" type="int(4) unsigned" nullable="false" displayName="结算方式" displayType="text"  queryType="precise"/>
+			<column name="describe" type="varchar(100)" nullable="false" displayName="具体描述" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="site_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--3-->
+
+	<table name="cfg_category" engine="MyISAM" comment="类型定义" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="cfg">
+		<columns>
+			<column name="category_id" type="int(4) unsigned" nullable="false" extra="auto_increment" displayName="类型ID"/>
+			<column name="category_name" type="varchar(20)" nullable="false" displayName="类型名" displayType="text" queryType="fuzzy"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="category_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--4-->
+
+	<table name="rem_plan" engine="MyISAM" comment="类型定义" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="plan_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="计划ID"/>
+			<column name="plan_name" type="varchar(40)" nullable="false" displayName="计划名" displayType="text" queryType="fuzzy"/>
+			<column name="account_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="账号id" displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="state" type="int(4) unsigned" default="1" displayName="状态" displayType="text"/>
+			<!-- 启用后不允许修改账号id -->
+			<column name="is_1st" type="int(2) unsigned" default="0" displayName="是否启用过" displayType="text"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+			<column name="mode_id" type="int(4) unsigned" nullable="false" displayName="推广方式" displayType="text"  queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="updated_time" type="int(10) unsigned" nullable="true" displayName="更新时间" displayType="time" track="update"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plan_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--5-->
+	<table name="cfg_mode" engine="MyISAM" comment="推广方式定义" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="cfg">
+		<columns>
+			<column name="mode_id" type="int(4) unsigned" nullable="false" extra="auto_increment" displayName="推广方式ID"/>
+			<column name="mode_name" type="varchar(30)" nullable="false" displayName="推广方式" displayType="text" queryType="fuzzy"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="mode_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--6-->
+
+	<table name="sys_plan_material" engine="MyISAM" comment="计划素材关联" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="sys">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="plan_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="计划id" displayType="text"/>
+			<column name="material_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="素材id" displayType="text"/>
+			<column name="weight" type="int(10) unsigned" nullable="false" displayName="权重" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--7-->
+
+	<table name="rem_channel" engine="MyISAM" comment="渠道列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="渠道ID"/>
+			<column name="channel_name" type="varchar(40)" nullable="false" displayName="渠道名" displayType="text" queryType="fuzzy"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+			<column name="state" type="boolean" default="0" displayName="是否启用" displayType="radio" queryType="precise"/>
+			<column name="callback_url" type="varchar(255)" nullable="false" displayName="回调地址" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="channel_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--8-->
+
+	<table name="cfg_pay_way" engine="MyISAM" comment="结算方式定义" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="cfg">
+		<columns>
+			<column name="id" type="int(4) unsigned" nullable="false" extra="auto_increment" displayName="结算方式ID"/>
+			<column name="name" type="varchar(30)" nullable="false" displayName="结算方式" displayType="text" queryType="fuzzy"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--9-->
+
+	<table name="sys_account_site" engine="MyISAM" comment="账号站点关联" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="sys">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="account_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="账号id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--10-->
+
+	<table name="rem_channel_type" engine="MyISAM" comment="渠道类型列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="id"/>
+			<column name="name" type="varchar(40)" nullable="false" displayName="类型名" displayType="text" queryType="fuzzy"/>
+			<column name="state" type="boolean" default="0" displayName="是否启用" displayType="radio" queryType="precise"/>
+			<column name="describe" type="varchar(100)" nullable="false" displayName="具体描述" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--11-->
+
+	<table name="sys_channel_channeltype" engine="MyISAM" comment="渠道类型关联" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="sys">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="渠道id" displayType="text"/>
+			<column name="channel_type_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="类型id" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--12-->
+
+	<table name="user" engine="MyISAM" comment="用户表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="data">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="uid" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID" displayType="text"/>
+			<column name="passport" type="varchar(40)" nullable="false" displayName="平台账号名" displayType="text" queryType="fuzzy"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID"  displayType="text"/>
+			<column name="plan_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="计划id" displayType="text"/>
+			<column name="account_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="账号id" displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="material_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="素材id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="is_role" type="boolean" default="0" displayName="是否创角" displayType="radio" queryType="precise"/>
+			<column name="is_reg" type="boolean" default="1" displayName="是否新注册用户(滚游戏)" displayType="radio" queryType="precise"/>
+			<column name="reg_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="注册时间" displayType="time"/>
+			<column name="subsist_sign" type="varchar(100)" nullable="false" displayName="留存标记" displayType="text"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--13-->
+
+	<table name="cfg_subsist_sign" engine="MyISAM" comment="留存标记" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="cfg">
+		<columns>
+			<column name="subsist_day" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="第n日留存"/>
+			<column name="subsist_num" type="varchar(100)" nullable="false" displayName="对应标记" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="subsist_day"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--14-->
+
+	<table name="rem_partner" engine="MyISAM" comment="平台列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="平台id"/>
+			<column name="partner_name" type="varchar(40)" nullable="false" displayName="平台名" displayType="text" queryType="fuzzy"/>
+			<column name="check_url" type="varchar(255)" nullable="false" displayName="账号注册检查链接" displayType="text" default="http://pass.ledu.com/api/check/username?username={passport}"/>
+			<column name="reg_url" type="varchar(255)" nullable="false" displayName="账号注册链接" displayType="text" default="http://p.ledu.com/service_user/reg?username={passport}#password={pwd}#fromwd={fromwd}"/>
+			<column name="login_url" type="varchar(255)" nullable="false" displayName="账号登录链接" displayType="text" default="http://p.ledu.com/service_user/login?username={passport}#password={pwd}#fromwd={fromwd}"/>
+			<column name="search_url" type="varchar(255)" nullable="false" displayName="账号查询链接" displayType="text" default="http://act.xdwan.com/api/userinfo/userinfo/user_id/{uid}/server_id/{serverId}/game_id/{game_id}/y_id/{y_id}"/>
+			<column name="server_url" type="varchar(255)" nullable="true" displayName="获取服务器列表链接" displayType="text"/>
+			<column name="cdn_url" type="varchar(255)" nullable="true" displayName="素材链接" displayType="text" default="http://pop.img.ledu.com"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="partner_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--15-->
+
+	<table name="rem_company" engine="MyISAM" comment="公司列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="company_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="公司ID"/>
+			<column name="company_name" type="varchar(40)" nullable="false" displayName="公司名" displayType="text" queryType="fuzzy"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="company_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--16-->
+
+	<table name="rem_plan_append" engine="MyISAM" comment="类型定义" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="plan_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="计划ID"/>
+			<column name="ios_game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="ios游戏id" displayType="text"/>
+			<column name="re_yun_url" type="varchar(255)" nullable="true" displayName="热云url" displayType="text"/>
+			<column name="package_url" type="varchar(255)" nullable="true" displayName="渠道包地址" displayType="text"/>
+			<column name="version" type="varchar(40)" nullable="false" displayName="版本号" displayType="text" queryType="fuzzy"/>
+			<column name="status" type="int(4) unsigned" default="0" displayName="打包状态" displayType="text"/>
+			<column name="count_down" type="int(4) unsigned" default="0" displayName="倒计时" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="plan_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--17-->
+
+	<table name="channel_callback" engine="MyISAM" comment="页游渠道回调" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="data">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="uid" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID" displayType="text"/>
+			<column name="passport" type="varchar(40)" nullable="false" displayName="平台账号名" displayType="text" queryType="fuzzy"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID"  displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="server_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="服id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="res" type="varchar(255)" nullable="true" displayName="回调参数值" displayType="text"/>
+			<column name="info" type="varchar(255)" nullable="true" displayName="回调返回值" displayType="text"/>
+			<column name="insert_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="插入时间" displayType="time"/>
+			<column name="notice_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="回调时间" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--18-->
+
+	<table name="pay_log" engine="MyISAM" comment="充值订单表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="data">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="order_id" type="varchar(32)" nullable="false" displayName="订单号" queryType="precise" displayType="text"/>
+			<column name="uid" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID" displayType="text"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID"  displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="server_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="服id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="reg_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="注册时间" displayType="time"/>
+			<column name="pay_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="充值时间" displayType="time"/>
+			<column name="pay_money" type="int(10) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>
+			<column name="is_1st_pay" type="int(2) unsigned" default="0" displayName="首充" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--19-->
+
+	<table name="feedback" engine="MyISAM" comment="手游渠道回调" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="data">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="type_alias" type="varchar(40)" nullable="false" displayName="渠道回调方法名" displayType="text" queryType="fuzzy"/>
+			<column name="partner_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="平台ID"  displayType="text"/>
+			<column name="plan_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="计划id" displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="click_id" type="varchar(255)" nullable="true" displayName="设备号" displayType="text"/>
+			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="设备类型" displayType="text"  queryType="precise"/>
+			<column name="ip" type="varchar(32)" nullable="true" displayName="ip" displayType="text"/>
+			<column name="callback_url" type="varchar(255)" nullable="true" displayName="回调链接" displayType="text"/>
+			<column name="insert_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="插入时间" displayType="time"/>
+			<column name="notice_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="回调时间" displayType="time"/>
+			<column name="match_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="匹配时间" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--20-->
+
+	<table name="rem_company" engine="MyISAM" comment="公司列表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="rem">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			<column name="type_alias" type="varchar(40)" nullable="false" displayName="渠道回调方法名" displayType="text" queryType="fuzzy"/>
+			<column name="channel_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="渠道ID" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--21-->
+
+	<table name="day_plan_cost" engine="MyISAM" comment="成本提交表" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="data">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="没用的主键"/>
+			
+			<column name="day_time" type="int(10) unsigned" nullable="false" displayName="成本所属时间戳" displayType="time"/>
+			<column name="day_date" type="varchar(10)" nullable="false" displayName="成本所属日期" displayType="text"/>
+			<!-- 同一天同一个计划只有一条数据 -->
+			<column name="plan_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="计划id" displayType="text"/>
+			<column name="account_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="账号id" displayType="text"/>
+			<column name="game_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="游戏id" displayType="text"/>
+			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
+			<column name="cost" type="float(30,2)" nullable="false" displayName="游戏币成本"/>
+			<column name="rmb_cost" type="float(30,2)" nullable="false" displayName="人民币成本"/>
+			<column name="rate" type="float(3,2)" nullable="false" displayName="币单价"/>
+			<column name="create_by" type="varchar(255)" nullable="true" displayName="提交者" displayType="text"/>
+			<column name="pass_by" type="varchar(255)" nullable="true" displayName="通过者" displayType="text"/>
+			<column name="is_passed" type="int(2) unsigned" default="0" displayName="是否已经通过" displayType="text"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="pass_time" type="int(10) unsigned" nullable="true" displayName="通过时间" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="company_ids" type="varchar(500)" nullable="false" displayName="可浏览公司" displayType="text" queryType="fuzzy" />
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+	<!--报表结束-->		
+</database>

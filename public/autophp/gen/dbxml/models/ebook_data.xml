@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="ebook_data_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `ebook_data_id` as `id`, `data` FROM `ebook_data`
+				WHERE (`learning_service_id` = :serviceId OR -1 = :serviceId)
+					AND(`component_type_id` = :typeId OR -1 = :typeId)
+				ORDER BY `ebook_data_id`
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

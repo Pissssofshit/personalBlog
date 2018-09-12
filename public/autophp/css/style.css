@@ -1,0 +1,16 @@
+#server_select {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #99BBE8;
+    display: none;
+    padding: 10px 0 0 10px;
+    position: absolute;
+    width: 420px;
+}
+#server_select a {
+    border: 1px solid grey;
+    float: left;
+    margin: 0 5px 10px 0;
+    padding: 5px;
+    color: #007BBB;
+    text-decoration: none;
+}

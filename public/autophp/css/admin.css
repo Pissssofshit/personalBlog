@@ -1,0 +1,140 @@
+﻿body{	font-family: '宋体' ,Arial, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;margin: 0 auto;padding: 0;color: #666;}
+*{padding:0; margin:0;}
+.textbox{	border: 1px solid #d0aa00;padding: 1px 0 1px 0;}
+.textarea{	border: 1px solid #d0aa00;	padding: 1px 0 1px 0;} 
+.myinput{	border: 1px solid #d0eeff;padding: 1px 0 1px 0;	height: 16px;font-size: 12px;}
+.mybiginput{	border: 1px solid #d0eeff;	padding: 1px 0 1px 0;	height: 80px;	width: 400px;	font-size: 12px;}
+.red{	color: #ff0000;}
+img{	border: 0;	vertical-align: middle;}
+.clear{	clear: both;}
+.space{	height: 8px;	clear: both;}
+.space2{	height: 18px;	clear: both;}
+input, select{	margin: 0;	padding: 0;	vertical-align: middle;}
+
+/* 登录 */
+#login{	background: url(../images/admin/loginbg.gif) left top repeat-x #3ea1ea;}
+#container{	background: url(../images/admin/mybg.jpg) top center no-repeat;	position: relative;	top: 151px;	width: 948px;	height: 356px;	margin: 0 auto;}
+.loginfo .spacelogin{	height: 25px;	clear: both;}
+.loginfo{	position: absolute;	top: 82px;	right: 191px;	text-align: right;}
+.loginfo ul{	padding: 0;	margin: 0;	list-style: none;}
+.loginfo ul li{	margin-top: 7px;	padding: 0;}
+.loginfo ul li.btn{	margin-top: 16px;	margin-right: 79px;}
+.loginfo ul li.btn input{	background: url(../images/admin/loginbtn.gif) left top no-repeat;	width: 73px;	height: 24px;	color: #fff;	line-height: 24px;	font-weight: bold;	cursor: pointer;	border: 0;	padding: 0;	text-indent: 18px;}
+.loginfo ul li input{	border: 1px solid #cce9fa;	padding: 2px 0 2px 0;	height: 16px;}
+.loginfo .btminfo{	color: #a0a0a0;}
+
+/* frame框架的头部样式 */
+#top{	background: url(../images/admin/topbg.gif) left top repeat-x;}
+.topmain{	position: relative;	width: 100%;	height: 100px;}
+.topmain .toparc{	background: url(../images/admin/toparc.gif) left top no-repeat;	position: absolute;	left: 240px;	top: 0;	width: 830px;	height: 50px;}
+.topmain .mlogo{position: absolute;	width: 145px; height:57px; top:18px;left: 20px;background: url(../images/admin/mlogo.png);}
+.topmain .userinfo{	position: absolute;	width: auto;	right: 20px;	top: 6px;	text-align: right;	line-height: 1.8;}
+.topmain .menu{	position: absolute;	width: auto;	top: 64px;	left: 190px;	height: 33px;}
+.topmain .menu ul{	padding: 0;	margin: 0;	list-style: none;}
+.topmain .menu ul li{	float: left;	width: 110px;	height: 33px;	background: url(../images/admin/manuline.gif) right 4px no-repeat;	text-align: center;	font-size: 14px;	color: #336699;	line-height: 31px;	cursor: pointer;}
+.topmain .menu ul li.topselect{	float: left;	width: 110px;	height: 33px;	background: url(../images/admin/manubg.gif) right top no-repeat;	color: #fff;	font-weight: bold;	text-indent: 10px;	cursor: pointer;}
+.topmain .menu ul li a:link{	color: #336699;	text-decoration: none;}
+.topmain .menu ul li a:visited{	color: #fff;	text-decoration: none;}
+.topmain .menu ul li a:hover, .menu ul li a:active{	color: #336699;	text-decoration: underline;}
+
+/* frame框架的左边样式 */
+#left{	background: url(../images/admin/leftbg.gif) left top repeat-y;}
+#left .leftit{	background: url(../images/admin/leftop.gif) left top no-repeat;	width: 171px;	height: 30px;	line-height: 34px;	text-indent: 28px;	font-size: 14px;	color: #4796d4;}
+#left ul{	padding: 0;	margin: 0;	list-style: none;}
+#left ul li a:link, #left ul li a:visited{	height: 24px;	margin-top: 4px;	width: 162px;	margin-left: 5px;	line-height: 26px;	text-indent: 23px;	background: url(../images/admin/leftmenu.gif) left top no-repeat;	display: block;	color: #333;	text-decoration: none;}
+#left ul li a:hover, #left ul li a:active{	height: 24px;	margin-top: 4px;	width: 162px;	margin-left: 5px;	line-height: 26px;	text-indent: 23px;	background: url(../images/admin/lefton.gif) left top no-repeat;	display: block;	color: #333;	text-decoration: none;}
+#left ul li.leftselect a:link, #left ul li.leftselect a:visited{	height: 24px;	margin-top: 4px;	width: 162px;	margin-left: 5px;	line-height: 26px;	text-indent: 23px;	background: url(../images/admin/lefton.gif) left top no-repeat;	display: block;	color: #333;	text-decoration: none;}
+#left ul li.leftselect a:hover, #left ul li.leftselect a:active{	height: 24px;	margin-top: 4px;	width: 162px;	margin-left: 5px;	line-height: 26px;	text-indent: 23px;	background: url(../images/admin/lefton.gif) left top no-repeat;	display: block;	color: #333;	text-decoration: none;}
+
+/* frame框架的右边样式 */
+#right{	margin-top: 12px;	margin-left: 9px;	margin-right: 9px;}
+
+#right .tit{	background: url(../images/admin/titbg.gif) left top repeat-x;	height: 30px;	position: relative;	line-height: 32px;	text-indent: 30px;	color: #999;	white-space: nowrap;}
+#right .tit .titleft{	background: url(../images/admin/titleft.gif) left top no-repeat;	position: absolute;	left: 0;	top: 0;	width: 20px;	height: 30px;}
+#right .tit .titright{	background: url(../images/admin/titright.gif) left top no-repeat;	position: absolute;	right: 0;	top: 0;	width: 6px;	height: 30px;}
+
+/* 按钮样式 */
+.btn2word{	background: url(../images/admin/btn2word.png) left top no-repeat;	width: 53px;	height: 24px;	color: #fff;	line-height: 24px;	font-weight: bold;	cursor: pointer;	border: 0;	padding: 0;	text-indent: 1px;}
+.btn4word{	background: url(../images/admin/btn4word.png) left top no-repeat;	width: 88px;	height: 24px;	color: #fff;	line-height: 24px;	font-weight: bold;	cursor: pointer;	border: 0;	padding: 0;	text-indent: 1px;}
+.btn6word{	background: url(../images/admin/btn4word.png) left top no-repeat;	width: 200px;	height: 24px;	color: #fff;	line-height: 24px;	font-weight: bold;	cursor: pointer;	border: 0;	padding: 0;	text-indent: 1px;}
+.link2word{	clear:both; background: url(../images/admin/btn2word.png) left top no-repeat;	padding:6px 10px; text-decoration:none; width: 88px;height: 24px;color: #fff;line-height: 34px;font-weight: bold;cursor: pointer;}
+.link6word{	clear:both; background: url(../images/admin/btn4word.png) left top no-repeat;	padding:6px 10px; text-decoration:none; width: 200px;height: 24px;color: #fff;line-height: 34px;font-weight: bold;cursor: pointer;}
+
+/* 表格样式 */
+.mytab{	border: 1px solid #cde9f7;	font-size: 12px; border-collapse:collapse;}
+.mytab td{ border: 1px solid #cde9f7;height: 26px;	line-height: 26px;	padding-left: 6px;	white-space: nowrap;}
+.mytab th{	border: 1px solid #cde9f7;background: url(../images/admin/tabtit.gif) left top repeat-x; height: 21px;	line-height: 21px;	padding-left: 6px;padding-top: 3px;font-weight:normal;}
+
+/* add,update,show */
+.myset{	border-top: 1px solid #cde9f7;	border-right: 1px solid #cde9f7;	border-collapse: collapse;}
+.myset td, .myset th{	border-left: 1px solid #cde9f7;	border-bottom: 1px solid #cde9f7;	height: 26px;	line-height: 26px;	padding-left: 6px;}
+.myset th{	color: #999;	text-align: right;}
+
+/* 用户登录信息 */
+#right .userContent{	padding-left: 10px;}
+#right .userContent a{	color: Blue;	text-decoration: underline;}
+#right .userContent a:hover{	color: Red;	text-decoration: none;}
+#right .userContent a:active{	color: Blue;	text-decoration: underline;}
+#right .userContent span{	line-height: 30px;}
+#right .userContent .line{	border-bottom: 1px solid #ccc;	height: 1px;	width: 100%;}
+
+/* 增加或修改表单信息 */
+fieldset{    margin: 1em 0;    padding: 1em;    border: 1px solid #CCC;}
+fieldset legend{    font-size: 1.1em;    font-weight: 600;    padding: 2px 4px 8px 4px;}
+fieldset input[type="text"]{    width: 200px;    border: 1px solid #CCC;}
+fieldset input[type="password"]{    width: 200px;    border: 1px solid #CCC;}
+fieldset select{    width: 200px;    border: 1px solid #CCC;}
+fieldset .item-edit-label{    margin: 0.5em 0;}
+fieldset .item-edit-label label{    width: 80px;    float: left;    text-align: right;    padding-right: 20px;}
+fieldset .item-edit-field{    margin: 0.5em 0;}
+fieldset .item-edit-button{    margin-left: 220px; }
+fieldset .error-message{    color:red; padding:5px 10px 5px 10px;}
+
+
+/* 通用label-field格式 */
+.item-label{margin: 0.5em 0;}
+.item-label label{width: 80px;    float: left;    text-align: right;    padding-right: 20px;}
+.item-field{margin: 0.5em 0;}
+.error-message{ color:red; padding:5px 10px 5px 10px;}
+
+/* 短信发送 */
+.selectAddressbook-left{width:150px;float:left}
+.selectAddressbook-left fieldset{height:300px;padding:0px 3px;}
+.selectAddressbook-left .groupList{background-color: transparent; overflow-y: auto; height:270px;}
+.selectAddressbook-left .groupList ul{ list-style:none; margin:0;}
+.selectAddressbook-left .groupList ul li{line-height:22px;}
+.selectAddressbook-left .groupList ul li a{text-decoration:none;color:#000;}
+.selectAddressbook-right{float:left;width:380px;margin-left:10px;}
+.selectAddressbook-right fieldset{height:270px;}
+
+/*搜索*/
+.seach{ background:url(../images/admin/seachbg.gif) left top repeat-x; position:relative; height:36px; line-height:38px; border:1px solid #dcdcdc; text-indent:45px; white-space:nowrap}
+.seachleft{ background:url(../images/admin/seachleft.gif) left top no-repeat; position:absolute; left:0; top:0; width:44px; height:36px;}
+
+/* 通讯录管理 */
+.addressBook-left{float:left;margin-right:10px; }
+.addressBook-left fieldset{width:180px; border:1px solid #cde9f7;}
+.addressBook-left ul{list-style-type:none; height:445px;background-color: transparent; overflow-y: auto;}
+.addressBook-left ul li{line-height:24px;font-size:12px;padding-left:8px}
+.addressBook-left ul li.header{border:solid 1px #ffc;color:#0770BB}
+.addressBook-left ul li.selected{font-weight:bold;color:#ffc;background-color:#FFE9AF;}
+.addressBook-left ul li a{text-decoration:none;color:#000;}
+.addressBook-right{float:left; margin:0; padding:0;}
+.addressBook-right fieldset{ margin:0; padding-top:0;border:1px solid #cde9f7;width:600px;}
+.addressBook-right table{width:600px;}
+
+/*查看信息详情*/
+.infor{ padding:5px 110px 30px 20px; font-size:14px; color:#000}
+.infor ul li{ padding:5px 0 5px 170px; height:25px;list-style:none}
+.infor ul li label{ float:left; margin-left:-170px; text-align:right; width:170px;}
+.infor ul li .s1{ padding-right:100px;}
+.infor ul li .s2{ padding-left:55px; vertical-align:5px;}
+.infor ul li .s3{ padding-left:44px; }
+
+/*分页*/
+.pageFen{ text-align:right; padding:10px 20px 10px 0}
+.pageFen span{ padding-right:30px;}
+.pageFen a{ display:inline-block; vertical-align:middle; height:17px; line-height:17px; padding:0 4px; margin:0 2px; background:#ecf8f8; border:1px #cbe1e1 solid; color:#666666; text-decoration:underline}
+.pageFen a.current{ color:#ff0000;}
+
+li {list-style:none;padding: 0 8px;}

@@ -1,0 +1,59 @@
+﻿DataBase.xml, Model.xml, View.xml说明
+	2009.12.18 by zhenhua zhuang
+
+目录结构
+
+deploy - 自动化生成工具配置
+  ├─models  -存放models
+  │  └─model.template.xml  示例
+  ├─views  -存放views
+  │  └─model.template.xml  示例
+  └─database.template.xml  示例
+
+DataBase.xml 
+	数据库结构XML配置文件（12.18，完成database.xml的书写，完成后，请交“郭”审查）<<<<<<<<<<　当前主要任务
+	  　　表设计规范（by Dingming Guo）
+			1.命名：小写，单词用“_”分隔
+			2.status -> tinyint(2) unsigned
+			3.字典表comment -> varchar(100)
+			4.字典表name -> varchar(50)
+			5.字典表id -> smallint(5) unsigned
+			6.URL -> varchar(400)
+			7.user/product -> int(10) unsigned
+			  card/history/record/session/order -> bigint(20) unsigned
+			8.Description: text
+			9.键的命名：unique key -> uk_表名_字段名
+			            foreign key -> fk_表名_字段名
+			            alternative key -> ak_表名_字段名 （即不是主键，也不是唯一键，也不是外键，目的是用来索引的键）
+		            如表名和字段名有重复，如user表的user_status_id，则不加表名，即fk_user_status_id
+		            如某键有多个字段，则特殊处理	
+	
+Model.xml
+	每张表所对应的Model文件，每个表对应一个model.xml。
+	例如:charter表对应charter.xml。
+	存放于models目录下。
+View.xml
+	每张表所对应的View文件，每个表对应一个model.xml。
+	例如:charter表对应charter.xml,。
+	存放于view目录下。
+
+1.　基本的增，删，改代码会自动生成，不用写配置文件。
+2.  view.xml里只实现SELECT语句。（目前主要工作，写出所有需求的结果集的SELECT语句）
+3.  每个函数只实现一个SELECT语句。
+
+系统逻辑结构
+Flex
+  | 
+  |前台flex
+  |---------接口：amfphp
+  |后台php
+  |
+services　对外提供的服务。业务逻辑的实现。
+  |
+  |
+  |
+models 该层只实现每个表最基本操作，即数据的增，删，改，查（所有所需数据集的获取，即view.xml所定义）
+  |
+  |deploy(通过database.xml, model.xml生成)
+  |
+zend_db 数据库通用操作类

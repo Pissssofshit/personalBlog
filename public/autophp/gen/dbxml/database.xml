@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="db_autophp" shortname="ap" user="db_autophp" password="db_autophp" hosts="%">
+  <table name="account" engine="InnoDB" comment="账户信息" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" enableCache="false">
+	<columns>
+	  <column name="account_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+	  <column name="username" type="varchar(32)" nullable="false" queryType="fuzzy" displayName="用户名" displayType="text"/>
+	  <column name="password" type="char(255)" nullable="false" displayName="密码" displayType="password"/>
+	  <column name="password_salt" type="char(8)" nullable="false" displayName="密码附加串" displayType="text"/>
+	  <column name="secure_mail" type="varchar(50)" nullable="true" queryType="fuzzy" displayName="安全邮箱" displayType="text"/>
+	  <column name="secure_question" type="varchar(200)" nullable="true" displayName="安全提问" displayType="text"/>
+	  <column name="secure_answer" type="varchar(200)" nullable="true" displayName="安全答案" displayType="textarea"/>
+	  <column name="account_role_id" type="smallint(5) unsigned" nullable="true" displayName="帐号类型"  queryType="precise" displayType="checkbox"/>
+	  <column name="account_status_id" type="tinyint(2) unsigned" nullable="true" displayName="帐号状态" queryType="precise" displayType="radio"/>
+	  <column name="account_level_id" type="tinyint(2) unsigned" nullable="true" displayName="帐号级别" queryType="precise" displayType="select"/>
+	  <column name="login_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="登陆时间" displayType="time"/>
+	  <column name="created_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="创建时间" displayType="time" track="create"/>
+	  <column name="updated_time" type="int(10) unsigned" nullable="true" queryType="range" displayName="更新时间" displayType="time" track="update"/>
+	  <column name="created_by" type="int(10) unsigned" nullable="true" queryType="precise" displayName="创建者" displayType="text" track="create"/>
+	  <column name="updated_by" type="int(10) unsigned" nullable="true" queryType="precise" displayName="更新者" displayType="text" track="update"/>
+	</columns>
+	<keys>
+	  <key type="pk">
+		<column name="account_id"/>
+	  </key>
+	  <key type="uk" name="uk_account_username">
+		<column name="username"/>
+	  </key>
+	  <key type="fk" name="fk_account_role">
+		<column name="account_role_id" referencedTable="account_role" referencedColumn="account_role_id"/>
+	  </key>
+	  <key type="fk" name="fk_account_status">
+		<column name="account_status_id" referencedTable="account_status" referencedColumn="account_status_id"/>
+	  </key>
+	  <key type="fk" name="fk_account_level">
+		<column name="account_level_id" referencedTable="account_level" referencedColumn="account_level_id"/>
+	  </key>
+	</keys>
+  </table>
+
+  <table name="account_role" engine="InnoDB" comment="账户角色" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" isDict="true" enableCache="false">
+	<columns>
+	  <column name="account_role_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+	  <column name="account_role_name" type="varchar(50)" nullable="false" displayName="用户角色名称" displayType="text"/>
+	  <column name="comment" type="varchar(100)" nullable="true"  displayName="描述" displayType="textarea"/>
+	</columns>
+	<keys>
+	  <key type="pk">
+		<column name="account_role_id"/>
+	  </key>
+	  <key type="uk" name="uk_account_role_name">
+		<column name="account_role_name"/>
+	  </key>
+	</keys>
+  </table>
+  
+	<table name="account_level" engine="InnoDB" comment="账户角色" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" isDict="true" enableCache="false">
+	<columns>
+	  <column name="account_level_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+	  <column name="account_level_name" type="varchar(50)" nullable="false" displayName="级别" displayType="text"/>
+	  <column name="comment" type="varchar(100)" nullable="true"  displayName="描述" displayType="textarea"/>
+	</columns>
+	<keys>
+	  <key type="pk">
+		<column name="account_level_id"/>
+	  </key>
+	  <key type="uk" name="uk_account_level_name">
+		<column name="account_level_name"/>
+	  </key>
+	</keys>
+  </table>
+  
+  <table name="account_status" engine="InnoDB" comment="账户角色" charset="utf8" autoIncrementStartFrom="1" enableUpdateTracking="true" enableLogicalDeletion="true" isDict="true" enableCache="false">
+	<columns>
+	  <column name="account_status_id" type="smallint(5) unsigned" nullable="false" extra="auto_increment" displayName="编号"/>
+	  <column name="account_status_name" type="varchar(50)" nullable="false" displayName="状态" displayType="text"/>
+	  <column name="comment" type="varchar(100)" nullable="true"  displayName="描述" displayType="textarea"/>
+	</columns>
+	<keys>
+	  <key type="pk">
+		<column name="account_status_id"/>
+	  </key>
+	  <key type="uk" name="uk_account_status_name">
+		<column name="account_status_name"/>
+	  </key>
+	</keys>
+  </table>
+</database>

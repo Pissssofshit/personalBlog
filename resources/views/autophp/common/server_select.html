@@ -1,0 +1,64 @@
+<div id="server_select" style="width:595px;">
+	<!--{foreach from=$channel_type.1 key=out_key item=channel_name}-->
+		<a style="width:82px;text-align:center;" href="javascript:void(0)" onclick="_check('<!--{$out_key}-->',this);" id="s_<!--{$out_key}-->" title="<!--{$out_key}-->"><!--{$channel_name}--></a>
+	<!--{/foreach}-->
+	<div style="clear:both;line-height:0px;"></div>
+</div>
+
+<script type="text/javascript">
+	document.onmousedown = function() {
+		$("#channel_type_id").click(function(){
+		  	return false;
+		});
+		$("#server_select").click(function(){
+		  	return false;
+		});
+	}; 
+	$("html").bind("click",function(){
+		if($("#server_select").css("display") == 'block'){
+			$('#server_select').toggle();
+		}
+	});
+    function _init(){
+		server_id = '<!--{$smarty.get.server_id}-->';
+		arr = server_id.split(',');
+		for(var i=0;i<arr.length;i++){
+			$("#s_"+arr[i]).css("color","#c30");
+		}
+    }
+	function _select(id){
+		if($("#p_"+id).css("display") == 'none'){
+			$('#p_'+id).show();
+			$("#t_"+id).text('[-]');
+		}else{
+			$('#p_'+id).hide();
+			$("#t_"+id).text('[+]');
+		}
+	}
+	function _check(id,obj){
+		str = $("#channel_type_id").val();
+		if(in_array(str,id)){
+			$(obj).css("color","#c30");
+			str += id+',';
+			if(id == 0){
+				str = '';
+				$("#server_select a").each(function(){
+					if(this.title != 0){
+						str += this.title+',';
+					}
+					$(this).css("color","#c30");
+				})
+			}
+		}else{
+			$(obj).css("color","#007BBB");
+			str = out_array(str,id);
+			if(id == 0){
+				str = '';
+			}
+		}
+		$("#channel_type_id").val(str);
+		changeselectchannel(str);
+	}
+	_init();
+	
+</script>

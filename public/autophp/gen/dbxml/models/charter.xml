@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="maxOrder" mode="view" visited="public">    
+		<view source="view/charter.xml" ref="maxOrder"/>
+	</action>
+	<action name="getRoutePathById" mode="view" visited="public">    
+		<view source="view/charter.xml" ref="getRoutePathById"/>
+	</action>
+	<action name="isExistRecord" mode="view" visited="public">    
+		<view source="view/charter.xml" ref="isExistRecord"/>
+	</action>
+</model>

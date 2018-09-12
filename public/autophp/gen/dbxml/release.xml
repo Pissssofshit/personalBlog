@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="ld_release" shortname="release" user="release" password="release_password" hosts="%" title="乐都网项目发布管理系统" >
+	<!--开始-->
+	<table name="project" engine="MyISAM" comment="项目管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="上线管理" >
+		<columns>
+			<column name="project_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="项目ID"/>
+			<column name="project_url" type="varchar(20)" nullable="false" displayName="项目URL" displayType="text" queryType="fuzzy" />
+			<column name="short_name" type="varchar(10)" nullable="false" displayName="项目简称" displayType="text"/>
+			<column name="cn_name" type="varchar(20)" nullable="false" displayName="项目名称" displayType="text"/>
+			<column name="producter" type="varchar(50)"  nullable="true" displayName="产品设计" displayType="text"/>
+			<column name="builder" type="varchar(50)"   nullable="true" displayName="页面制作" displayType="text"/>
+			<column name="projecter" type="varchar(50)"  nullable="true" displayName="开发负责" displayType="text"/>
+			<column name="developer" type="varchar(50)"  nullable="true" displayName="开发人员" displayType="text"/>
+			<column name="tester" type="varchar(50)" nullable="true" displayName="测试人员" displayType="text"/>
+			<column name="maintainer" type="varchar(50)" nullable="true" displayName="维护人员" displayType="text"/>
+			<column name="servers" type="varchar(200)" nullable="false" displayName="服务器IP" displayType="textarea" />
+			<column name="cur_version" type="varchar(10)" nullable="true" displayName="当前版本" displayType="text" />
+			<column name="export_time" type="int(10)" nullable="true" displayName="导出时间" displayType="time" />
+			<column name="online_version" type="varchar(10)" nullable="true" displayName="生产版本" displayType="text" />
+			<column name="online_time" type="int(10)" nullable="true" displayName="同步时间" displayType="time" />
+			<column name="c_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="c_by" type="int(10)" nullable="true" displayName="创建者" displayType="text" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="project_id"/>
+			</key>
+			<key type="fk" name="fk_project_creator">
+				<column name="c_by" referencedTable="power_user" referencedColumn="power_user_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="release" engine="MyISAM" comment="版本管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="上线管理">
+		<columns>
+			<column name="release_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="ID"/>
+			<column name="project_id" type="int(10) unsigned"  nullable="false" displayName="项目" displayType="select" queryType="precise"/>
+			<column name="version" type="varchar(10)"  nullable="false" displayName="版本号" displayType="text"/>
+			<column name="release_type_id" type="int(4)"  default="0" displayName="版本状态" displayType="select" queryType="precise"/>
+			<column name="created_by" type="varchar(10)" nullable="false" displayName="创建者" displayType="text" track="create"/>
+			<column name="created_time" type="int(10)" nullable="false" displayName="创建时间" displayType="time" track="create"/>
+			<column name="comment" type="varchar(1000)"  nullable="false" displayName="描述说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="release_id"/>
+			</key>
+			<key type="uk">
+				<column name="project_id"/>
+				<column name="version"/>
+			</key>
+			<key type="fk" name="fk_release_type">
+				<column name="release_type_id" referencedTable="release_type" referencedColumn="release_type_id"/>
+			</key>
+			<key type="fk" name="fk_release_project">
+				<column name="project_id" referencedTable="project" referencedColumn="project_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="release_log"  engine="MyISAM" comment="上线日志" charset="utf8" autoIncrementStartFrom="1" enableCache="false" group="上线管理">
+		<columns>
+			<column name="release_log_id" type="int(10) unsigned" nullable="false"  extra="auto_increment" displayName="ID"/>
+			<column name="project_id" type="int(10) unsigned"  nullable="false" displayName="项目" displayType="select" queryType="precise"/>
+			<column name="version" type="varchar(10)"  nullable="false" displayName="版本号" displayType="text" queryType="precise"/>
+			<column name="release_type_id" type="int(4)"  nullable="false" displayName="操作类型" displayType="select" queryType="precise"/>
+			<column name="created_by" type="varchar(10)" nullable="false" displayName="操作者" displayType="text" track="create"/>
+			<column name="created_time" type="int(10)" nullable="false" displayName="操作时间" displayType="time" track="create"/>
+			<column name="comment" type="varchar(1000)" nullable="true" displayName="描述说明" displayType="textarea"/>
+			<column name="status" type="boolean" default="0" displayName="操作结果"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="release_log_id"/>
+			</key>
+			<key type="fk" name="fk_releaselog_type">
+				<column name="release_type_id" referencedTable="release_type" referencedColumn="release_type_id"/>
+			</key>
+			<key type="fk" name="fk_releaselog_project">
+				<column name="project_id" referencedTable="project" referencedColumn="project_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="release_type" engine="MyISAM" comment="上线流程类型" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据">
+		<columns>
+			<column name="release_type_id" type="int(4)" nullable="false" extra="auto_increment" displayName="类型ID"/>
+			<column name="name" type="varchar(20)" nullable="false" displayName="流程名称" displayType="text"/>
+			<column name="pid" type="int(4)" nullable="true" displayName="父级流程" displayType="text" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="release_type_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="task" engine="MyISAM" comment="任务管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="任务管理" >
+		<columns>
+			<column name="task_id" type="int(11)" nullable="false" extra="auto_increment" displayName="类型ID"/>
+			<column name="module" type="varchar(50)" nullable="false" displayName="所属模块" displayType="text"/>
+			<column name="task_name" type="varchar(50)" nullable="false" displayName="任务名称" displayType="text" queryType="fuzzy"/>
+			<column name="desc" type="varchar(2000)" nullable="false" displayName="任务详情" displayType="textarea"/>
+			<column name="excutor" type="int(10)" default="0" displayName="执行人" displayType="select" queryType="precise"/>
+			<column name="project_id" type="int(10)" nullable="false" displayName="所属项目" displayType="select" queryType="precise"/>
+			<column name="version_id" type="varchar(20)" nullable="false" displayName="实现版本" displayType="text"/>
+			<column name="type" type="int(4)" default="0" displayName="任务类型" displayType="select" queryType="precise"/>
+			<column name="status" type="int(4)" default="0" displayName="任务状态" displayType="select" queryType="precise"/>
+			<column name="c_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+			<column name="c_by" type="int(10)" nullable="true" displayName="创建者" displayType="text" track="create"/>
+			<column name="dead_time" type="varchar(10)" nullable="true" displayName="预期时间" displayType="time"/>
+			<column name="start_time" type="int(10) unsigned" displayName="开始时间" displayType="time"/>
+			<column name="pause_time" type="int(10) unsigned" displayName="暂停时间" displayType="time"/>
+			<column name="reopen_time" type="int(10) unsigned" displayName="重开时间" displayType="time"/>
+			<column name="complete_time" type="int(10) unsigned" displayName="完成时间" displayType="time"/>
+			<column name="pass_time" type="int(10) unsigned" displayName="通过时间" displayType="time"/>
+			<column name="roll_count" type="int(10)" default="0" displayName="回滚次数" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="task_id"/>
+			</key>
+			<key type="fk" name="fk_task_project">
+				<column name="project_id" referencedTable="project" referencedColumn="project_id"/>
+			</key>
+			<key type="fk" name="fk_task_excutor">
+				<column name="excutor" referencedTable="power_user" referencedColumn="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_task_creator">
+				<column name="c_by" referencedTable="power_user" referencedColumn="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_task_type">
+				<column name="type" referencedTable="task_type" referencedColumn="task_type_id"/>
+			</key>
+			<key type="fk" name="fk_task_status">
+				<column name="status" referencedTable="task_status" referencedColumn="task_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="task_type" engine="MyISAM" comment="任务类型" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据" version="1.1">
+		<columns>
+			<column name="task_type_id" type="int(4)" nullable="false" extra="auto_increment" displayName="类型ID"/>
+			<column name="task_type_name" type="varchar(10)" nullable="false" displayName="类型名称" displayType="text"/>
+			<column name="desc" type="varchar(1000)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="task_type_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="task_status" engine="MyISAM" comment="任务状态" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据" >
+		<columns>
+			<column name="task_status_id" type="int(4)" nullable="false" extra="auto_increment" displayName="状态ID"/>
+			<column name="task_status_name" type="varchar(10)" nullable="false" displayName="状态名称" displayType="text"/>
+			<column name="pid" type="int(4)" nullable="true" displayName="父级状态" displayType="text" />
+			<column name="desc" type="varchar(1000)" displayName="描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="task_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="task_discuss" engine="MyISAM" comment="任务讨论" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="字典数据" >
+		<columns>
+			<column name="task_discuss_id" type="int(11)"  nullable="false" extra="auto_increment" displayName="ID"/>
+			<column name="task_id" type="int(11)" nullable="false"  displayName="任务" displayType="select"/>
+			<column name="content" type="varchar(65533)"  nullable="false"  displayName="内容" displayType="textarea"/>
+			<column name="pid" type="int(11)" default="0"/>
+			<column name="d_time" type="int(10) unsigned" nullable="true" displayName="回复时间" displayType="time" track="create"/>
+			<column name="d_by" type="int(10)" nullable="true" displayName="回复人" displayType="text" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="task_discuss_id" />
+			</key>
+			<key type="fk" name="fk_task_discuss">
+				<column name="task_id" referencedTable="task" referencedColumn="task_id"/>
+			</key>
+			<key type="fk" name="fk_discuss_user">
+				<column name="d_by" referencedTable="power_user" referencedColumn="power_user_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<!--
+	<table name="module"  engine="MyISAM" comment="项目模块" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="项目管理"  type="tree">
+		<columns>
+			<column name="module_id" type="int(11)"  nullable="false" extra="auto_increment" displayName="ID"/>
+			<column name="module_name" type="varchar(32)" nullable="false" displayName="模块名称" displayType="text"/>
+			<column name="pid" type="int(11)"  default="0" displayName="PID"  displayType="text"/>
+			<column name="id_path" type="varchar(5000)" displayName="路径"/>
+			<column name="project_id" type="int(11)" nullable="false" displayName="项目" displayType="select" queryType="precise"/>
+			<column name="desc" type="varchar(2000)" displayName="模块描述" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="module_id"/>
+			</key>
+			<key type="fk" name="fk_module_project">
+				<column name="project_id" referencedTable="project" referencedColumn="project_id"/>
+			</key>
+		</keys>
+	</table>
+	-->
+
+	<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="project_id" type="varchar(500)" displayName="项目分配" displayType="checkbox"/>
+			<column name="release_type_id" type="varchar(500)" displayName="操作权限" displayType="checkbox"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+			<key type="fk" name="fk_user_project">
+				<column name="project_id" referencedTable="project" referencedColumn="project_id"/>
+			</key>
+			<key type="fk" name="fk_user_release_type">
+				<column name="release_type_id" referencedTable="release_type" referencedColumn="release_type_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>
+

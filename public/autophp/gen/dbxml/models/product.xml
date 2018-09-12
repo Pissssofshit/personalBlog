@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />
+	
+	<action name="getProductDetailList"  mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="cond"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+            <field name="product_id" type="int"/>
+			<field name="product_name" type="text"/>
+			<field name="school_stage_name" type="text"/>
+			<field name="course_grade_name" type="text"/>
+			<field name="course_subject_name" type="text"/>
+			<field name="course_term_name" type="text"/>
+			<field name="pubversion" type="int"/>
+			<field name="is_free" type="text"/>
+			<field name="is_package" type="text"/>
+			<field name="product_status_id" type="int"/>
+			<field name="product_status_name" type="text"/>			
+        </outputs>
+		<query>
+			SELECT `product_id`, `product_name`, `school_stage_name`, `course_grade_name`, `course_subject_name`, `course_term_name`,
+                CONCAT(`publisher_short_name`, `product_version_name`) AS `pubversion`, `is_free`, `is_package`, 
+                pt.`product_status_id` AS `product_status_id`, `product_status_name`
+                FROM `product` pt	
+				LEFT JOIN `school_stage` st ON pt.`school_stage_id` = st.`school_stage_id`
+				LEFT JOIN `course_grade` g ON pt.`course_grade_id` = g.`course_grade_id`
+				LEFT JOIN `course_subject` s ON pt.`course_subject_id` = s.`course_subject_id`
+				LEFT JOIN `course_term` t ON pt.`course_term_id` = t.`course_term_id`
+                LEFT JOIN `product_version` v ON pt.`product_version_id` = v.`product_version_id`
+                LEFT JOIN `publisher` pu ON pt.`publisher_id` = pu.`publisher_id`
+                LEFT JOIN `product_status` ps ON pt.`product_status_id` = ps.`product_status_id` 
+                WHERE (pt.`product_name` = :product_name)
+                AND (st.`school_stage_name` = :school_stage_name)
+                AND (g.`course_grade_name` = :course_grade_name)
+                AND (s.`course_subject_name` = :course_subject_name)
+                AND (pu.`publisher_id` = :publisher_id)
+                AND (v.`product_version_id` = :product_version_id)
+                AND (ps.`product_status_id` = :product_status_id)
+                ORDER BY `product_id`
+		</query>
+	</action>
+	
+	<action name="getProductDetailListByID" mode="select" resultType="row">
+		<inputs>
+			<field type="variable" name="product_id"/>
+		</inputs>
+		<outputs>
+            <field name="product_id" type="int"/>
+			<field name="product_name" type="text"/>
+			<field name="school_stage_name" type="text"/>
+			<field name="course_grade_name" type="text"/>
+			<field name="course_subject_name" type="text"/>
+			<field name="course_term_name" type="text"/>
+			<field name="pubversion" type="int"/>
+			<field name="is_free" type="text"/>
+			<field name="is_package" type="text"/>
+			<field name="product_status_id" type="int"/>
+			<field name="product_status_name" type="text"/>			
+        </outputs>
+		<query>
+			SELECT `product_id`, `product_name`, `school_stage_name`, `course_grade_name`, `course_subject_name`, `course_term_name`,
+                CONCAT(`publisher_short_name`, `product_version_name`) AS `pubversion`, `is_free`, `is_package`, 
+                pt.`product_status_id` AS `product_status_id`, `product_status_name`
+                FROM `product` pt	
+				LEFT JOIN `school_stage` st ON pt.`school_stage_id` = st.`school_stage_id`
+				LEFT JOIN `course_grade` g ON pt.`course_grade_id` = g.`course_grade_id`
+				LEFT JOIN `course_subject` s ON pt.`course_subject_id` = s.`course_subject_id`
+				LEFT JOIN `course_term` t ON pt.`course_term_id` = t.`course_term_id`
+                LEFT JOIN `product_version` v ON pt.`product_version_id` = v.`product_version_id`
+                LEFT JOIN `publisher` pu ON pt.`publisher_id` = pu.`publisher_id`
+                LEFT JOIN `product_status` ps ON pt.`product_status_id` = ps.`product_status_id` 
+                WHERE (pt.`product_id` = :product_id)
+		</query>
+	</action>
+	
+	<action name="getProductCount" mode="select" resultType="one">
+		<inputs>
+			<field type="array" name="cond"/>
+		</inputs>
+		<outputs>
+			<field name="COUNT(`ProductID`)" type="int"/>
+		</outputs>
+		<query>
+			SELECT COUNT(`product_id`) FROM `product` pt
+				LEFT JOIN `course_grade` g ON pt.`course_grade_id` = g.`course_grade_id`
+				LEFT JOIN `course_subject` s ON pt.`course_subject_id` = s.`course_subject_id`
+				LEFT JOIN `course_term` t ON pt.`course_term_id` = t.`course_term_id`
+                LEFT JOIN `product_version` v ON pt.`product_version_id` = v.`product_version_id`
+                LEFT JOIN `publisher` pu ON pt.`publisher_id` = pu.`publisher_id`
+                WHERE (pt.`product_name` = :product_name)
+                AND (py.`school_stage_name` = :school_stage_name)
+                AND (py.`course_grade_name` = :course_grade_name)
+                AND (py.`course_subject_name` = :course_subject_name)
+                AND (v.`publisher_id` = :publisher_id)
+                AND (v.`product_version_id` = :product_version_id)
+                AND (pt.`product_status_id` = :product_status_id)
+		</query>
+	</action>
+	
+	
+</model>

@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><!--{$project_name}-->- 登录</title>
+<!--{include file="common/meta.html"}-->
+<!--
+<style type="text/css">
+	.loginForm ul{ width:500px;}
+	.loginForm li label{ width:150px; text-align:right;}
+</style>
+-->
+</head>
+
+<body class="easyui-layout">
+	<div region="north" border="false" >
+		<div id="header">
+			<h1 style="font-size:30px;padding-left:50px;"><!--{$project_name}--></h1>		
+		</div>
+	</div>
+	<div region="center" border="false" align="center" style="margin-top:100px">
+		<div id="p" class="easyui-panel" title="用户登录" style="width:400px;height:250px;padding:10px;background:#fafafa;">
+		<form id="loginForm" action="" method="post">
+		  <div class="loginForm">
+			<table style="font-size:12px;">
+			  <tr>
+				<td style="text-align:right"><label>用户名：</label></td>
+				<td style="text-align:left"><input type="text" name="username" id="username" class="normal"/></td>
+			  </tr>
+			  <tr>
+				<td style="text-align:right"><label>密码：</label></td>
+				<td style="text-align:left"><input type="password" name="password" class="normal"/></td>
+			  </tr>
+			  <tr><td></td></tr>
+          	  <tr><td></td></tr>
+			  <!--{if $isAllowIp==false}-->
+			  <tr>
+				<td style="text-align:right"><label>验证码：</label></td>
+				<td style="text-align:left"><input type="text" name="validate" class="normal s2"/></td>
+			  </tr>
+			  <tr>
+				<td style="text-align:right"><label>&nbsp;</label></td>
+				<td style="text-align:left"><img src="" id="verify" onclick="reloadVerify();" style="cursor:pointer" /><a style="cursor:pointer" onclick="javascript:reloadVerify();">看不清楚？</a></td>
+			  </tr>
+			  <tr>
+				<td style="text-align:right"><label>&nbsp;</label></td>
+				<td style="text-align:left"></td>
+			  </tr>
+			  <!--{/if}-->                        
+			  <tr>
+				<td></td>
+				<td style="color:red;"><div class="errorMsg"><!--{$message}--></div></td>
+			  </tr>
+			  <tr>
+				<td></td>
+				<td><input type="submit" class="sure" name="button" id="button" value="登录" /></td>
+			  </tr>
+			</table>
+		  </div>
+		</form>
+	  </div>
+	</div>
+
+<script>
+function getCookie(name){
+	var search = name + "="
+	if(document.cookie.length > 0){
+		offset = document.cookie.indexOf(search)
+		if(offset != -1) {
+		    offset += search.length
+		    end = document.cookie.indexOf(";", offset)
+		    if(end == -1) end = document.cookie.length
+		    return unescape(document.cookie.substring(offset, end))
+		}
+		else 
+			return ""
+	}
+}
+document.getElementById("username").value = getCookie("remember_username_cookie");
+
+function reloadVerify(){
+	var verify=document.getElementById('verify');
+	verify.setAttribute('src','/admin/login/verifycode?n='+Math.random());
+}
+reloadVerify();
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />	   
+	
+	<action name="getRoutePathById" mode="select" resultType="one">    
+		<inputs>
+            <field type="variable" name="id"/>
+        </inputs>
+		<outputs>
+            <field name="route_path" type="text"/>       
+        </outputs>
+        <params>
+            <param name="cond" />            
+        </params>
+		<query>
+			SELECT `route_path` FROM `region` 
+			WHERE `region_id` = :id
+		</query>
+	</action>
+	
+	<action name="isExistRecord" mode="select" resultType="one">    
+        <inputs>
+            <field type="variable" name="id"/>
+            <field type="variable" name="name"/>                       
+        </inputs>
+        <outputs>
+            <field name="region_id" type="int"/>       
+        </outputs>
+		<query>
+			SELECT `region_id` FROM `region` 
+			WHERE `parent_id` = :id 
+			AND `name` = :name
+		</query>
+	</action>
+	
+	<action name="getListByParentId" mode="select" resultType="list">    
+		<inputs>
+            <field type="variable" name="id"/>
+            <field type="keyword" name="limit" />                         
+        </inputs>
+        <outputs>
+            <field name="region_id" />
+            <field name="name" /> 
+        </outputs>
+		<query>
+			SELECT `region_id`, `name` FROM `region` 
+			WHERE `parent_id` = :id
+		</query>
+	</action>
+	
+	<action name="getListByRoutePath" mode="select" resultType="list">    
+		<inputs>
+            <field type="variable" name="route_path"/>        
+        </inputs>
+        <outputs>
+            <field name="region_id" />
+            <field name="name" /> 
+        </outputs>
+		<query>
+			SELECT `region_id`, `parent_id`,`name` FROM `region` 
+			WHERE LEFT(`route_path`, LENGTH('{$cond['route_path']}')) = :route_path
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />		
+	
+	<action name="groupDel" mode="custom">    
+		<inputs>
+            <field type="variable" name="id"/>
+            <field type="variable" name="route_path"/>                                
+        </inputs>
+        <query>
+        	DELETE FROM `region` 
+        	WHERE
+        	`region_id` = :id OR 
+        	LEFT(`route_path`, LENGTH(:route_path)) = :route_path
+        </query>
+	</action> 
+</model>

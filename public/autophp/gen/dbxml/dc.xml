@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="dc_account" shortname="">
+	<table name="account_login" engine="MyISAM" comment="帐号登陆服务器数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" displayName="编号" extra="auto_increment"/>
+			<column name="uid" type="int(10) unsigned" nullable="false" displayName="用户UID"/>
+			<column name="username" type="varchar(32)" nullable="true" displayName="用户名"/>
+			<column name="game_id" type="int(6)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="active_time" type="varchar(10)" default="" displayName="游戏激活时间"/>
+			<column name="login_0" type="tinyint(1)" default="0" displayName="注册登陆"/>
+			<column name="login_1" type="tinyint(1)" default="0" displayName="第1天登陆"/>
+			<column name="login_2" type="tinyint(1)" default="0" displayName="第2天登陆"/>
+			<column name="login_3" type="tinyint(1)" default="0" displayName="第3天登陆"/>
+			<column name="login_4" type="tinyint(1)" default="0" displayName="第4天登陆"/>
+			<column name="login_5" type="tinyint(1)" default="0" displayName="第5天登陆"/>
+			<column name="login_6" type="tinyint(1)" default="0" displayName="第6天登陆"/>
+			<column name="login_7" type="tinyint(1)" default="0" displayName="第7天登陆"/>
+			<column name="login_8" type="tinyint(1)" default="0" displayName="第8天登陆"/>
+			<column name="login_9" type="tinyint(1)" default="0" displayName="第9天登陆"/>
+			<column name="login_10" type="tinyint(1)" default="0" displayName="第10天登陆"/>
+			<column name="login_11" type="tinyint(1)" default="0" displayName="第11天登陆"/>
+			<column name="login_12" type="tinyint(1)" default="0" displayName="第12天登陆"/>
+			<column name="login_13" type="tinyint(1)" default="0" displayName="第13天登陆"/>
+			<column name="login_14" type="tinyint(1)" default="0" displayName="第14天登陆"/>
+			<column name="login_15" type="tinyint(1)" default="0" displayName="第15天登陆"/>
+			<column name="login_16" type="tinyint(1)" default="0" displayName="第16天登陆"/>
+			<column name="login_17" type="tinyint(1)" default="0" displayName="第17天登陆"/>
+			<column name="login_18" type="tinyint(1)" default="0" displayName="第18天登陆"/>
+			<column name="login_19" type="tinyint(1)" default="0" displayName="第19天登陆"/>
+			<column name="login_20" type="tinyint(1)" default="0" displayName="第20天登陆"/>
+			<column name="login_21" type="tinyint(1)" default="0" displayName="第21天登陆"/>
+			<column name="login_22" type="tinyint(1)" default="0" displayName="第22天登陆"/>
+			<column name="login_23" type="tinyint(1)" default="0" displayName="第23天登陆"/>
+			<column name="login_24" type="tinyint(1)" default="0" displayName="第24天登陆"/>
+			<column name="login_25" type="tinyint(1)" default="0" displayName="第25天登陆"/>
+			<column name="login_26" type="tinyint(1)" default="0" displayName="第26天登陆"/>
+			<column name="login_27" type="tinyint(1)" default="0" displayName="第27天登陆"/>
+			<column name="login_28" type="tinyint(1)" default="0" displayName="第28天登陆"/>
+			<column name="login_29" type="tinyint(1)" default="0" displayName="第29天登陆"/>
+			<column name="login_30" type="tinyint(1)" default="0" displayName="第30天登陆"/>
+			<column name="login_31" type="tinyint(1)" default="0" displayName="第31天登陆"/>
+			<column name="login_32" type="tinyint(1)" default="0" displayName="第32天登陆"/>
+			<column name="login_33" type="tinyint(1)" default="0" displayName="第33天登陆"/>
+			<column name="login_34" type="tinyint(1)" default="0" displayName="第34天登陆"/>
+			<column name="login_35" type="tinyint(1)" default="0" displayName="第35天登陆"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="uk" name="uk_uid_game_server">
+				<column name="uid"/>
+				<column name="game_id"/>
+				<column name="server_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="account_pay" engine="MyISAM" comment="帐号充值数据" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="int(10) unsigned" nullable="false" displayName="编号" extra="auto_increment"/>
+			<column name="uid" type="int(10) unsigned" nullable="false" displayName="用户UID"/>
+			<column name="username" type="varchar(32)" nullable="true" displayName="用户名"/>
+			<column name="reg_time" type="int(10) unsigned" nullable="false" displayName="注册时间" />
+			<column name="site_id" type="varchar(32)" />
+			<column name="page_id" type="varchar(32)" />
+			<column name="sub_page_id" type="varchar(32)" />
+			<column name="game_id" type="int(6)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="active_time" type="varchar(10)" default="" displayName="游戏激活时间"/>
+			<column name="pay_0" type="decimal(12, 2)" default="0" displayName="当天充值"/>
+			<column name="pay_1" type="decimal(12, 2)" default="0" displayName="第1天充值"/>
+			<column name="pay_2" type="decimal(12, 2)" default="0" displayName="第2天充值"/>
+			<column name="pay_3" type="decimal(12, 2)" default="0" displayName="第3天充值"/>
+			<column name="pay_4" type="decimal(12, 2)" default="0" displayName="第4天充值"/>
+			<column name="pay_5" type="decimal(12, 2)" default="0" displayName="第5天充值"/>
+			<column name="pay_6" type="decimal(12, 2)" default="0" displayName="第6天充值"/>
+			<column name="pay_7" type="decimal(12, 2)" default="0" displayName="第7天充值"/>
+			<column name="pay_8" type="decimal(12, 2)" default="0" displayName="第8天充值"/>
+			<column name="pay_9" type="decimal(12, 2)" default="0" displayName="第9天充值"/>
+			<column name="pay_10" type="decimal(12, 2)" default="0" displayName="第10天充值"/>
+			<column name="pay_11" type="decimal(12, 2)" default="0" displayName="第11天充值"/>
+			<column name="pay_12" type="decimal(12, 2)" default="0" displayName="第12天充值"/>
+			<column name="pay_13" type="decimal(12, 2)" default="0" displayName="第13天充值"/>
+			<column name="pay_14" type="decimal(12, 2)" default="0" displayName="第14天充值"/>
+			<column name="pay_15" type="decimal(12, 2)" default="0" displayName="第15天充值"/>
+			<column name="pay_16" type="decimal(12, 2)" default="0" displayName="第16天充值"/>
+			<column name="pay_17" type="decimal(12, 2)" default="0" displayName="第17天充值"/>
+			<column name="pay_18" type="decimal(12, 2)" default="0" displayName="第18天充值"/>
+			<column name="pay_19" type="decimal(12, 2)" default="0" displayName="第19天充值"/>
+			<column name="pay_20" type="decimal(12, 2)" default="0" displayName="第20天充值"/>
+			<column name="pay_21" type="decimal(12, 2)" default="0" displayName="第21天充值"/>
+			<column name="pay_22" type="decimal(12, 2)" default="0" displayName="第22天充值"/>
+			<column name="pay_23" type="decimal(12, 2)" default="0" displayName="第23天充值"/>
+			<column name="pay_24" type="decimal(12, 2)" default="0" displayName="第24天充值"/>
+			<column name="pay_25" type="decimal(12, 2)" default="0" displayName="第25天充值"/>
+			<column name="pay_26" type="decimal(12, 2)" default="0" displayName="第26天充值"/>
+			<column name="pay_27" type="decimal(12, 2)" default="0" displayName="第27天充值"/>
+			<column name="pay_28" type="decimal(12, 2)" default="0" displayName="第28天充值"/>
+			<column name="pay_29" type="decimal(12, 2)" default="0" displayName="第29天充值"/>
+			<column name="pay_30" type="decimal(12, 2)" default="0" displayName="第30天充值"/>
+			<column name="pay_31" type="decimal(12, 2)" default="0" displayName="第31天充值"/>
+			<column name="pay_32" type="decimal(12, 2)" default="0" displayName="第32天充值"/>
+			<column name="pay_33" type="decimal(12, 2)" default="0" displayName="第33天充值"/>
+			<column name="pay_34" type="decimal(12, 2)" default="0" displayName="第34天充值"/>
+			<column name="pay_35" type="decimal(12, 2)" default="0" displayName="第35天充值"/>
+			<column name="pay_more" type="decimal(12, 2)" default="0" displayName="35天后充值"/>
+			<column name="cost_0" type="decimal(12, 2)" default="0" displayName="当天充值渠道成本"/>
+			<column name="cost_1" type="decimal(12, 2)" default="0" displayName="第1天充值渠道成本"/>
+			<column name="cost_2" type="decimal(12, 2)" default="0" displayName="第2天充值渠道成本"/>
+			<column name="cost_3" type="decimal(12, 2)" default="0" displayName="第3天充值渠道成本"/>
+			<column name="cost_4" type="decimal(12, 2)" default="0" displayName="第4天充值渠道成本"/>
+			<column name="cost_5" type="decimal(12, 2)" default="0" displayName="第5天充值渠道成本"/>
+			<column name="cost_6" type="decimal(12, 2)" default="0" displayName="第6天充值渠道成本"/>
+			<column name="cost_7" type="decimal(12, 2)" default="0" displayName="第7天充值渠道成本"/>
+			<column name="cost_8" type="decimal(12, 2)" default="0" displayName="第8天充值渠道成本"/>
+			<column name="cost_9" type="decimal(12, 2)" default="0" displayName="第9天充值渠道成本"/>
+			<column name="cost_10" type="decimal(12, 2)" default="0" displayName="第10天充值渠道成本"/>
+			<column name="cost_11" type="decimal(12, 2)" default="0" displayName="第11天充值渠道成本"/>
+			<column name="cost_12" type="decimal(12, 2)" default="0" displayName="第12天充值渠道成本"/>
+			<column name="cost_13" type="decimal(12, 2)" default="0" displayName="第13天充值渠道成本"/>
+			<column name="cost_14" type="decimal(12, 2)" default="0" displayName="第14天充值渠道成本"/>
+			<column name="cost_15" type="decimal(12, 2)" default="0" displayName="第15天充值渠道成本"/>
+			<column name="cost_16" type="decimal(12, 2)" default="0" displayName="第16天充值渠道成本"/>
+			<column name="cost_17" type="decimal(12, 2)" default="0" displayName="第17天充值渠道成本"/>
+			<column name="cost_18" type="decimal(12, 2)" default="0" displayName="第18天充值渠道成本"/>
+			<column name="cost_19" type="decimal(12, 2)" default="0" displayName="第19天充值渠道成本"/>
+			<column name="cost_20" type="decimal(12, 2)" default="0" displayName="第20天充值渠道成本"/>
+			<column name="cost_21" type="decimal(12, 2)" default="0" displayName="第21天充值渠道成本"/>
+			<column name="cost_22" type="decimal(12, 2)" default="0" displayName="第22天充值渠道成本"/>
+			<column name="cost_23" type="decimal(12, 2)" default="0" displayName="第23天充值渠道成本"/>
+			<column name="cost_24" type="decimal(12, 2)" default="0" displayName="第24天充值渠道成本"/>
+			<column name="cost_25" type="decimal(12, 2)" default="0" displayName="第25天充值渠道成本"/>
+			<column name="cost_26" type="decimal(12, 2)" default="0" displayName="第26天充值渠道成本"/>
+			<column name="cost_27" type="decimal(12, 2)" default="0" displayName="第27天充值渠道成本"/>
+			<column name="cost_28" type="decimal(12, 2)" default="0" displayName="第28天充值渠道成本"/>
+			<column name="cost_29" type="decimal(12, 2)" default="0" displayName="第29天充值渠道成本"/>
+			<column name="cost_30" type="decimal(12, 2)" default="0" displayName="第30天充值渠道成本"/>
+			<column name="cost_31" type="decimal(12, 2)" default="0" displayName="第31天充值渠道成本"/>
+			<column name="cost_32" type="decimal(12, 2)" default="0" displayName="第32天充值渠道成本"/>
+			<column name="cost_33" type="decimal(12, 2)" default="0" displayName="第33天充值渠道成本"/>
+			<column name="cost_34" type="decimal(12, 2)" default="0" displayName="第34天充值渠道成本"/>
+			<column name="cost_35" type="decimal(12, 2)" default="0" displayName="第35天充值渠道成本"/>
+			<column name="cost_more" type="decimal(12, 2)" default="0" displayName="35天后充值渠道成本"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="uk" name="uk_uid_game_server">
+				<column name="uid"/>
+				<column name="game_id"/>
+				<column name="server_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="record_pay" engine="MyISAM" comment="充值记录" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="bigint(20) unsigned" nullable="false" displayName="编号" />
+			<column name="order_id" type="bigint(20) unsigned" nullable="false" displayName="订单号" />
+			<column name="pay_time" type="int(10) unsigned" nullable="false" displayName="充值时间" />
+			<column name="pay_money" type="decimal(12, 2)" nullable="false" displayName="充值数" />
+			<column name="pay_channel" type="varchar(32)" displayName="充值渠道" />
+			<column name="channel_cost" type="decimal(12, 2)" displayName="充值成本比例" />
+			<column name="game_id" type="int(6)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="uid" type="int(11) unsigned" nullable="false" displayName="用户ID" />
+			<column name="username" type="varchar(32)" nullable="false" displayName="用户名" />
+			<column name="reg_time" type="int(10) unsigned" nullable="false" displayName="注册时间" />
+			<column name="site_id" type="varchar(32)" />
+			<column name="page_id" type="varchar(32)" />
+			<column name="sub_page_id" type="varchar(32)" />
+		</columns>
+		<keys>
+			<key type="uk" name="uk_id">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="record_coin" engine="MyISAM" comment="游戏币兑换记录" charset="utf8" autoIncrementStartFrom="1" enableCache="false">
+		<columns>
+			<column name="id" type="bigint(20) unsigned" nullable="false" displayName="编号" />
+			<column name="money" type="decimal(12, 2)" nullable="false" displayName="兑换钱数" />
+			<column name="currency" type="varchar(32)" displayName="钱币类型" />
+			<column name="coin_buy" type="int(10) unsigned" nullable="false" displayName="兑换的游戏币" />
+			<column name="coin_free" type="int(10) unsigned" nullable="false" displayName="赠送的游戏币" />
+			<column name="coin" type="int(10) unsigned" nullable="false" displayName="总游戏币" />
+			<column name="exchange_time" type="int(10) unsigned" nullable="false" displayName="充值时间" />
+			<column name="game_id" type="int(6)" nullable="false" displayName="游戏ID"/>
+			<column name="server_id" type="int(6)" nullable="true" displayName="服务器ID"/>
+			<column name="uid" type="int(11) unsigned" nullable="false" displayName="用户ID" />
+			<column name="username" type="varchar(32)" nullable="false" displayName="用户名" />
+			<column name="reg_time" type="int(10) unsigned" nullable="false" displayName="注册时间" />
+			<column name="site_id" type="varchar(32)" />
+			<column name="page_id" type="varchar(32)" />
+			<column name="sub_page_id" type="varchar(32)" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+</database>

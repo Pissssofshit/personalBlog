@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="ws_pay" shortname="pay" user="ws_pay" password="ws_pay" hosts="%" title="管理系统">
+	<table name="user_account" engine="MyISAM" comment="用户账户" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="uid" type="int(10)" nullable="false" extra="auto_increment" displayName="用户ID"/>
+			<column name="username" type="varchar(50)" nullable="false" displayName="用户名" displayType="text"/>
+			<column name="point" type="int(10)" default="0" displayName="用户点数"  displayType="text"/>
+			<column name="point_free" type="int(10)" default="0" displayName="赠送点数"  displayType="text"/>
+			<column name="coin" type="int(10)" default="0" displayName="积分"  displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="uid"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="order_pay" engine="MyISAM" comment="充值订单" charset="utf8" autoIncrementStartFrom="10000000" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="order_pay_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="充值订单ID" queryType="precise"/>
+			<column name="pay_channel_id" type="int(4) unsigned" nullable="false" displayName="充值渠道ID" displayType="select" queryType="precise"/>
+			<column name="pay_money" type="int(10)" nullable="false" displayName="充值金额" displayType="text"/>
+			<column name="pay_time" type="int(10)" nullable="false" displayName="充值时间" displayType="time" queryType="range"/>
+			<column name="point_get" type="int(10)" nullable="false" displayName="获得点数" displayType="text"/>
+			<column name="point_free_get" type="int(10)" nullable="false" default="0" displayName="获得赠送点数" displayType="text"/>
+			<column name="point_pre" type="int(10)" nullable="false" displayName="用户点数（充值前）" displayType="text"/>
+			<column name="point_free_pre" type="int(10)" nullable="false" displayName="赠送点数（充值前）" displayType="text"/>
+			<column name="uid" type="int(10)" nullable="false" displayName="用户ID" displayType="text" queryType="precise"/>
+			<column name="username" type="varchar(50)" nullable="false" displayName="用户名" displayType="text" queryType="precise"/>
+			<column name="status" type="int(1)" default="0" displayName="支付订单状态" displayType="select" queryType="precise"/>
+			<column name="trade_no" type="varchar(50)" nullable="true" displayName="支付渠道流水号" displayType="text" queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="order_pay_id"/>
+			</key>
+			<key type="fk" name="fk_order_channel">
+				<column name="pay_channel_id" referencedTable="pay_channel" referencedColumn="pay_channel_id"/>
+			</key>
+			<key type="fk" name="fk_order_status">
+				<column name="status" referencedTable="pay_status" referencedColumn="pay_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="pay_channel" engine="MyISAM" comment="充值渠道" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="pay_channel_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="充值订单ID"/>
+			<column name="channel_name" type="varchar(50)" nullable="false" displayName="充值渠道名称" displayType="text"/>
+			<column name="rate" type="float(6,4)" default="0" displayName="充值费率" displayType="text"/>
+			<column name="desc" type="varchar(50)" nullable="true" displayName="说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="pay_channel_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="pay_status" engine="MyISAM" comment="充值状态" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="pay_status_id" type="int(1)" nullable="false" extra="auto_increment" displayName="状态ID"/>
+			<column name="name" type="varchar(10)" nullable="false" displayName="状态名称" displayType="text"/>
+			<column name="desc" type="varchar(50)" nullable="true" displayName="说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="pay_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="order_buy" engine="MyISAM" comment="购物订单" charset="utf8" autoIncrementStartFrom="10000000" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="order_buy_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="购买订单ID" queryType="precise"/>
+			<column name="order_out" type="varchar(50)" nullable="false" displayName="业务系统的订单号"/>
+			<column name="goods_info" type="varchar(1000)" nullable="false"  displayName="商品参数"/>
+			<column name="desc" type="text"  displayName="描述" />
+			<column name="buy_time" type="int(10)" nullable="false" displayName="购买时间" displayType="time" queryType="range"/>
+			<column name="price" type="int(10) unsigned" nullable="false"  displayName="订单总价" displayType="text"/>
+			<column name="uid" type="int(10)" nullable="false" displayName="用户ID" displayType="text" queryType="precise"/>
+			<column name="username" type="varchar(50)" nullable="false" displayName="用户名" displayType="text" queryType="precise"/>
+			<column name="discount_id" type="int(4)" default="0" displayName="订单优惠类型" displayType="select"/>
+			<column name="status" type="int(1)" default="0" displayName="购买订单状态" displayType="select" queryType="precise"/>
+			<column name="order_pay_id" type="int(10) unsigned" displayName="充值订单号" displayType="text" queryType="precise"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="order_buy_id"/>
+			</key>
+			<key type="fk" name="fk_buyorder_status">
+				<column name="status" referencedTable="buy_status" referencedColumn="buy_status_id"/>
+			</key>
+		</keys>
+	</table>
+
+	<table name="buy_status" engine="MyISAM" comment="支付状态" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="buy_status_id" type="int(1)" nullable="false" extra="auto_increment" displayName="状态ID"/>
+			<column name="name" type="varchar(10)" nullable="false" displayName="状态名称" displayType="text"/>
+			<column name="desc" type="varchar(50)" nullable="true" displayName="说明" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk"> 
+				<column name="buy_status_id"/>
+			</key>
+		</keys>
+	</table>
+	<!--
+	<table name="goods" engine="MyISAM" comment="系统商品列表" charset="utf8" autoIncrementStartFrom="100000" enableCache="false" isDict="true" group="充值管理">
+		<columns>
+			<column name="goods_id" type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="商品ID" />
+			<column name="goods_name" type="varchar(50)" nullable="false" displayName="商品名称" />
+			<column name="desc" type="text" displayName="商品描述" />
+			<column name="price" type="float(10,4)" nullable="false" displayName="价格" />
+			<column name="goods_type" type="int(4)" displayName="商品性质" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="goods_id"/>
+			</key>
+		</keys>
+	</table>
+	-->
+	
+		<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>

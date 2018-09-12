@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />	
+
+	<action name="getLearningService" mode="select" resultType="list">
+		<inputs>
+			<field type="variable" name="product_id"/>
+			<field type="variable" name="service_type_name"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="produdt_id" type="int"/>
+			<field name="product_name" type="int"/>
+			<field name="learning_service_id" type="int"/>
+			<field name="learning_service_name" type="int"/>
+			<field name="url" type="int"/>
+			<field name="free_url" type="int"/>
+			<field name="capacity" type="int"/>
+			<field name="description" type="int"/>
+			<field name="created_time" type="datetime"/>
+			<field name="updated_time" type="datetime"/>
+			<field name="created_by" type="text"/>
+			<field name="updated_by" type="text"/>
+		</outputs>
+		<query>
+			SELECT ls.`product_id`, `product_name`, `learning_service_id`,`learning_service_name`,`url`,`free_url`,`capacity`,
+			ls.`description`,`created_time`, `updated_time`, `created_by`, `updated_by`
+			FROM `learning_service` AS ls
+			LEFT JOIN `product` pt ON ls.`product_id` = pt.`product_id`
+			LEFT JOIN `service_type` st ON ls.`service_type_id` = st.`service_type_id`
+			WHERE (ls.`product_id` = :product_id)
+			AND (st.`service_type_name` = :service_type_name)
+			ORDER BY `updated_time`
+		</query>
+	</action>
+	
+	<action name="getLearningServiceLists" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="cond"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="produdt_id" type="int"/>
+			<field name="lecturer_id" type="int"/>
+			<field name="service_type_id" type="int"/>
+			<field name="learning_service_name" type="int"/>
+			<field name="free_url" type="int"/>
+			<field name="is_deleted" type="int"/>
+		</outputs>
+		<query>
+			SELECT ls.`product_id`,`learning_service_name`,`free_url`,le.`lecturer_id`,st.`service_type_id`,`is_deleted`
+			FROM `learning_service` AS ls
+			LEFT JOIN `product` pt ON ls.`product_id` = pt.`product_id`
+			LEFT JOIN `service_type` st ON ls.`service_type_id` = st.`service_type_id`
+			LEFT JOIN `lecturer` le ON ls.`lecturer_id` = le.`lecturer_id`
+			WHERE (ls.`product_id` = :product_id)
+			AND (st.`service_type_name` = :service_type_name)
+			ORDER BY `updated_time`
+		</query>
+	</action>
+	
+	<action name="getLearningServiceDetails" mode="select" resultType="list">
+		<inputs>
+			<field type="variable" name="product_id"/>
+			<field type="variable" name="service_type_name"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="produdt_id" type="int"/>
+			<field name="lecturer_id" type="int"/>
+			<field name="service_type_id" type="int"/>
+			<field name="learning_service_name" type="int"/>
+			<field name="free_url" type="int"/>
+			<field name="is_deleted" type="int"/>
+		</outputs>
+		<query>
+			SELECT ls.`product_id`, `product_name`, `learning_service_id`,`learning_service_name`,`url`,`free_url`,`capacity`,
+			ls.`description`,`created_time`, `updated_time`, `created_by`, `updated_by`,un.`unit_type`,un.`unit_name`,ch.`name`
+			FROM `learning_service` AS ls
+			LEFT JOIN `product` pt ON ls.`product_id` = pt.`product_id`
+			LEFT JOIN `service_type` st ON ls.`service_type_id` = st.`service_type_id`
+			LEFT JOIN `lecturer` le ON ls.`lecturer_id` = le.`lecturer_id`
+			LEFT JOIN `charter` ch ON ls.`charter_id` = ch.`charter_id`
+			LEFT JOIN `unit` un ON ls.`unit_id` = un.`unit_id`
+			WHERE (ls.`product_id` = :product_id)
+			AND (st.`service_type_name` = :service_type_name)
+			ORDER BY `updated_time`
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />	
+</model>

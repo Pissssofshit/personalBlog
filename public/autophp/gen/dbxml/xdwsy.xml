@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="xdwsy"  shortname="xdwsy" user="ledu" password="ledugamecmsad" hosts="%" title="兄弟玩手游平台" namespace="com.mjutech.xdwsy">
+	<table name="user" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="用户" group="用户管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayName="UID" displayType="text" />
+			<column name="username" type="varchar(250)" nullable="false" default="" displayName="用户名" displayType="text" queryType="fuzzy"/>
+			<column name="mobile" type="char(20)" nullable="false" default="" displayName="手机号" displayType="text" queryType="fuzzy"/>
+			<column name="email" type="varchar(250)" nullable="false" default="" displayName="邮箱" displayType="text"/>
+			<column name="password" type="varchar(250)" nullable="false" default="" displayName="加密密码" displayType="text"/>
+			<column name="reg_time" type="int(11)" nullable="false" default="0" displayName="注册时间戳" displayType="time"/>
+			<column name="mobile_bind_time" type="int(11)" nullable="false" default="0" displayName="手机绑定时间戳" displayType="time"/>
+			<column name="email_bind_time" type="int(11)" nullable="false" default="0" displayName="邮箱绑定时间戳" displayType="time"/>
+			<column name="source" type="int(2)" nullable="false" default="0" displayName="来源1:1自然量2公会" displayType="text"/>
+			<column name="ucode" type="int(11)" nullable="false" default="0" displayName="来源2:渠道标识" displayType="text"/>
+			<column name="subucode" type="varchar(250)" nullable="false" default="" displayName="来源3:子渠道扩展标示" displayType="text"/>
+			<column name="ip" type="varchar(250)" nullable="false" default="0" displayName="注册ip" displayType="text"/>
+			<column name="ua" type="varchar(250)" nullable="false" default="" displayName="注册ua" displayType="text"/>
+			<column name="os" type="int(2)" nullable="false" default="0" displayName="操作系统:0-pc;1-android;2-ios" displayType="text"/>
+			<column name="device_id" type="varchar(250)" nullable="false" default="" displayName="注册设备id" displayType="text"/>
+			<column name="imei" type="varchar(250)" nullable="false" default="" displayName="物理标识:android为imei；ios为idfa" displayType="text"/>
+			<column name="nickname" type="varchar(250)" nullable="false" default="" displayName="昵称" displayType="text"/>
+			<column name="sex" type="int(2)" nullable="false" default="0" displayName="性别:1男2女" displayType="text" />
+			<column name="head_icon" type="varchar(250)" nullable="false" default="" displayName="头像" displayType="text"/>
+			<column name="idcard" type="char(18)" nullable="false" displayType="text"/>
+			<column name="realname" type="varchar(250)" nullable="false" displayType="text"/>
+			<column name="salt" type="char(20)" nullable="false" default="" displayName="盐值" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="third_user" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="第三方用户" group="用户管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text" displayName="ID" />
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="UID:user表用户id" displayType="text" queryType="fuzzy"/>
+			<column name="app_type" type="varchar(250)" nullable="false" default="" displayName="开放平台标示:如weixin" displayType="text"/>
+			<column name="openid" type="varchar(250)" nullable="false" default="" displayName="开放平台用户标示" displayType="text"/>
+			<column name="access_token" type="varchar(250)" nullable="false" default="" displayName="开放平台访问令牌" displayType="text"/>
+			<column name="token_expire_time" type="int(11)" nullable="false" default="0" displayName="令牌实效时间" displayType="time"/>
+			<column name="refresh_token" type="int(11)" nullable="false" default="0" displayName="刷新令牌" displayType="text"/>
+			<column name="user_info" type="text" nullable="false" default="" displayName="开放平台返回的用户信息" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="game_user" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="用户游戏表" group="用户管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text" displayName="ID" />
+			<column name="game_id" type="int(11)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="平台用户id" displayType="text"/>
+			<column name="name" type="varchar(250)" nullable="false" default="" displayName="游戏用户名" displayType="text"/>
+			<column name="ucode" type="int(11)" nullable="false" default="0" displayName="渠道标示" displayType="text"/>
+			<column name="subucode" type="varchar(250)" nullable="false" default="" displayName="子渠道标示" displayType="text"/>
+			<column name="ip" type="varchar(100)" nullable="false" default="" displayName="注册ip" displayType="text"/>
+			<column name="ua" type="varchar(250)" nullable="false" default="" displayName="注册ua" displayType="text"/>
+			<column name="os" type="int(2)" nullable="false" default="0" displayName="操作系统:0-pc;1-android;2-ios" displayType="text"/>
+			<column name="device_id" type="varchar(250)" nullable="false" default="" displayName="注册设备id" displayType="text"/>
+			<column name="imei" type="varchar(250)" nullable="false" default="" displayName="特理标识:android为imei；ios为idfa" displayType="text"/>
+			<column name="version" type="varchar(250)" nullable="false" default="" displayName="版本" displayType="text"/>
+			<column name="reg_time" type="int(11)" nullable="false" default="0" displayName="注册时间戳" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_login_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="用户登陆" group="用户管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text" displayName="ID" />
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="username" type="varchar(250)" nullable="false" default="" displayName="用户名" displayType="text"/>
+			<column name="mobile" type="char(20)" nullable="false" default="" displayName="手机号" displayType="text"/>
+			<column name="email" type="varchar(100)" nullable="false" default="" displayName="邮箱" displayType="text"/>
+			<column name="login_time" type="int(11)" nullable="false" default="0" displayName="登陆时间戳" displayType="time"/>
+			<column name="ucode" type="int(11)" nullable="false" default="0" displayName="来源渠道标示" displayType="text"/>
+			<column name="subucode" type="varchar(250)" nullable="false" default="" displayName="子渠道标示" displayType="text"/>
+			<column name="ip" type="varchar(100)" nullable="false" default="" displayName="注册ip" displayType="text"/>
+			<column name="ua" type="varchar(250)" nullable="false" default="" displayName="注册ua" displayType="text"/>
+			<column name="os" type="int(2)" nullable="false" default="0" displayName="操作系统:0pc;1android;2ios" displayType="text"/>
+			<column name="device_id" type="varchar(250)" nullable="false" default="" displayName="注册设备id" displayType="text"/>
+			<column name="imei" type="varchar(250)" nullable="false" default="" displayName="物理标识:android为imei；ios为idfa" displayType="text"/>
+			<column name="version" type="varchar(250)" nullable="false" default="" displayName="版本" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="game_entity" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="游戏" group="游戏管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text" displayName="ID" />
+			<column name="name" type="varchar(250)" nullable="false" default="" displayName="游戏主体名称" displayType="text"/>
+			<column name="enable" type="int(2)" nullable="false" default="0" displayName="状态:1启用2禁用" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="创建时间戳" displayType="time"/>
+			<column name="update_time" type="int(11)" nullable="false" default="0" displayName="更新时间戳" displayType="time"/>
+			<column name="create_by" type="varchar(250)" nullable="false" default="" displayName="创建者" displayType="text"/>
+			<column name="update_by" type="varchar(250)" nullable="false" default="" displayName="更新者" displayType="text"/>
+
+			<column name="discount" type="float(10,2)" nullable="false" default="0" displayName="代充折扣" displayType="text"/>
+			<column name="back_pay" type="float(10,2)" nullable="false" default="0" displayName="充值返点" displayType="text"/>
+			<column name="status" type="int(2)" nullable="false" default="0" displayName="上架状态" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="game" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="游戏渠道包" group="游戏管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text" displayName="ID" />
+			<column name="entity_id" type="int(11)" nullable="false" default="0" displayName="主体id" displayType="text"/>
+			<column name="name" type="varchar(250)" nullable="false" default="" displayName="游戏名称" displayType="text"/>
+			<column name="name_en" type="varchar(250)" nullable="false" default="" displayName="拼音简写" displayType="text"/>
+			<column name="icon" type="varchar(250)" nullable="false" default="" displayName="图标" displayType="text"/>
+			<column name="desc" type="text" nullable="false" default="" displayName="描述" displayType="text"/>
+			<column name="category" type="varchar(250)" nullable="false" default="" displayName="类型" displayType="text"/>
+			<column name="rank" type="varchar(250)" nullable="false" default="" displayName="分级:ABC3类" displayType="text"/>
+			<column name="os" type="int(2)" nullable="false" default="0" displayName="系统类别:默认为1android" displayType="text"/>
+			<column name="common_sign_key" type="char(250)" nullable="false" default="" displayName="普通签名key" displayType="text"/>
+			<column name="confirm_sign_key" type="char(255)" nullable="false" default="" displayName="确认接口签名key" displayType="text"/>
+			<column name="pay_sign_key" type="char(255)" nullable="false" default="" displayName="冲值签名key" displayType="text"/>
+			<column name="pay_callback" type="varchar(255)" nullable="false" default="" displayName="冲值回调url" displayType="text"/>
+			<column name="coin_unit" type="varchar(255)" nullable="false" default="" displayName="游戏币名称:如钻石" displayType="text"/>
+			<column name="coin_rate" type="int(11)" nullable="false" default="0" displayName="兑换率:1元人民币兑换多少游戏币" displayType="text"/>
+			<column name="ucode" type="int(11)" nullable="false" default="0" displayName="原始ucode:对应渠道标记为0" displayType="text"/>
+			<column name="version" type="varchar(255)" nullable="false" default="" displayName="版本" displayType="text"/>
+			<column name="package_url" type="varchar(255)" nullable="false" default="" displayName="包地址" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="创建时间戳" displayType="time"/>
+			<column name="update_time" type="int(11)" nullable="false" default="0" displayName="更新时间戳" displayType="time"/>
+			<column name="create_by" type="varchar(255)" nullable="false" default="" displayName="创建者" displayType="text"/>
+			<column name="update_by" type="varchar(255)" nullable="false" default="" displayName="更新者" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="game_config_switch" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="游戏开关" group="游戏管理">
+		 <columns>
+			<column name="game_id" type="int(11)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="ad_stat_switch" type="int(2)" nullable="false" default="0" displayName="广告统计app开关:1开启;2关闭" displayType="text"/>
+			<column name="ad_stat_key" type="varchar(255)" nullable="false" default="" displayName="广告统计参数" displayType="text"/>
+			<column name="weixin_switch" type="int(2)" nullable="false" default="0" displayName="微信开关:1开启;2关闭" displayType="text"/>
+			<column name="weixin_app_id" type="varchar(255)" nullable="false" default="" displayName="app id" displayType="text"/>
+			<column name="weixin_app_key" type="varchar(255)" nullable="false" default="" displayName="app key" displayType="text"/>
+			<column name="weixin_app_secret" type="varchar(255)" nullable="false" default="" displayName="app secret" displayType="text"/>
+			<column name="show_platform_switch" type="int(2)" nullable="false" default="0" displayName="平台闪屏开关:游戏启动动画是否播放平台logo" displayType="text"/>
+			<column name="bind_mobile_when_pay_switch" type="int(2)" nullable="false" default="0" displayName="充值邦定手机提示" displayType="text"/>
+			<column name="one_key_registe_switch" type="int(2)" nullable="false" default="0" displayName="一键注册开关" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="创建时间戳" displayType="time"/>
+			<column name="update_time" type="int(11)" nullable="false" default="0" displayName="更新时间戳" displayType="time"/>
+			<column name="create_by" type="varchar(255)" nullable="false" default="" displayName="创建者" displayType="text"/>
+			<column name="update_by" type="varchar(255)" nullable="false" default="" displayName="更新者" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="game_id" />
+			</key>
+		</keys>
+	</table>
+	<table name="order" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="订单" group="充值管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="平台用户id" displayType="text"/>
+			<column name="game_id" type="int(11)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="game_order_id" type="varchar(255)" nullable="false" default="" displayName="游戏订单号" displayType="text"/>
+			<column name="ucode" type="int(11)" nullable="false" default="0" displayName="渠道标示" displayType="text"/>
+			<column name="subucode" type="varchar(255)" nullable="false" default="" displayName="子渠道标示" displayType="text"/>
+			<column name="server_id" type="varchar(255)" nullable="false" default="" displayName="游戏服务器" displayType="text"/>
+			<column name="role_name" type="varchar(255)" nullable="false" default="" displayName="游戏角色名" displayType="text"/>
+			<column name="desc" type="varchar(255)" nullable="false" default="" displayName="订单描述" displayType="text"/>
+			<column name="order_coin" type="int(11)" nullable="false" default="0" displayName="游戏币数量" displayType="text"/>
+			<column name="order_money" type="float(11,2)" nullable="false" default="0" displayName="订单金额" displayType="text"/>
+			<column name="pay_channel_id" type="int(2)" nullable="false" default="0" displayName="支付方式:0-平台币;pay_channel里的id" displayType="text"/>
+			<column name="pay_point" type="int(11)" nullable="false" default="0" displayName="支付平台币数量" displayType="text"/>
+			<column name="pay_point_free" type="int(11)" nullable="false" default="0" displayName="支付的平台赠送平台币数量" displayType="text"/>
+			<column name="pay_money" type="float(11,2)" nullable="false" default="0" displayName="实际支付金额" displayType="text"/>
+			<column name="extra" type="varchar(255)" nullable="false" default="" displayName="透传字段:SDK提交过来需透传的字段" displayType="text"/>
+			<column name="pay_virtual_point" type="int(11)" nullable="false" default="0" displayName="支付的虚拟货币" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="创建时间戳" displayType="time"/>
+			<column name="update_time" type="int(11)" nullable="false" default="0" displayName="更新时间戳" displayType="time"/>
+			<column name="status" type="int(2)" nullable="false" default="0" displayName="订单状态:1-已创建；2-已提交第三方；3-第三方充值成功；4-调用游戏后台接口下发游戏币成功；5-等待继续支付；6-支付超时；7-支付失败" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_point" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="平台币" group="充值管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="user表用户id" displayType="text"/>
+			<column name="point" type="float(11,2)" nullable="false" default="0" displayName="平台币" displayType="text"/>
+			<column name="point_free" type="int(11)" nullable="false" default="0" displayName="赠送的平台币数量" displayType="text"/>
+			<column name="update_time" type="int(11)" nullable="false" default="0" displayName="更新时间戳" displayType="time"/>
+			<column name="last_pay_game_id" type="int(11)" nullable="false" default="0" displayName="最近充值游戏" displayType="text"/>
+			<column name="last_pay_server_id" type="varchar(255)" nullable="false" default="" displayName="最近充值游戏服务器" displayType="text"/>
+			<column name="last_pay_channel_id" type="int(11)" nullable="false" default="0" displayName="最近付费渠道id" displayType="text"/>
+			<column name="last_pay_money" type="float(11,2)" nullable="false" default="0" displayName="最近充值金额" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_point_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true"  comment="平台币日志" group="充值管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="平台用户id" displayType="text"/>
+			<column name="before_point" type="int(11)" nullable="false" default="0" displayName="变更前平台币" displayType="text"/>
+			<column name="point" type="int(11)" nullable="false" default="0" displayName="变更的平台币" displayType="text"/>
+			<column name="after_point" type="int(11)" nullable="false" default="0" displayName="变更后的平台币" displayType="text"/>
+			<column name="before_point_free" type="int(11)" nullable="false" default="0" displayName="变更前赠送平台币" displayType="text"/>
+			<column name="point_free" type="int(11)" nullable="false" default="0" displayName="变更的赠送平台币" displayType="text"/>
+			<column name="after_point_free" type="int(11)" nullable="false" default="0" displayName="变更后的赠送平台币" displayType="text"/>
+			<column name="type" type="varchar(255)" nullable="false" default="" displayName="变更类型" displayType="text"/>
+			<column name="desc" type="varchar(255)" nullable="false" default="" displayName="变更说明" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="变更时间戳" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="order_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="订单变更日志" group="充值管理" >
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="平台用户id" displayType="text"/>
+			<column name="order_id" type="int(11)" nullable="false" default="0" displayName="order表id" displayType="text"/>
+			<column name="action_name" type="varchar(255)" nullable="false" default="" displayName="动作名称" displayType="text"/>
+			<column name="action_param" type="varchar(255)" nullable="false" default="" displayName="动作参数" displayType="text"/>
+			<column name="action_res" type="varchar(255)" nullable="false" default="" displayName="动作结果" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="时间戳" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_virtual_point" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="限定币" group="充值管理" >
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="game_id" type="int(11)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="type" type="int(2)" nullable="false" default="0" displayName="类型" displayType="text"/>
+			<column name="point" type="int(11)" nullable="false" default="0" displayName="余额" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_virtual_point_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="限定币变更日志" group="充值管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayType="text"  displayName="ID"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="平台用户id" displayType="text"/>
+			<column name="game_id" type="int(11)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="before_point" type="int(11)" nullable="false" default="0" displayName="变更前虚拟币" displayType="text"/>
+			<column name="point" type="int(11)" nullable="false" default="0" displayName="变更的虚拟币" displayType="text"/>
+			<column name="after_point" type="int(11)" nullable="false" default="0" displayName="变更后的虚拟币" displayType="text"/>
+			<column name="type" type="varchar(255)" nullable="false" default="" displayName="变更类型" displayType="text"/>
+			<column name="desc" type="varchar(255)" nullable="false" default="" displayName="变更说明" displayType="text"/>
+			<column name="create_time" type="int(11)" nullable="false" default="0" displayName="变更时间戳" displayType="time"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+
+	
+<!--权限管理开始//-->
+	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
+			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
+			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
+			<column name="power_role_id" type="int(10)" displayName="角色类型" displayType="select" queryType="precise"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_user_id"/>
+			</key>
+			<key type="fk" name="fk_user_role">
+				<column name="power_role_id" referencedTable="power_role" referencedColumn="power_role_id"/>
+			</key>
+		</keys>
+	</table>
+	
+	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+		<columns>
+			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
+			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
+			<column name="content" type="text" nullable="true" displayName="角色权限内容" displayType="privilege"/>
+			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="power_role_id"/>
+			</key>		
+		</keys>
+	</table>	
+	<!--权限管理结束//-->
+</database>

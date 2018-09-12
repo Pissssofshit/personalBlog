@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />
+	
+	<action name="getAllTitleByAccountID" mode="select" resultType="list">
+		<inputs>
+			<field type="variable" name="account_id"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="username" type="text"/>
+			<field name="title" type="text"/>
+		</outputs>
+		<query>
+			SELECT ac.`username`, qp.`title`, `created_time`, `updated_time`
+			FROM `qa_post` AS qp
+			LEFT JOIN `account` ac ON qp.`account_id` = ac.`account_id`
+			LEFT JOIN `qa_category` qc ON qp.`qa_category_id` = qc.`qa_category_id`
+			WHERE (qp.`root_post_id` = :qa_post_id)
+			AND qp.`account_id` = :account_id
+			ORDER BY `updated_time`
+		</query>
+	</action>
+	
+	<action name="getQapost" mode="select" resultType="row">
+		<inputs>
+			<field type="array" name="cond"/>
+			<field type="keyword" name="limit" />
+		</inputs>
+		<outputs>
+			<field name="username" type="text"/>
+			<field name="title" type="text"/>
+			<field name="content" type="text"/>
+		</outputs>
+		<query>
+			SELECT ac.`username`, qp.`title`, qp.`content`,`created_time`, `updated_time`
+			FROM `qa_post` AS qp
+			LEFT JOIN `account` ac ON qp.`account_id` = ac.`account_id`
+			LEFT JOIN `qa_category` qc ON qp.`qa_category_id` = qc.`qa_category_id`
+			WHERE (qp.`root_post_id` = :qa_post_id)
+			AND qp.`qa_post_id` = :qa_post_id
+			AND qp.`account_id` = :account_id
+			AND qc.`qa_category_name` = :qa_category_name
+			ORDER BY `updated_time`
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />	
+</model>

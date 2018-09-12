@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<action name="insert" mode="default" /> 
+		
+	<action name="update" mode="default" />	   		
+	
+	<action name="getList" mode="select" resultType="list">    
+		<inputs>
+            <field type="array" name="cond"/>
+            <field type="keyword" name="limit" />                         
+        </inputs>
+        <outputs>
+            <field name="region_id" />
+            <field name="name" /> 
+        </outputs>
+		<query>
+			SELECT s.`school_id`, s.`school_name`,st.`school_stage_name`,rg.`name`
+			FROM `school` as s
+			JOIN `school_stage` as st ON s.`school_stage_id` = st.`school_stage_id`
+			JOIN `region` as rg ON rg.`region_id` = s.`region_id`
+			WHERE (rg.`region_id` = :region_id OR -1 = :region_id) 
+			AND (s.`school_stage_id` = :school_stage_id OR -1 = :school_stage_id) 
+			AND (s.`school_name` = :school_name OR '' = :school_name) 
+		</query>
+	</action>
+	
+	<action name="getDetailByID" mode="select" resultType="row">
+		<inputs>
+            <field type="variable" name="school_id"/>                   
+        </inputs>
+        <outputs>
+            <field name="school_name" />
+        </outputs>
+		<query>
+			SELECT s.`school_name`,st.`school_stage_name`,rg.`name`,s.`detail_address`,s.`zipcode`
+			FROM `school` as s
+			JOIN `school_stage` as st ON s.`school_stage_id` = st.`school_stage_id`
+			JOIN `region` as rg ON rg.`region_id` = s.`region_id`
+			WHERE s.`school_id` = :school_id 
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />		
+</model>

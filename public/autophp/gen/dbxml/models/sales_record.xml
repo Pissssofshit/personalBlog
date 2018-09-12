@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="getProductSoldList" mode="select" resultType="list">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+			<field type="keyword" name="limit"/>
+        </inputs>
+		<outputs>
+            <field name="sales_record_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `sales_record_id`, `sales_record_name`, p_g.`product_pricing_id`, p_g.`current_price`, `created_time`, `updated_time`,
+					`created_by`, `updated_by`, or.`order_id`, `bill_id`, `canceled_time`, `ordered_time`, `paid_time`, `confirmed_time`,
+					`deleted_time`,`total_price`, pt.`payment_id`, pt.`payment_name`, o_s.`order_status_id`, o_s.`order_status_name`
+				FROM `sales_record` as s_d
+					JOIN `product_pricing` as p_g ON s_d.`product_pricing_id` = p_g.`product_pricing_id`
+					JOIN `order` as or ON s_d.`order_id` = or.`order_id`
+					JOIN `payment` as pt ON or.`payment_id` = pt.`payment_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (`sales_record_name` = :salesRecordName OR '' = :salesRecordName)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+				ORDER BY `order_id`
+		</query>
+	</action>
+	
+	<action name="getProductSoldCount" mode="select" resultType="one">
+		<inputs>
+			<field type="array" name="searchRecord"/>
+        </inputs>
+		<outputs>
+            <field name="sales_record_id" type="int" />
+        </outputs>
+		<query>
+			SELECT COUNT(`sales_record_id`)
+				FROM `sales_record` as s_d
+					JOIN `product_pricing` as p_g ON s_d.`product_pricing_id` = p_g.`product_pricing_id`
+					JOIN `order` as or ON s_d.`order_id` = or.`order_id`
+					JOIN `payment` as pt ON or.`payment_id` = pt.`payment_id`
+					JOIN `order_status` as o_s ON or.`order_status_id` = o_s.`order_status_id`
+				WHERE (`sales_record_name` = :salesRecordName OR '' = :salesRecordName)
+					AND(`bill_id` = :billId OR -1 = :billId)
+					AND(`order_status_id` = :orderStatus OR -1 = :orderStatus)
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>

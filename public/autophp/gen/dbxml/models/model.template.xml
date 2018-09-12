@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自动对应小写同时用下划线分隔的表 -->
+<model name="Membership">
+	<!--
+    mode: insert/update/delete/select/count/procedure/function/custom/view
+    insert(array)/update(pk, array)/delete(pk)/remove(pk)
+    select(array, rowPerPage = 0, page = 1)
+    count(array)
+    procedure(array)
+    -->   
+	
+	<!-- 示例说明  -->	
+	<action name="getSecureMailList" mode="view" visited="public"> <!-- name=>函数名, mode=>view代表为select操作，visited=>访问权限　-->
+		<view source="view/charter.xml" ref="getSecureMailList"/>　<!-- souce=>对应view的文件，ref=>对应view中的的函数名-->
+	</action>
+    <action name="customSQL" mode="custom">
+        <code>
+        <![CDATA[
+        $id = 0;
+        ]]>
+        </code>
+        <sql output="result">
+        <![CDATA[
+        SELECT * FROM membership WHERE membership_id = :id
+        ]]>
+        </sql>
+        <code>
+        <![CDATA[
+        return $result
+        ]]>
+        </code>
+	</action>    
+</model>

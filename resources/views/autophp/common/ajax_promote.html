@@ -1,0 +1,18 @@
+	<thead>
+		<tr>
+			<th width="100">日期</th> 
+			<!--{foreach item=item from=$data.channels}-->
+			<th width="60"><!--{if $channel_list[$item]}--><!--{assign var=foo value=":"|explode:$channel_list[$item]}--><!--{$foo[0]}--><!--{else}--><!--{$item}--><!--{/if}--></th> 
+			<!--{/foreach}-->
+		</tr>
+	</thead>
+	<tbody>
+	<!--{foreach item=item key=key from=$data.list}-->
+	<tr>
+		<td><!--{$key}--></td>
+		<!--{foreach item=itemchannel from=$data.channels}-->
+		<td><!--{ if $item.$itemchannel != ''}--><!--{$item.$itemchannel}--><!--{else}-->--<!--{/if}--></td> 
+		<!--{/foreach}-->
+	</tr>
+	<!--{/foreach}-->
+	</tbody>

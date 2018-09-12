@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<action name="insert" mode="default" />
+		
+	<action name="update" mode="default" />
+	
+	<action name="groupEdit" mode="custom">    
+		<inputs>
+            <field type="variable" name="idArray"/>
+            <field type="variable" name="statusId"/>                                
+        </inputs>
+        <query>
+        	UPDATE FROM `account` SET `account_status_id` = :statusId
+        	WHERE `account_id` IN (:idArray)
+        </query>
+	</action> 
+	
+	<action name="getAccountDetail" mode="select" resultType="row">
+		<inputs>
+			<field type="variable" name="accountId"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			<![CDATA[
+			SELECT `account_id`, `username`, `secure_mail`, `secure_question`, `secure_answer`, a_e.`account_role_id`, a_e.`account_role_name`,
+					a_s.`account_status_id`, a_s.`account_status_name` 
+				FROM `account` as at
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+				WHERE `account_id` = :accountId
+			]]>
+		</query>
+	</action>
+	
+	<action name="getUserDetail" mode="select" resultType="row">
+		<inputs>
+			<field type="variable" name="accountId"/>
+        </inputs>
+		<outputs>
+            <field name="account_id" type="int" />
+        </outputs>
+		<query>
+			SELECT `account_id`, `username`, a_e.`account_role_id`, a_e.`account_role_name`, a_s.`account_status_id`, a_s.`account_status_name`,
+					pe.`profile_id`, CONCAT(`lastname`,`firstname`) as `fullname`, `nickname`, `birthday`, `email`, `detail_address`, `zipcode`,
+					`mobile`,`phone`, `avatar_url`, `short_intro`, `identity_card_no`, gr.`gender_id`, gr.`gender_name`, rn.`region_id`,
+					rn.`name`, `parent_id`, i_e.`identity_type_id`, i_e.`identity_type_name`
+				FROM `account` as at
+					JOIN `profile` as pe ON at.`profile_id` = pe.`profile_id`
+					JOIN `account_role` as a_e ON at.`account_role_id` = a_e.`account_role_id`
+					JOIN `account_status` as a_s ON at.`account_status_id` = a_s.`account_status_id`
+					JOIN `gender` as gr ON pe.`gender_id` = gr.`gender_id`
+					JOIN `region` as rn ON pe.`region_id` = rn.`region_id`
+					JOIN `identity_type` as i_e ON pe.`identity_type_id` = i_e.`identity_type_id`
+				WHERE `account_id` = :accountId
+		</query>
+	</action>
+	
+	<action name="delete" mode="default" />
+</model>
