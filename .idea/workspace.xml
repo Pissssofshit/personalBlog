@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -217,20 +215,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-                  <folding>
-                    <marker date="1536739969015" expanded="true" signature="281:8292" ph="..." />
-                    <marker date="1536739969015" expanded="true" signature="443:502" ph="..." />
-                    <marker date="1536739969015" expanded="true" signature="8257:8287" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="ControllerClass.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php">
               <provider selected="true" editor-type-id="text-editor">
@@ -252,25 +236,6 @@
                 <state relative-caret-position="375">
                   <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PowerUserController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-                  <folding>
-                    <marker date="1536739970040" expanded="true" signature="3158:3541" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="3586:4510" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="3610:4177" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="4552:5075" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="5121:6204" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="5199:5678" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="6246:6897" ph="..." />
-                    <marker date="1536739970040" expanded="true" signature="6942:7267" ph="..." />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -421,13 +386,6 @@
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Database" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -447,14 +405,6 @@
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -467,6 +417,13 @@
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -512,12 +469,12 @@
       <updated>1535710585922</updated>
       <workItem from="1535710587733" duration="569000" />
       <workItem from="1536285875228" duration="80347000" />
-      <workItem from="1536732275978" duration="7620000" />
+      <workItem from="1536732275978" duration="7887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88536000" />
+    <option name="totallyTimeSpent" value="88803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="15" width="1923" height="1023" extended-state="0" />
@@ -631,9 +588,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="127" column="8" lean-forward="false" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
-          <folding>
-            <element signature="e#42#71#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -824,11 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding>
-            <marker date="1536739969015" expanded="true" signature="281:8292" ph="..." />
-            <marker date="1536739969015" expanded="true" signature="443:502" ph="..." />
-            <marker date="1536739969015" expanded="true" signature="8257:8287" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -932,16 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-          <folding>
-            <marker date="1536739970040" expanded="true" signature="3158:3541" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="3586:4510" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="3610:4177" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="4552:5075" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="5121:6204" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="5199:5678" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="6246:6897" ph="..." />
-            <marker date="1536739970040" expanded="true" signature="6942:7267" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
