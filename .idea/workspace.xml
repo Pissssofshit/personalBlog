@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Library/Utils.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/bootstrapheader.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/bootstrapleftbar.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/header.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/public_modal.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/common/script.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/autophp/common/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/autophp/common/leftbar.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/autophp/common/meta.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/autophp/head.inc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/autophp/tips.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/autophp/common/head.inc" afterPath="$PROJECT_DIR$/resources/views/autophp/common/head.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/autophp/common/tips.html" afterPath="$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/view.php" afterPath="$PROJECT_DIR$/config/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/autophp/schema.sql" afterPath="$PROJECT_DIR$/database/autophp/schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/css/global.css" afterPath="$PROJECT_DIR$/public/autophp/css/global.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/css/site.css" afterPath="$PROJECT_DIR$/public/autophp/css/site.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/easyui/themes/default/layout.css" afterPath="$PROJECT_DIR$/public/autophp/easyui/themes/default/layout.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/easyui/themes/default/panel.css" afterPath="$PROJECT_DIR$/public/autophp/easyui/themes/default/panel.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/dbxml/xdwsy.xml" afterPath="$PROJECT_DIR$/public/autophp/gen/dbxml/xdwsy.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/Layout.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/Layout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/Project.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/Project.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/autophp.php" afterPath="$PROJECT_DIR$/routes/autophp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/channels.php" afterPath="$PROJECT_DIR$/routes/channels.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/autophp/welcome.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,58 +55,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2650">
-                  <caret line="106" column="5" lean-forward="false" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#48#84#0#PHP" expanded="true" />
-                    <marker date="1536733963436" expanded="true" signature="8087:8090" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="server_select.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/server_select.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user_list.blade.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/autophp/user_list.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="575">
-                  <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-                  <folding>
-                    <marker date="1536733963490" expanded="true" signature="127:286" ph="..." />
-                    <marker date="1536733963490" expanded="false" signature="163:174" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="175:277" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="310:453" ph="..." />
-                    <marker date="1536733963490" expanded="false" signature="569:580" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="581:2661" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="619:718" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2393:2548" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2393:2574" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2393:2583" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2393:2589" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2393:2651" ph="..." />
-                    <marker date="1536733963490" expanded="true" signature="2434:2539" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/IndexController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -516,14 +441,6 @@
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="common" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -541,9 +458,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mohong\zanphp\h5test.local.com\resources\views\autophp" />
       <recent name="C:\Users\mohong\zanphp\h5test.local.com\app\Library" />
       <recent name="C:\Users\mohong\zanphp\h5test.local.com\resources\views\autophp\common" />
-      <recent name="C:\Users\mohong\zanphp\h5test.local.com\resources\views\autophp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -570,19 +487,18 @@
       <updated>1535710585922</updated>
       <workItem from="1535710587733" duration="569000" />
       <workItem from="1536285875228" duration="80347000" />
-      <workItem from="1536732275978" duration="1746000" />
+      <workItem from="1536732275978" duration="2378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82662000" />
+    <option name="totallyTimeSpent" value="83294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="15" width="1923" height="1023" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20605733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28501892" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -734,9 +650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="127" column="8" lean-forward="false" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
-          <folding>
-            <element signature="e#42#71#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -855,21 +769,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <marker date="1536733963490" expanded="true" signature="127:286" ph="..." />
-            <marker date="1536733963490" expanded="false" signature="163:174" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="175:277" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="310:453" ph="..." />
-            <marker date="1536733963490" expanded="false" signature="569:580" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="581:2661" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="619:718" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2393:2548" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2393:2574" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2393:2583" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2393:2589" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2393:2651" ph="..." />
-            <marker date="1536733963490" expanded="true" signature="2434:2539" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -933,10 +833,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2650">
           <caret line="106" column="5" lean-forward="false" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding>
-            <element signature="e#48#84#0#PHP" expanded="true" />
-            <marker date="1536733963436" expanded="true" signature="8087:8090" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
