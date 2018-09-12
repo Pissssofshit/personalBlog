@@ -2,58 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/PowerRole.php" afterPath="$PROJECT_DIR$/app/Database/Models/PowerRole.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/PowerUser.php" afterPath="$PROJECT_DIR$/app/Database/Models/PowerUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/User.php" afterPath="$PROJECT_DIR$/app/Database/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameConfigSwitchController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameConfigSwitchController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameEntityController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameEntityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/GameUserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/OrderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/OrderLogController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/OrderLogController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerRoleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerRoleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/ThirdUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/ThirdUserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserLoginLogController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserLoginLogController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserPointController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserPointController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserPointLogController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserPointLogController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserVirtualPointController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserVirtualPointController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserVirtualPointLogController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserVirtualPointLogController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerRoleModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerRoleModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerUserModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerUserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/autophp/schema.sql" afterPath="$PROJECT_DIR$/database/autophp/schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/Layout.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/Layout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/game_config_switch_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/game_config_switch_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/game_entity_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/game_entity_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/game_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/game_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/game_user_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/game_user_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/order_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/order_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/order_log_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/order_log_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_add.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_add.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_detail.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_detail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_user_add.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_user_add.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_user_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_user_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_user_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_user_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/third_user_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/third_user_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_add.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_add.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_detail.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_detail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_login_log_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_login_log_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_point_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_point_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_point_log_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_point_log_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_tree.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_tree.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_virtual_point_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_virtual_point_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_virtual_point_log_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_virtual_point_log_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/autophp.php" afterPath="$PROJECT_DIR$/routes/autophp.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -242,7 +191,7 @@
             <entry file="file://$PROJECT_DIR$/database/autophp/schema.sql">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="200">
-                  <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+                  <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -274,9 +223,9 @@
                 <state relative-caret-position="75">
                   <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
                   <folding>
-                    <marker date="1536739050574" expanded="true" signature="281:8292" ph="..." />
-                    <marker date="1536739050574" expanded="true" signature="443:502" ph="..." />
-                    <marker date="1536739050574" expanded="true" signature="8257:8287" ph="..." />
+                    <marker date="1536739969015" expanded="true" signature="281:8292" ph="..." />
+                    <marker date="1536739969015" expanded="true" signature="443:502" ph="..." />
+                    <marker date="1536739969015" expanded="true" signature="8257:8287" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -301,7 +250,7 @@
             <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="375">
-                  <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+                  <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -313,14 +262,14 @@
                 <state relative-caret-position="500">
                   <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
                   <folding>
-                    <marker date="1536739051774" expanded="true" signature="3158:3541" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="3586:4510" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="3610:4177" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="4552:5075" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="5121:6204" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="5199:5678" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="6246:6897" ph="..." />
-                    <marker date="1536739051774" expanded="true" signature="6942:7267" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="3158:3541" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="3586:4510" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="3610:4177" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="4552:5075" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="5121:6204" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="5199:5678" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="6246:6897" ph="..." />
+                    <marker date="1536739970040" expanded="true" signature="6942:7267" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -380,7 +329,6 @@
         <option value="$PROJECT_DIR$/resources/views/autophp/common/leftbar.blade.php" />
         <option value="$PROJECT_DIR$/public/autophp/easyui/themes/default/panel.css" />
         <option value="$PROJECT_DIR$/public/autophp/easyui/themes/default/layout.css" />
-        <option value="$PROJECT_DIR$/database/autophp/schema.sql" />
         <option value="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" />
         <option value="$PROJECT_DIR$/resources/views/autophp/common/tips.html" />
         <option value="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" />
@@ -409,6 +357,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php" />
         <option value="$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php" />
         <option value="$PROJECT_DIR$/public/autophp/gen/entry/index.php" />
+        <option value="$PROJECT_DIR$/database/autophp/schema.sql" />
       </list>
     </option>
   </component>
@@ -465,7 +414,43 @@
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Database" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
@@ -475,34 +460,13 @@
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="gen" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="gen" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="entry" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -548,19 +512,18 @@
       <updated>1535710585922</updated>
       <workItem from="1535710587733" duration="569000" />
       <workItem from="1536285875228" duration="80347000" />
-      <workItem from="1536732275978" duration="6928000" />
+      <workItem from="1536732275978" duration="7620000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87844000" />
+    <option name="totallyTimeSpent" value="88536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="15" width="1923" height="1023" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17252569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17252569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -862,9 +825,9 @@
         <state relative-caret-position="75">
           <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding>
-            <marker date="1536739050574" expanded="true" signature="281:8292" ph="..." />
-            <marker date="1536739050574" expanded="true" signature="443:502" ph="..." />
-            <marker date="1536739050574" expanded="true" signature="8257:8287" ph="..." />
+            <marker date="1536739969015" expanded="true" signature="281:8292" ph="..." />
+            <marker date="1536739969015" expanded="true" signature="443:502" ph="..." />
+            <marker date="1536739969015" expanded="true" signature="8257:8287" ph="..." />
           </folding>
         </state>
       </provider>
@@ -970,14 +933,14 @@
         <state relative-caret-position="500">
           <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
           <folding>
-            <marker date="1536739051774" expanded="true" signature="3158:3541" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="3586:4510" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="3610:4177" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="4552:5075" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="5121:6204" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="5199:5678" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="6246:6897" ph="..." />
-            <marker date="1536739051774" expanded="true" signature="6942:7267" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="3158:3541" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="3586:4510" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="3610:4177" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="4552:5075" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="5121:6204" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="5199:5678" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="6246:6897" ph="..." />
+            <marker date="1536739970040" expanded="true" signature="6942:7267" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1014,7 +977,7 @@
     <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1062,7 +1025,7 @@
     <entry file="file://$PROJECT_DIR$/database/autophp/schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
           <folding />
         </state>
       </provider>
