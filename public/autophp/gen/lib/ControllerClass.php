@@ -11,7 +11,7 @@ class ControllerClass {
 			$this->_dir = "{$dir}/";
 			$this->_pre = ucfirst($dir) . ".";
 		}
-		$this->_autophpviewdir = "";
+		$this->_autophpviewdir = "autophp.";
 	}
 
 
@@ -446,7 +446,7 @@ EOF;
 			global \$CONFIG_ADMIN;
 			\$power_list = \$CONFIG_ADMIN['power_tree'];
 			unset(\$power_list['no_valide']);
-			\$assign["power_list"] = \$power_list
+			\$assign["power_list"] = \$power_list;
 EOF;
 			}
 		}

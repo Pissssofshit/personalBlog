@@ -1,4 +1,4 @@
-@extends('common.index')
+@extends('autophp.common.index')
 @section('content')
 		<ul class="clearfix">
 			<li class="admin_tab"><a href="/autophp/{{$tip_info["module"]}}">列  表</a></li>

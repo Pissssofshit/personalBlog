@@ -460,7 +460,7 @@ EOF;
 				break;
 			case "radio":
 				if ($column['type'] == "boolean") {
-                   $input = "<?php \${$column['name']}= isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:\$column['default'];?>";
+                   $input = "<?php \${$column['name']}= isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:{$column['default']};?>";
                   $input .= "
                     @foreach(\$dict_boolean as \$key=>\$val)
                     <input type='radio' name=\'{$column['name']}\' @if(\$key==\${$column['name']}) selected @endif value=\$key>{{\$val}}
@@ -583,7 +583,7 @@ class Layout {
 		$navi_group = $tableNode['group'];
 		$table_name = $tableNode['name'];
 		$html = <<<EOF
-		@extends('common.index')
+		@extends('autophp.common.index')
 		@section('title')
 		{$navi_group}
 		@endsection

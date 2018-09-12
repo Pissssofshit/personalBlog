@@ -86,9 +86,6 @@
 			$route = $this->_route();
 			$this->_save($route, "/routes/autophp.php");
 
-			$route = $this->_setviewpath();
-			$this->_save($route, "/config/view.php");
-
 			$menu = $this->_indexmenu();
 			$this->_save($menu, "/app/Http/Controllers/Autophp/IndexController.php");
 
@@ -223,7 +220,7 @@ class IndexController extends Controller {
 	}
 
 	public function index() {
-		return view("common.index");
+		return view("autophp.common.index");
 	}
 
 	public function welcome() {

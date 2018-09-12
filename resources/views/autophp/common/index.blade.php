@@ -4,15 +4,15 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
     <title>@yield('title',"")</title>
-    @include('common.bootstrapheader')
-    @include('common.head')
+    @include('autophp.common.bootstrapheader')
+    @include('autophp.common.head')
 </head>
 <body class="easyui-layout page-header-fixed page-quick-sidebar-over-content page-quick-sidebar-open page-sidebar-closed-hide-logo">
 <div class="page-header navbar">
-    @include('common.header')
+    @include('autophp.common.header')
 </div>
 <div class="page-container" style="margin-top:0;overflow:scroll;">
-    @include('common.bootstrapleftbar')
+    @include('autophp.common.bootstrapleftbar')
     <div class="page-content-wrapper"   >
         <div class="page-content" >
             <div class="row">
@@ -23,8 +23,8 @@
         </div>
     </div>
 </div>
-@include('common.script')
-@include('common.public_modal')
+@include('autophp.common.script')
+@include('autophp.common.public_modal')
 @verbatim
     <script>
         jQuery(document).ready(function() {
