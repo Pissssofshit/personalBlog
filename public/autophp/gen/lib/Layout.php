@@ -116,7 +116,7 @@ EOF;
 				<li><label class="display_name">{$column['displayName']}:</label>
 				<span>
 		        <table style="border:1px solid #CCCCCC; clear:none; width:200px">
-	
+	                @if(isset(\$power_list)&&!empty(\$power_list)
 				    @foreach(\$power_list as \$key=>\$power)
 				    <tr>
 				    	<td style="text-align:left;">
@@ -127,15 +127,17 @@ EOF;
 				    </tr>
 				    <tr>
 				    	<td style="padding-left:35px; text-align:left ">
-			
+			            @if(isset(\$power["sub"])&&!empty(\$power["sub"]))
 				        @foreach(\$power.sub as \$action)
-					        @if(isset(\$detail.content.\$key) && in_array(\$action.url,\$detail.content.\$key))
+					        @if(isset(\$detail["content"][\$key]) && in_array(\$action.url,\$detail["content"][\$key]))
 					        {{\$action.name}}<br />
 					        @endif
 				       @endforeach
+				       @endif
 				        </td>
 				    </tr>			    
 		    		@endforeach
+		    		@endif
 		        </table>			
 			</span>
 EOF;
@@ -155,12 +157,12 @@ EOF;
 			<li>
 				<label class="display_name">{$column['displayName']}:</label>
 				<span>
-	
+	        @if(isset(\$detail->{$column['name']})&&!empty(\$detail->{$column['name']})
 				@foreach(\$detail->{$column['name']} as \$id)
 					 <?php \${$column['name']}= isset(\$dict_{$refer_table}[1][\$id])?\$dict_{$refer_table}[1][\$id]:'';?>
 					{{\${$column['name']}}}
 					@endforeach
-	
+	        @endif
 				</span>
 			</li>
 EOF;
@@ -279,12 +281,13 @@ EOF;
 			<tr>
 				{$th}
 			</tr>
-	
+            @if(isset(\$list)&&!empty(\$list))
 			@foreach(\$list as \$key=>\$item)
 			<tr>
 				{$td}
 			</tr>
 			@endforeach
+			@endif
 		</table>
 		</div></div>
 		<div class="list_page"> {!!\$page_html!!}</div>
@@ -353,12 +356,12 @@ EOF;
 			<tr class="lv1" id="tr_{{\$item->{$this->_pk}}}">
 				{$td}
 			</tr>
-				@if(\$item->children)
+				@if(isset(\$item->children)&&!empty(\$item->children))
 				@foreach(\$item->children as \$item)
 				<tr class="lv2" style="background-color:#eee;font-size:11px" id="tr_{{\$item->{$this->_pk}}}">
 					{$td}
 				</tr>
-					@if(\$item->children)
+					@if(isset(\$item->children)&&!empty(\$item->children))
 					@foreach(\$item->children as \$item)
 					<tr class="lv3" id="tr_{{\$item->{$this->_pk}}}">
 						{$td}
@@ -452,9 +455,11 @@ EOF;
 			case "select":
 				$refer_table = $this->_getRefer($column['name']);
 				$input = "<select name=\"{$column['name']}\" id=\"{$column['name']}\">
+                            @if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
                            @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
                             <option value={{\$key}} @if(\$dict_{$refer_table}[0]==\$key) selected  @endif>{{\$val}}</option>
                            @endforeach
+                           @endif
                       
                 </select>";
 				break;
@@ -462,29 +467,37 @@ EOF;
 				if ($column['type'] == "boolean") {
                    $input = "<?php \${$column['name']}= isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:{$column['default']};?>";
                   $input .= "
+                    @if(isset(\$dict_boolean)&&!empty(\$dict_boolean)) 
                     @foreach(\$dict_boolean as \$key=>\$val)
                     <input type='radio' name=\'{$column['name']}\' @if(\$key==\${$column['name']}) selected @endif value=\$key>{{\$val}}
                     @endforeach
+                    @endif
                     ";
                     break;
 				}
 
 				$refer_table = $this->_getRefer($column['name']);
-			    $input = "@foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
+			    $input = "@if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
+                        @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
                     <input type='radio' name=\'{$column['name']}\' @if(\$key==\$dict_{$refer_table}[0]) selected @endif value=\$key>{{\$val}}
-                    @endforeach ";
+                    @endforeach 
+                    @endif
+                    ";
 				break;
 			case "checkbox":
 				$refer_table = $this->_getRefer($column['name']);
 				$input = "<span class='kk_group_checkbox'>
+                    @if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
                    @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
                     <input type='checkbox' name=\'{$column['name']}[]\' @if(\$key==\$dict_{$refer_table}[0]) selected @endif value=\$key>{{\$val}}
                    @endforeach
+                   @endif
                    ";
 				break;
 			case "privilege":
 				$input = <<<EOF
 		<table style="border:1px solid #CCCCCC; clear:none; width:200px ">
+		@if(isset(\$power_list)&&!empty(\$power_list)) 
 	    @foreach(\$power_list as \$key=>\$power)
 	    <tr>
 	    	<td style="text-align:left;">
@@ -494,12 +507,15 @@ EOF;
 	    </tr>
 	    <tr id="tag_{{\$key}}">
 	    	<td style="padding-left:35px; text-align:left ">
-	        @foreach(\$power.sub as \$action)
+	    	@if(isset(\$power["sub"])&&!empty(\$power["sub"])) 
+	        @foreach(\$power["sub"] as \$action)
 	        <input name="content[{{\$key}}][]" type="checkbox" value="{{\$action.url}}" class="box_{{\$key}}" onclick="subbox_check(this)" <!--{if isset(\$detail.content.\$key) && in_array(\$action.url,\$detail.content.\$key)}-->checked<!--{/if}-->/>&nbsp;{{\$action.name}}<br />
 	        @endforeach
+	        @endif
 	        </td>
 	    </tr>			    
    		@endforeach
+   		@endif
        </table>
 <script type="text/javascript">
     $(".box_tag").bind('click',function(){

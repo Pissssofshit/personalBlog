@@ -200,7 +200,8 @@ EOF;
 		$code = <<<EOF
 	public function create(Request \$request) {
 		{$this->dict(false, false)} {$priv_format}
-        \$assign = ["dict_boolean"=>array("否", "是"),"csrf_token"=>csrf_token()];
+        \$assign["dict_boolean"] = array("否", "是");
+        \$assign["csrf_token"] = csrf_token();
 		return view("{$this->_autophpviewdir}{$this->_tableName}_add",\$assign);
 	}
 EOF;
