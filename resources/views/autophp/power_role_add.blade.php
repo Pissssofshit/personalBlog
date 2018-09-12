@@ -65,7 +65,6 @@
 	    $("#"+class_name).attr("checked",flag);
 	}
 </script>	</li>
-<li><label class="display_name">可浏览公司</label><input type="text" maxlength="500" name="company_ids" id="company_ids" value="{{isset($detail['company_ids'])?$detail['company_ids']:''}}"></input></li>
 
 <li class="clearfix"></li><li class="ml35"><input class="kbutton" type="submit" value="确 认" id="btn_submit" /><input class="kbutton" type="reset" value="重 置" id="btn_reset"/></li>
 		</ul>
@@ -73,7 +72,7 @@
 </fieldset>
 
 <script type="text/javascript">		
-	    $("form").validate({"rules":{"power_role_name":{"required":true,"maxlength":"30"},"company_ids":{"required":true,"maxlength":"500"},"created_time":{"required":false,"maxlength":16}},"messages":{"power_role_name":{"required":"\u3010\u89d2\u8272\u540d\u79f0\u3011\u4e0d\u80fd\u4e3a\u7a7a","maxlength":"\u3010\u89d2\u8272\u540d\u79f0\u3011\u4e0d\u80fd\u8d85\u8fc730\u4e2a\u5b57\u7b26"},"company_ids":{"required":"\u3010\u53ef\u6d4f\u89c8\u516c\u53f8\u3011\u4e0d\u80fd\u4e3a\u7a7a","maxlength":"\u3010\u53ef\u6d4f\u89c8\u516c\u53f8\u3011\u4e0d\u80fd\u8d85\u8fc7500\u4e2a\u5b57\u7b26"},"created_time":{"required":"\u3010\u521b\u5efa\u65f6\u95f4\u3011\u4e0d\u80fd\u4e3a\u7a7a","maxlength":"\u3010\u521b\u5efa\u65f6\u95f4\u3011\u4e0d\u80fd\u8d85\u8fc716\u4e2a\u5b57\u7b26"}}});
+	    $("form").validate({"rules":{"power_role_name":{"required":true,"maxlength":"30"},"created_time":{"required":false,"maxlength":16}},"messages":{"power_role_name":{"required":"\u3010\u89d2\u8272\u540d\u79f0\u3011\u4e0d\u80fd\u4e3a\u7a7a","maxlength":"\u3010\u89d2\u8272\u540d\u79f0\u3011\u4e0d\u80fd\u8d85\u8fc730\u4e2a\u5b57\u7b26"},"created_time":{"required":"\u3010\u521b\u5efa\u65f6\u95f4\u3011\u4e0d\u80fd\u4e3a\u7a7a","maxlength":"\u3010\u521b\u5efa\u65f6\u95f4\u3011\u4e0d\u80fd\u8d85\u8fc716\u4e2a\u5b57\u7b26"}}});
 </script>
 			</div>
 		</div>

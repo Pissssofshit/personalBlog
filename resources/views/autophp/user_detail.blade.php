@@ -1,25 +1,25 @@
 		@extends('autophp.common.index')
 		@section('title')
-		data
+		用户管理
 		@endsection
          @section('content')
          <div class="page-bar">
 				<ol class="breadcrumb" style="margin: 0px">
-					<li><i class="fa fa-home"></i><a href="">data</a></li>
-					<li class="active">用户表</li>
+					<li><i class="fa fa-home"></i><a href="">用户管理</a></li>
+					<li class="active">用户</li>
 				</ol>
 		</div>
 		<ul class="clearfix">
 				<li class="admin_tab"><a href="/autophp/user">列  表</a></li>
 				<li class="admin_tab"><a href="/autophp/user/create">添  加</a></li>
 		</ul>
-		<div id="main" class="easyui-panel" title="当前位置：data >> 用户表">
+		<div id="main" class="easyui-panel" title="当前位置：用户管理 >> 用户">
 			<div class="easyui-panel" border="false" style="padding:1px">
 				<fieldset>
 	<legend>详情</legend>
 	<form action="" method="post">
 		<ul class="list_A">
-			<li><label class="display_name">没用的主键:</label><span>{{$detail->id}}</span></li><li><label class="display_name">平台ID:</label><span>{{$detail->uid}}</span></li><li><label class="display_name">平台账号名:</label><span>{{$detail->passport}}</span></li><li><label class="display_name">平台ID:</label><span>{{$detail->partner_id}}</span></li><li><label class="display_name">计划id:</label><span>{{$detail->plan_id}}</span></li><li><label class="display_name">账号id:</label><span>{{$detail->account_id}}</span></li><li><label class="display_name">游戏id:</label><span>{{$detail->game_id}}</span></li><li><label class="display_name">素材id:</label><span>{{$detail->material_id}}</span></li><li><label class="display_name">站点id:</label><span>{{$detail->site_id}}</span></li><?php $is_role= isset($dict_boolean[$detail.is_role])?$dict_boolean[$detail.is_role]:'';?><li><label class="display_name">是否创角:</label><span>{{$is_role}}</span></li><?php $is_reg= isset($dict_boolean[$detail.is_reg])?$dict_boolean[$detail.is_reg]:'';?><li><label class="display_name">是否新注册用户(滚游戏):</label><span>{{$is_reg}}</span></li><li><label class="display_name">注册时间:</label><span>{{$detail->reg_time}}</span></li><li><label class="display_name">留存标记:</label><span>{{$detail->subsist_sign}}</span></li><li><label class="display_name">类型:</label><span>{{$detail->category_id}}</span></li><li class="clearfix"></li><li class="ml35"><input class="kbutton" type="button" value="编辑" id="btn_edit"  onclick="javascript:location.href='./{{$detail->id}}/edit'"/><input class="kbutton" type="button" value="删除" id="btn_delete"  onclick="javascript:confirm('确认需要删除此记录！！！')? deleteItem('/autophp/user/{{$detail->id}}', {'_method':'DELETE'}) : null;"/></li>
+			<li><label class="display_name">UID:</label><span>{{$detail->id}}</span></li><li><label class="display_name">用户名:</label><span>{{$detail->username}}</span></li><li><label class="display_name">手机号:</label><span>{{$detail->mobile}}</span></li><li><label class="display_name">邮箱:</label><span>{{$detail->email}}</span></li><li><label class="display_name">加密密码:</label><span>{{$detail->password}}</span></li><li><label class="display_name">注册时间戳:</label><span>{{$detail->reg_time}}</span></li><li><label class="display_name">手机绑定时间戳:</label><span>{{$detail->mobile_bind_time}}</span></li><li><label class="display_name">邮箱绑定时间戳:</label><span>{{$detail->email_bind_time}}</span></li><li><label class="display_name">来源1:1自然量2公会:</label><span>{{$detail->source}}</span></li><li><label class="display_name">来源2:渠道标识:</label><span>{{$detail->ucode}}</span></li><li><label class="display_name">来源3:子渠道扩展标示:</label><span>{{$detail->subucode}}</span></li><li><label class="display_name">注册ip:</label><span>{{$detail->ip}}</span></li><li><label class="display_name">注册ua:</label><span>{{$detail->ua}}</span></li><li><label class="display_name">操作系统:0-pc;1-android;2-ios:</label><span>{{$detail->os}}</span></li><li><label class="display_name">注册设备id:</label><span>{{$detail->device_id}}</span></li><li><label class="display_name">物理标识:android为imei；ios为idfa:</label><span>{{$detail->imei}}</span></li><li><label class="display_name">昵称:</label><span>{{$detail->nickname}}</span></li><li><label class="display_name">性别:1男2女:</label><span>{{$detail->sex}}</span></li><li><label class="display_name">头像:</label><span>{{$detail->head_icon}}</span></li><li><label class="display_name">:</label><span>{{$detail->idcard}}</span></li><li><label class="display_name">:</label><span>{{$detail->realname}}</span></li><li><label class="display_name">盐值:</label><span>{{$detail->salt}}</span></li><li class="clearfix"></li><li class="ml35"><input class="kbutton" type="button" value="编辑" id="btn_edit"  onclick="javascript:location.href='./{{$detail->id}}/edit'"/><input class="kbutton" type="button" value="删除" id="btn_delete"  onclick="javascript:confirm('确认需要删除此记录！！！')? deleteItem('/autophp/user/{{$detail->id}}', {'_method':'DELETE'}) : null;"/></li>
 		</ul>
 	</form>
 </fieldset>
