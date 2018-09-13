@@ -58,8 +58,11 @@ class RegularAction
 			foreach ($data as $key=>$value) {
 				$obj->$key=$value;
 			}
-
+			try{
 			$ret = $obj->save();
+			}catch(\Exception $e){
+                $ret = false;
+            }
 
 			return $ret;	
     	}
@@ -96,9 +99,11 @@ class RegularAction
 			foreach ($data as $key=>$value) {
 				$obj->$key=$value;
 			}
-
+			try{
 			$ret = $obj->save();
-
+			}catch(\Exception $e){
+                $ret = false;
+            }
 			return $ret;	
     	}
 ';

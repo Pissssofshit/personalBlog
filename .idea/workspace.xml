@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/PowerRole.php" afterPath="$PROJECT_DIR$/app/Database/Models/PowerRole.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/PowerUser.php" afterPath="$PROJECT_DIR$/app/Database/Models/PowerUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database/Models/User.php" afterPath="$PROJECT_DIR$/app/Database/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerRoleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerRoleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerRoleModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerRoleModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerUserModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/PowerUserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" afterPath="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/autophp/schema.sql" afterPath="$PROJECT_DIR$/database/autophp/schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/common/head.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/common/head.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_add.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_add.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_detail.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_detail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/power_role_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/power_role_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_add.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_add.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_detail.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_detail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/user_tree.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/user_tree.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/autophp.php" afterPath="$PROJECT_DIR$/routes/autophp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/5dad2a9ece48f875f7c08bcc7256690793357fe0.php" afterPath="$PROJECT_DIR$/storage/framework/views/5dad2a9ece48f875f7c08bcc7256690793357fe0.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/ce034e44099298dc2173aae640adfc71c15ac797.php" afterPath="$PROJECT_DIR$/storage/framework/views/ce034e44099298dc2173aae640adfc71c15ac797.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" afterPath="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php" afterPath="$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.1">
+    <splitter split-orientation="vertical" split-proportion="0.18030842">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
@@ -62,7 +40,7 @@
           <file leaf-file-name="head.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/head.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="0">
                   <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
                   <folding />
                 </state>
@@ -93,11 +71,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="Layout.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Layout.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/Layout.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="75" column="15" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="15" />
+                <state relative-caret-position="460">
+                  <caret line="420" column="85" lean-forward="false" selection-start-line="420" selection-start-column="81" selection-end-line="420" selection-end-column="85" />
                   <folding>
                     <marker date="1536738404165" expanded="true" signature="1267:1403" ph="..." />
                     <marker date="1536738404165" expanded="true" signature="1342:1391" ph="..." />
@@ -191,78 +169,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="xdwsy.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/xdwsy.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
-                  <caret line="10" column="128" lean-forward="false" selection-start-line="10" selection-start-column="128" selection-end-line="10" selection-end-column="128" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Project.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/Project.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="306" column="24" lean-forward="false" selection-start-line="306" selection-start-column="24" selection-end-line="306" selection-end-column="24" />
+                <state relative-caret-position="248">
+                  <caret line="260" column="29" lean-forward="true" selection-start-line="260" selection-start-column="29" selection-end-line="260" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/database/autophp/schema.sql">
+          <file leaf-file-name="RegularAction.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="175">
-                  <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-                  <folding>
-                    <marker date="1536748527986" expanded="true" signature="13463:13624" ph="CREATE TABLE... power_role" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="relationship.sql" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/database/autophp/relationship.sql">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="-5583">
+                  <caret line="103" column="12" lean-forward="false" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/autophp/gen/entry/index.php">
+          <file leaf-file-name="tips.blade.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="181">
-                  <caret line="150" column="32" lean-forward="false" selection-start-line="150" selection-start-column="32" selection-end-line="150" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ControllerClass.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
-                  <folding>
-                    <marker date="1536738732246" expanded="true" signature="2685:2803" ph="..." />
-                    <marker date="1536738732246" expanded="true" signature="2685:2913" ph="..." />
-                    <marker date="1536738732246" expanded="true" signature="4879:5017" ph="..." />
-                    <marker date="1536738732246" expanded="true" signature="4879:5353" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="pop.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+                  <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -274,7 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bootstrapSwitch.js</find>
       <find>project_</find>
       <find>/autophp/easyui/themes/icon.css</find>
       <find>_base</find>
@@ -288,7 +218,6 @@
       <find>assign</find>
       <find>radio</find>
       <find>checkbox</find>
-      <find>_view</find>
       <find>@yi</find>
       <find>referencedTable</find>
       <find>导出</find>
@@ -304,6 +233,8 @@
       <find>_create</find>
       <find>_config</find>
       <find>foreach</find>
+      <find>_Mo</find>
+      <find>_view</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -322,7 +253,6 @@
         <option value="$PROJECT_DIR$/resources/views/autophp/common/leftbar.blade.php" />
         <option value="$PROJECT_DIR$/public/autophp/easyui/themes/default/panel.css" />
         <option value="$PROJECT_DIR$/public/autophp/easyui/themes/default/layout.css" />
-        <option value="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" />
         <option value="$PROJECT_DIR$/resources/views/autophp/common/tips.html" />
         <option value="$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" />
         <option value="$PROJECT_DIR$/resources/views/autophp/common/page_template.blade.php" />
@@ -342,7 +272,6 @@
         <option value="$PROJECT_DIR$/public/autophp/gen/dbxml/xdwsy.xml" />
         <option value="$PROJECT_DIR$/routes/autophp.php" />
         <option value="$PROJECT_DIR$/config/view.php" />
-        <option value="$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/autophp/common/index.blade.php" />
         <option value="$PROJECT_DIR$/public/autophp/gen/lib/Project.php" />
         <option value="$PROJECT_DIR$/public/autophp/gen/lib/Layout.php" />
@@ -352,6 +281,10 @@
         <option value="$PROJECT_DIR$/database/autophp/schema.sql" />
         <option value="$PROJECT_DIR$/resources/views/autophp/common/head.blade.php" />
         <option value="$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml" />
+        <option value="$PROJECT_DIR$/app/Http/Models/Autophp/CfgModeModel.php" />
+        <option value="$PROJECT_DIR$/app/Http/Models/Autophp/RemAccountModel.php" />
+        <option value="$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php" />
+        <option value="$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php" />
       </list>
     </option>
   </component>
@@ -392,7 +325,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -409,44 +341,52 @@
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="gen" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="h5test.local.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="h5test.local.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="autophp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="gen" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="dbxml" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="common" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../oldautophp.local.com" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
@@ -481,19 +421,20 @@
       <updated>1535710585922</updated>
       <workItem from="1535710587733" duration="569000" />
       <workItem from="1536285875228" duration="80347000" />
-      <workItem from="1536732275978" duration="9240000" />
+      <workItem from="1536732275978" duration="9490000" />
+      <workItem from="1536749198675" duration="1280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90156000" />
+    <option name="totallyTimeSpent" value="91686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="15" width="1923" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0064899945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10654408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -524,34 +465,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/autophp/user_add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/easyui/themes/default/panel.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/easyui/themes/default/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/autophp/css/dtree.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -566,47 +479,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Database/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="579" column="9" lean-forward="false" selection-start-line="579" selection-start-column="9" selection-end-line="579" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/ModelClass.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="116" column="29" lean-forward="false" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="323" column="59" lean-forward="false" selection-start-line="323" selection-start-column="59" selection-end-line="323" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Database/Models/User.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/tips.html" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="127" column="8" lean-forward="false" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
-          <folding>
-            <element signature="e#42#71#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Models/Autophp/UserModel.php" />
     <entry file="file://$PROJECT_DIR$/app/Library/Pager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-165">
@@ -651,7 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,7 +573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="12" column="80" lean-forward="false" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,7 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-275">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,27 +614,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/IndexController.php" />
     <entry file="file://$PROJECT_DIR$/config/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -770,29 +626,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/UserController.php" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/PowerUserController.php" />
     <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/ControllerClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="5075">
           <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
           <folding>
             <marker date="1536738732246" expanded="true" signature="2685:2803" ph="..." />
@@ -823,7 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -831,22 +671,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/autophp/gen/entry/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
+        <state relative-caret-position="3750">
           <caret line="150" column="32" lean-forward="false" selection-start-line="150" selection-start-column="32" selection-end-line="150" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/Project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="306" column="24" lean-forward="false" selection-start-line="306" selection-start-column="24" selection-end-line="306" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -864,7 +695,7 @@
         <state relative-caret-position="175">
           <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
           <folding>
-            <marker date="1536748527986" expanded="true" signature="13463:13624" ph="CREATE TABLE... power_role" />
+            <marker date="1536750098543" expanded="true" signature="13463:13624" ph="CREATE TABLE... power_role" />
           </folding>
         </state>
       </provider>
@@ -879,16 +710,124 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/head.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="0">
           <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/CfgModeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="73" column="41" lean-forward="false" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Models/Autophp/CfgModeModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+          <folding>
+            <marker date="1536750099186" expanded="true" signature="218:222" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="707:730" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="775:820" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="858:951" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="873:904" ph="SELECT count... cfg_mode" />
+            <marker date="1536750099186" expanded="true" signature="1001:1132" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="1034:1059" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="1172:1418" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="1253:1389" ph="..." />
+            <marker date="1536750099186" expanded="true" signature="1525:1570" ph="SELECT `cfg_... cfg_mode" />
+            <marker date="1536750099186" expanded="true" signature="1586:1638" ph="SELECT count... cfg_mode" />
+            <marker date="1536750099186" expanded="true" signature="1678:1846" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Autophp/RemAccountController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="78" column="45" lean-forward="false" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="579" column="9" lean-forward="false" selection-start-line="579" selection-start-column="9" selection-end-line="579" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/ModelClass.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="116" column="30" lean-forward="false" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Models/Autophp/RemAccountModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#42#77#0#PHP" expanded="true" />
+            <marker date="1536750098655" expanded="true" signature="224:230" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="725:748" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="796:847" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="885:981" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="900:934" ph="SELECT count... rem_account" />
+            <marker date="1536750098655" expanded="true" signature="1034:1174" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="1070:1095" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="1214:1466" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="1298:1437" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="1596:1647" ph="SELECT `rem_... rem_account" />
+            <marker date="1536750098655" expanded="true" signature="1663:1718" ph="SELECT count... rem_account" />
+            <marker date="1536750098655" expanded="true" signature="1761:1953" ph="..." />
+            <marker date="1536750098655" expanded="true" signature="1984:2153" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/RegularAction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5583">
+          <caret line="103" column="12" lean-forward="false" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/autophp/common/tips.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/Project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="260" column="29" lean-forward="true" selection-start-line="260" selection-start-column="29" selection-end-line="260" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/autophp/gen/lib/Layout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="75" column="15" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="15" />
+        <state relative-caret-position="460">
+          <caret line="420" column="85" lean-forward="false" selection-start-line="420" selection-start-column="81" selection-end-line="420" selection-end-column="85" />
           <folding>
             <marker date="1536738404165" expanded="true" signature="1267:1403" ph="..." />
             <marker date="1536738404165" expanded="true" signature="1342:1391" ph="..." />
@@ -978,14 +917,6 @@
             <marker date="1536738404165" expanded="true" signature="21056:21067" ph="..." />
             <marker date="1536738404165" expanded="true" signature="21068:21091" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/autophp/gen/dbxml/pop.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
