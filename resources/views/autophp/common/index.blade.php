@@ -11,10 +11,10 @@
 <div class="page-header navbar">
     @include('autophp.common.header')
 </div>
-<div class="page-container" style="margin-top:0;overflow:scroll;">
+<div class="page-container" style="margin-top:0;">
     @include('autophp.common.bootstrapleftbar')
-    <div class="page-content-wrapper"   >
-        <div class="page-content" >
+    <div class="page-content-wrapper" >
+        <div class="page-content">
             <div class="row">
                 <div class="col-md-12">
                     @yield('content',"welcome!!")
@@ -27,15 +27,13 @@
 @include('autophp.common.public_modal')
 @verbatim
     <script>
-        jQuery(document).ready(function() {
-            //ComponentsDropdowns.init();
-            initSideBar();
-        });
-        function initSideBar(){
-            $(".backend_menu_list").removeClass('active').removeClass('open');
-            $("a.backend_menu.active").parent().addClass('active').addClass('open');
-            $("a.backend_menu.active").parents(".backend_menu_list").addClass('active').addClass('open');
+        if($(".searchflow").prop("scrollHeight")-$(".searchflow").prop("clientHeight")>20){
+            $(".searchflow").addClass("showopenicon");
         }
+        $(".showopenicon").click(function(){
+            $(this).css("overflow","visible");
+            $(this).removeClass("showopenicon");
+        })
     </script>
 @endverbatim
 </body>

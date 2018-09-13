@@ -260,10 +260,12 @@ EOF;
 	<fieldset class="search_canvas">
 		<legend>搜索</legend>
 		<form method="get" action="{{\$action_url}}" exportaction="{{\$action_url}}/export">
-			<ul class="searchlegend">
+			<ul class="searchlegend searchflow" style="height:32px;overflow: hidden;">
 				{$li}
+			</ul>
+			<ul class="searchlegend" style="clear:both;">
 				<li><input class="kbutton kbutton_A" type="submit" value="搜  索" id="btn_search" /></li>
-				<li><input class="kbutton kbutton_A" value=" 导  出 " id="btn_export" /></li>
+				<li><input class="kbutton kbutton_A" type="button" value="导  出" id="btn_export" /></li>
 			</ul>
 		</form>
 	</fieldset>
@@ -608,12 +610,12 @@ class Layout {
 				<ol class="breadcrumb" style="margin: 0px">
 					<li><i class="fa fa-home"></i><a href="">{$navi_group}</a></li>
 					<li class="active">{$navi_name}</li>
+					<ul style="float:right;">
+					<li style="float:left;"><a href="/autophp/{$table_name}" class="listshowpng"></a></li>
+					<li style="float:left;"><a href="/autophp/{$table_name}/create" class="createshow"></a></li>
+					</ul>
 				</ol>
 		</div>
-		<ul class="clearfix">
-				<li class="admin_tab"><a href="/autophp/{$table_name}">列  表</a></li>
-				<li class="admin_tab"><a href="/autophp/{$table_name}/create">添  加</a></li>
-		</ul>
 		<div id="main" class="easyui-panel" title="当前位置：{$navi_group} >> {$navi_name}">
 			<div class="easyui-panel" border="false" style="padding:1px">
 				$content

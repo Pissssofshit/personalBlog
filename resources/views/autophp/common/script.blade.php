@@ -6,31 +6,29 @@
 {{--<!--<script src="{{$project['common']['cdn']}}/assets/global/plugins/respond.min.js"></script>-->--}}
 {{--<!--<script src="{{$project['common']['cdn']}}/assets/global/plugins/excanvas.min.js"></script>-->--}}
 <![endif]-->
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
 
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/select2/select2.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="{{$project['common']['cdn']}}/assets/global/plugins/respond.min.js"></script>
+<script src="/autophp/js/bootstrapjs/jquery.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery.cokie.min.js" type="text/javascript"></script>
+
+<script src="/autophp/js/bootstrapjs/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/metronic.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/select2.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/jquery.multi-select.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/layout.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/quick-sidebar.js" type="text/javascript"></script>
+<script src="/autophp/js/bootstrapjs/respond.min.js"></script>
+
+{{--<script type="text/javascript" src="/autophp/easyui/jquery.easyui.min.js"></script>--}}
+
 <script>
-    $(".backend_menu_list").each(function(){
-        var lis = $(this).find("ul").find("li");
-        if(lis.length<1){
-            $(this).remove();
-        }
-    })
     //分页
     $(".ajaxpage_").live('click',function(){
         if(!$(this).parent('li').hasClass('disabled')){
@@ -90,17 +88,4 @@
         var pram = Math.random();
         window.location.href = trueurl+"?"+pram;
     }
-    function sidebarisshow(){
-        var alltitleshow = $(".page-sidebar").find(".backend_menu_list");
-        alltitleshow.each(function(){
-            var downli = $(this).find(".sub-menu").find("li");
-            var len = downli.length;
-            if(len>0){
-                $(this).css("display","block");
-            }
-        })
-    }
-    $(document).ready(function() {
-        sidebarisshow();
-    })
 </script>

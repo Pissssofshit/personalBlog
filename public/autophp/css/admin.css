@@ -79,11 +79,11 @@ input, select{	margin: 0;	padding: 0;	vertical-align: middle;}
 #right .userContent .line{	border-bottom: 1px solid #ccc;	height: 1px;	width: 100%;}
 
 /* 增加或修改表单信息 */
-fieldset{    margin: 1em 0;    padding: 1em;    border: 1px solid #CCC;}
+fieldset{    margin: 1em 0;}
 fieldset legend{    font-size: 1.1em;    font-weight: 600;    padding: 2px 4px 8px 4px;}
-fieldset input[type="text"]{    width: 200px;    border: 1px solid #CCC;}
-fieldset input[type="password"]{    width: 200px;    border: 1px solid #CCC;}
-fieldset select{    width: 200px;    border: 1px solid #CCC;}
+fieldset input[type="text"]{    width: 120px;    border: 1px solid #CCC;}
+fieldset input[type="password"]{    width: 120px;    border: 1px solid #CCC;}
+fieldset select{    width: 120px;    border: 1px solid #CCC;}
 fieldset .item-edit-label{    margin: 0.5em 0;}
 fieldset .item-edit-label label{    width: 80px;    float: left;    text-align: right;    padding-right: 20px;}
 fieldset .item-edit-field{    margin: 0.5em 0;}
@@ -138,3 +138,6 @@ fieldset .error-message{    color:red; padding:5px 10px 5px 10px;}
 .pageFen a.current{ color:#ff0000;}
 
 li {list-style:none;padding: 0 8px;}
+.listshowpng{ background:url(../images/listshow.png) left top no-repeat; width:32px; height:32px;display:inline-block;}
+.createshow{ background:url(../images/createshow.png) left top no-repeat; width:32px; height:32px;display:inline-block;}
+.showopenicon{background:url(../images/zhankai.png) right top no-repeat;}

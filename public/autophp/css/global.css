@@ -68,14 +68,26 @@ fieldset {
 .searchlegend .display_name {
 	width: 120px;
 	float: left;
-	text-align: right;
+	text-align: center;
 }
 .searchlegend .checker{
 	 display: inline-block;
  }
 .searchlegend .radio{
 	display: inline-block;
+	margin-top: 0;
+
 }
+.radio input[type=radio]{
+	margin:0;padding:0;position:relative;vertical-align:top;
+
+}
+/*.searchlegend .radio, .checkbox {*/
+	/*position: relative;*/
+	/*display: block;*/
+	/*!* margin-top: 10px; *!*/
+	/*margin-bottom: 10px;*/
+/*}*/
 legend {
 	font-size: 14px;
 }

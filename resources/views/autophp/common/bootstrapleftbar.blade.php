@@ -8,11 +8,16 @@
 			<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
 			<!-- DOC: This is mobile version of the horizontal menu. The desktop version is defined(duplicated) in the header above -->
 			@foreach($bar_tree as $key=>$item_1)
-
+				<?php $listopen = false;?>
+				@foreach($item_1["sub"] as $item_u)
+					@if(trim($item_u["url"],"/")==$request_path)
+                            <?php $listopen = true;?>
+					@endif
+				@endforeach
 				<li  class="backend_menu_list
-            @if($loop->first)
+            @if($listopen)
 						active open
-@endif
+			@endif
 						" >
 					<a href="">
 						<i class="fa icon-settings"></i>
@@ -21,9 +26,10 @@
 					</a>
 					<ul class="sub-menu">
 						@foreach($item_1["sub"] as $item_2)
-							<li class="">
+							<li class="@if(trim($item_2["url"],"/")==$request_path)
+									active open
+@endif">
 								<a href="{{$item_2["url"]}}" class="backend_menu
-                            	{{$request_path}}
 								@if(trim($item_2["url"],"/")==$request_path)
 										active open
 								@endif
@@ -40,9 +46,3 @@
 	</div>
 </div>
 <!-- END SIDEBAR -->
-
-<script type="text/javascript">
-	function show_menu(idname) {
-		$("#"+idname).toggle();
-	}
-</script>

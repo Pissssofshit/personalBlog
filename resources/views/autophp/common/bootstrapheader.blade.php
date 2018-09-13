@@ -6,20 +6,24 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
-{{--<link href="/css/bootstrapSwitch.css" rel="stylesheet" type="text/css"/>--}}
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/select2/select2.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
-<link href="{{$project['common']['cdn']}}/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="{{$project['common']['cdn']}}/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css">
-<link rel="stylesheet" type="text/css" href="{{$project['common']['cdn']}}/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css">
-<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />--}}
 
+<link href="/autophp/css/bootstrapcss/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+{{--<link href="/css/bootstrapSwitch.css" rel="stylesheet" type="text/css"/>--}}
+<link href="/autophp/css/bootstrapcss/select2.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/multi-select.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/layout.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="/autophp/css/bootstrapcss/custom.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/autophp/css/bootstrapcss/dataTables.scroller.min.css">
+<link rel="stylesheet" type="text/css" href="/autophp/css/bootstrapcss/dataTables.bootstrap.css">
+<link href="/autophp/css/bootstrapcss/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
     .file-box{ position:relative;width:100%}
     .txt{ height:30px; border:1px solid #cdcdcd; width:80%;border-right:none;}
