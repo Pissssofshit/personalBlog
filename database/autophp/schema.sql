@@ -1,259 +1,238 @@
-DROP DATABASE IF EXISTS `pop`;
-CREATE DATABASE `pop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS `xdwsy`;
+CREATE DATABASE `xdwsy` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-GRANT all ON pop.* TO 'pop_user'@'%' IDENTIFIED BY 'pop_password';
+GRANT all ON xdwsy.* TO 'ledu'@'%' IDENTIFIED BY 'ledugamecmsad';
 
-USE `pop`;
-
-DROP TABLE IF EXISTS `rem_account`;
-CREATE TABLE `rem_account` (
-    `account_id` int(10) unsigned NOT NULL  auto_increment comment '账号ID',
-    `account_name` varchar(40) NOT NULL   comment '账号名称',
-    `account_url` varchar(255)  default 'new_p.ledu.com'  comment '账号域名',
-    `company_id` int(10) unsigned NOT NULL   comment '公司id', 
-    PRIMARY KEY  (`account_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='账号列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_game`;
-CREATE TABLE `rem_game` (
-    `game_id` int(10) unsigned NOT NULL  auto_increment comment '游戏ID',
-    `partner_id` int(10) unsigned NOT NULL   comment '平台ID',
-    `game_name` varchar(40) NOT NULL   comment '游戏名',
-    `state` boolean NOT NULL default '0'  comment '是否启用',
-    `category_id` int(4) unsigned NOT NULL   comment '类型',
-    `game_url` varchar(255) NOT NULL   comment '官网地址/包地址',
-    `new_server` int(4) unsigned NOT NULL   comment '是否最新服', 
-    PRIMARY KEY  (`game_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='游戏列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_site`;
-CREATE TABLE `rem_site` (
-    `site_id` int(10) unsigned NOT NULL  auto_increment comment '站点ID',
-    `channel_id` int(10) unsigned NOT NULL   comment '渠道ID',
-    `site_name` varchar(40) NOT NULL   comment '站点名',
-    `state` boolean NOT NULL default '0'  comment '是否启用',
-    `category_id` int(4) unsigned NOT NULL   comment '类型',
-    `pay_way_id` int(4) unsigned NOT NULL   comment '结算方式',
-    `describe` varchar(100) NOT NULL   comment '具体描述', 
-    PRIMARY KEY  (`site_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='站点列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `cfg_category`;
-CREATE TABLE `cfg_category` (
-    `category_id` int(4) unsigned NOT NULL  auto_increment comment '类型ID',
-    `category_name` varchar(20) NOT NULL   comment '类型名', 
-    PRIMARY KEY  (`category_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='类型定义' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_plan`;
-CREATE TABLE `rem_plan` (
-    `plan_id` int(10) unsigned NOT NULL  auto_increment comment '计划ID',
-    `plan_name` varchar(40) NOT NULL   comment '计划名',
-    `account_id` int(10) unsigned NOT NULL   comment '账号id',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `state` int(4) unsigned NOT NULL default '1'  comment '状态',
-    `is_1st` int(2) unsigned NOT NULL default '0'  comment '是否启用过',
-    `category_id` int(4) unsigned NOT NULL   comment '类型',
-    `mode_id` int(4) unsigned NOT NULL   comment '推广方式',
-    `created_time` int(10) unsigned    comment '创建时间',
-    `updated_time` int(10) unsigned    comment '更新时间', 
-    PRIMARY KEY  (`plan_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='类型定义' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `cfg_mode`;
-CREATE TABLE `cfg_mode` (
-    `mode_id` int(4) unsigned NOT NULL  auto_increment comment '推广方式ID',
-    `mode_name` varchar(30) NOT NULL   comment '推广方式', 
-    PRIMARY KEY  (`mode_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推广方式定义' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `sys_plan_material`;
-CREATE TABLE `sys_plan_material` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `plan_id` int(10) unsigned NOT NULL   comment '计划id',
-    `material_id` int(10) unsigned NOT NULL   comment '素材id',
-    `weight` int(10) unsigned NOT NULL   comment '权重', 
-    PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='计划素材关联' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_channel`;
-CREATE TABLE `rem_channel` (
-    `channel_id` int(10) unsigned NOT NULL  auto_increment comment '渠道ID',
-    `channel_name` varchar(40) NOT NULL   comment '渠道名',
-    `category_id` int(4) unsigned NOT NULL   comment '类型',
-    `state` boolean NOT NULL default '0'  comment '是否启用',
-    `callback_url` varchar(255) NOT NULL   comment '回调地址', 
-    PRIMARY KEY  (`channel_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='渠道列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `cfg_pay_way`;
-CREATE TABLE `cfg_pay_way` (
-    `id` int(4) unsigned NOT NULL  auto_increment comment '结算方式ID',
-    `name` varchar(30) NOT NULL   comment '结算方式', 
-    PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='结算方式定义' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `sys_account_site`;
-CREATE TABLE `sys_account_site` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `account_id` int(10) unsigned NOT NULL   comment '账号id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id', 
-    PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='账号站点关联' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_channel_type`;
-CREATE TABLE `rem_channel_type` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment 'id',
-    `name` varchar(40) NOT NULL   comment '类型名',
-    `state` boolean NOT NULL default '0'  comment '是否启用',
-    `describe` varchar(100) NOT NULL   comment '具体描述', 
-    PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='渠道类型列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `sys_channel_channeltype`;
-CREATE TABLE `sys_channel_channeltype` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `channel_id` int(10) unsigned NOT NULL   comment '渠道id',
-    `channel_type_id` int(10) unsigned NOT NULL   comment '类型id', 
-    PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='渠道类型关联' AUTO_INCREMENT=1;
+USE `xdwsy`;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `uid` int(10) unsigned NOT NULL   comment '平台ID',
-    `passport` varchar(40) NOT NULL   comment '平台账号名',
-    `partner_id` int(10) unsigned NOT NULL   comment '平台ID',
-    `plan_id` int(10) unsigned NOT NULL   comment '计划id',
-    `account_id` int(10) unsigned NOT NULL   comment '账号id',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `material_id` int(10) unsigned NOT NULL   comment '素材id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `is_role` boolean NOT NULL default '0'  comment '是否创角',
-    `is_reg` boolean NOT NULL default '1'  comment '是否新注册用户(滚游戏)',
-    `reg_time` int(10) unsigned NOT NULL   comment '注册时间',
-    `subsist_sign` varchar(100) NOT NULL   comment '留存标记',
-    `category_id` int(4) unsigned NOT NULL   comment '类型', 
+    `id` int(11) NOT NULL  auto_increment comment 'UID',
+    `username` varchar(250) NOT NULL default ''  comment '用户名',
+    `mobile` char(20) NOT NULL default ''  comment '手机号',
+    `email` varchar(250) NOT NULL default ''  comment '邮箱',
+    `password` varchar(250) NOT NULL default ''  comment '加密密码',
+    `reg_time` int(11) NOT NULL default '0'  comment '注册时间戳',
+    `mobile_bind_time` int(11) NOT NULL default '0'  comment '手机绑定时间戳',
+    `email_bind_time` int(11) NOT NULL default '0'  comment '邮箱绑定时间戳',
+    `source` int(2) NOT NULL default '0'  comment '来源1:1自然量2公会',
+    `ucode` int(11) NOT NULL default '0'  comment '来源2:渠道标识',
+    `subucode` varchar(250) NOT NULL default ''  comment '来源3:子渠道扩展标示',
+    `ip` varchar(250) NOT NULL default '0'  comment '注册ip',
+    `ua` varchar(250) NOT NULL default ''  comment '注册ua',
+    `os` int(2) NOT NULL default '0'  comment '操作系统:0-pc;1-android;2-ios',
+    `device_id` varchar(250) NOT NULL default ''  comment '注册设备id',
+    `imei` varchar(250) NOT NULL default ''  comment '物理标识:android为imei；ios为idfa',
+    `nickname` varchar(250) NOT NULL default ''  comment '昵称',
+    `sex` int(2) NOT NULL default '0'  comment '性别:1男2女',
+    `head_icon` varchar(250) NOT NULL default ''  comment '头像',
+    `idcard` char(18) NOT NULL   comment '',
+    `realname` varchar(250) NOT NULL   comment '',
+    `salt` char(20) NOT NULL default ''  comment '盐值', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='用户' AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS `cfg_subsist_sign`;
-CREATE TABLE `cfg_subsist_sign` (
-    `subsist_day` int(10) unsigned NOT NULL  auto_increment comment '第n日留存',
-    `subsist_num` varchar(100) NOT NULL   comment '对应标记', 
-    PRIMARY KEY  (`subsist_day`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='留存标记' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_partner`;
-CREATE TABLE `rem_partner` (
-    `partner_id` int(10) unsigned NOT NULL  auto_increment comment '平台id',
-    `partner_name` varchar(40) NOT NULL   comment '平台名',
-    `check_url` varchar(255) NOT NULL default 'http://pass.ledu.com/api/check/username?username={passport}'  comment '账号注册检查链接',
-    `reg_url` varchar(255) NOT NULL default 'http://p.ledu.com/service_user/reg?username={passport}#password={pwd}#fromwd={fromwd}'  comment '账号注册链接',
-    `login_url` varchar(255) NOT NULL default 'http://p.ledu.com/service_user/login?username={passport}#password={pwd}#fromwd={fromwd}'  comment '账号登录链接',
-    `search_url` varchar(255) NOT NULL default 'http://act.xdwan.com/api/userinfo/userinfo/user_id/{uid}/server_id/{serverId}/game_id/{game_id}/y_id/{y_id}'  comment '账号查询链接',
-    `server_url` varchar(255)    comment '获取服务器列表链接',
-    `cdn_url` varchar(255)  default 'http://pop.img.ledu.com'  comment '素材链接', 
-    PRIMARY KEY  (`partner_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='平台列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_company`;
-CREATE TABLE `rem_company` (
-    `company_id` int(10) unsigned NOT NULL  auto_increment comment '公司ID',
-    `company_name` varchar(40) NOT NULL   comment '公司名', 
-    PRIMARY KEY  (`company_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司列表' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `rem_plan_append`;
-CREATE TABLE `rem_plan_append` (
-    `plan_id` int(10) unsigned NOT NULL  auto_increment comment '计划ID',
-    `ios_game_id` int(10) unsigned NOT NULL   comment 'ios游戏id',
-    `re_yun_url` varchar(255)    comment '热云url',
-    `package_url` varchar(255)    comment '渠道包地址',
-    `version` varchar(40) NOT NULL   comment '版本号',
-    `status` int(4) unsigned NOT NULL default '0'  comment '打包状态',
-    `count_down` int(4) unsigned NOT NULL default '0'  comment '倒计时', 
-    PRIMARY KEY  (`plan_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='类型定义' AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `channel_callback`;
-CREATE TABLE `channel_callback` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `uid` int(10) unsigned NOT NULL   comment '平台ID',
-    `passport` varchar(40) NOT NULL   comment '平台账号名',
-    `partner_id` int(10) unsigned NOT NULL   comment '平台ID',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `server_id` int(10) unsigned NOT NULL   comment '服id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `res` varchar(255)    comment '回调参数值',
-    `info` varchar(255)    comment '回调返回值',
-    `insert_time` int(10) unsigned NOT NULL   comment '插入时间',
-    `notice_time` int(10) unsigned NOT NULL   comment '回调时间', 
+DROP TABLE IF EXISTS `third_user`;
+CREATE TABLE `third_user` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment 'UID:user表用户id',
+    `app_type` varchar(250) NOT NULL default ''  comment '开放平台标示:如weixin',
+    `openid` varchar(250) NOT NULL default ''  comment '开放平台用户标示',
+    `access_token` varchar(250) NOT NULL default ''  comment '开放平台访问令牌',
+    `token_expire_time` int(11) NOT NULL default '0'  comment '令牌实效时间',
+    `refresh_token` int(11) NOT NULL default '0'  comment '刷新令牌',
+    `user_info` text NOT NULL default ''  comment '开放平台返回的用户信息', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='页游渠道回调' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='第三方用户' AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS `pay_log`;
-CREATE TABLE `pay_log` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `order_id` varchar(32) NOT NULL   comment '订单号',
-    `uid` int(10) unsigned NOT NULL   comment '平台ID',
-    `partner_id` int(10) unsigned NOT NULL   comment '平台ID',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `server_id` int(10) unsigned NOT NULL   comment '服id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `reg_time` int(10) unsigned NOT NULL   comment '注册时间',
-    `pay_time` int(10) unsigned NOT NULL   comment '充值时间',
-    `pay_money` int(10) unsigned NOT NULL   comment '类型',
-    `is_1st_pay` int(2) unsigned NOT NULL default '0'  comment '首充', 
+DROP TABLE IF EXISTS `game_user`;
+CREATE TABLE `game_user` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `game_id` int(11) NOT NULL default '0'  comment '游戏id',
+    `user_id` int(11) NOT NULL default '0'  comment '平台用户id',
+    `name` varchar(250) NOT NULL default ''  comment '游戏用户名',
+    `ucode` int(11) NOT NULL default '0'  comment '渠道标示',
+    `subucode` varchar(250) NOT NULL default ''  comment '子渠道标示',
+    `ip` varchar(100) NOT NULL default ''  comment '注册ip',
+    `ua` varchar(250) NOT NULL default ''  comment '注册ua',
+    `os` int(2) NOT NULL default '0'  comment '操作系统:0-pc;1-android;2-ios',
+    `device_id` varchar(250) NOT NULL default ''  comment '注册设备id',
+    `imei` varchar(250) NOT NULL default ''  comment '特理标识:android为imei；ios为idfa',
+    `version` varchar(250) NOT NULL default ''  comment '版本',
+    `reg_time` int(11) NOT NULL default '0'  comment '注册时间戳', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='充值订单表' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='用户游戏表' AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS `feedback`;
-CREATE TABLE `feedback` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `type_alias` varchar(40) NOT NULL   comment '渠道回调方法名',
-    `partner_id` int(10) unsigned NOT NULL   comment '平台ID',
-    `plan_id` int(10) unsigned NOT NULL   comment '计划id',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `click_id` varchar(255)    comment '设备号',
-    `category_id` int(4) unsigned NOT NULL   comment '设备类型',
-    `ip` varchar(32)    comment 'ip',
-    `callback_url` varchar(255)    comment '回调链接',
-    `insert_time` int(10) unsigned NOT NULL   comment '插入时间',
-    `notice_time` int(10) unsigned NOT NULL   comment '回调时间',
-    `match_time` int(10) unsigned NOT NULL   comment '匹配时间', 
+DROP TABLE IF EXISTS `user_login_log`;
+CREATE TABLE `user_login_log` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '用户id',
+    `username` varchar(250) NOT NULL default ''  comment '用户名',
+    `mobile` char(20) NOT NULL default ''  comment '手机号',
+    `email` varchar(100) NOT NULL default ''  comment '邮箱',
+    `login_time` int(11) NOT NULL default '0'  comment '登陆时间戳',
+    `ucode` int(11) NOT NULL default '0'  comment '来源渠道标示',
+    `subucode` varchar(250) NOT NULL default ''  comment '子渠道标示',
+    `ip` varchar(100) NOT NULL default ''  comment '注册ip',
+    `ua` varchar(250) NOT NULL default ''  comment '注册ua',
+    `os` int(2) NOT NULL default '0'  comment '操作系统:0pc;1android;2ios',
+    `device_id` varchar(250) NOT NULL default ''  comment '注册设备id',
+    `imei` varchar(250) NOT NULL default ''  comment '物理标识:android为imei；ios为idfa',
+    `version` varchar(250) NOT NULL default ''  comment '版本', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手游渠道回调' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='用户登陆' AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS `rem_company`;
-CREATE TABLE `rem_company` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `type_alias` varchar(40) NOT NULL   comment '渠道回调方法名',
-    `channel_id` int(10) unsigned NOT NULL   comment '渠道ID', 
+DROP TABLE IF EXISTS `game_entity`;
+CREATE TABLE `game_entity` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `name` varchar(250) NOT NULL default ''  comment '游戏主体名称',
+    `enable` int(2) NOT NULL default '0'  comment '状态:1启用2禁用',
+    `create_time` int(11) NOT NULL default '0'  comment '创建时间戳',
+    `update_time` int(11) NOT NULL default '0'  comment '更新时间戳',
+    `create_by` varchar(250) NOT NULL default ''  comment '创建者',
+    `update_by` varchar(250) NOT NULL default ''  comment '更新者',
+    `discount` float(10,2) NOT NULL default '0'  comment '代充折扣',
+    `back_pay` float(10,2) NOT NULL default '0'  comment '充值返点',
+    `status` int(2) NOT NULL default '0'  comment '上架状态', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司列表' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='游戏' AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS `day_plan_cost`;
-CREATE TABLE `day_plan_cost` (
-    `id` int(10) unsigned NOT NULL  auto_increment comment '没用的主键',
-    `day_time` int(10) unsigned NOT NULL   comment '成本所属时间戳',
-    `day_date` varchar(10) NOT NULL   comment '成本所属日期',
-    `plan_id` int(10) unsigned NOT NULL   comment '计划id',
-    `account_id` int(10) unsigned NOT NULL   comment '账号id',
-    `game_id` int(10) unsigned NOT NULL   comment '游戏id',
-    `site_id` int(10) unsigned NOT NULL   comment '站点id',
-    `cost` float(30,2) NOT NULL   comment '游戏币成本',
-    `rmb_cost` float(30,2) NOT NULL   comment '人民币成本',
-    `rate` float(3,2) NOT NULL   comment '币单价',
-    `create_by` varchar(255)    comment '提交者',
-    `pass_by` varchar(255)    comment '通过者',
-    `is_passed` int(2) unsigned NOT NULL default '0'  comment '是否已经通过',
-    `created_time` int(10) unsigned    comment '创建时间',
-    `pass_time` int(10) unsigned    comment '通过时间', 
+DROP TABLE IF EXISTS `game`;
+CREATE TABLE `game` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `entity_id` int(11) NOT NULL default '0'  comment '主体id',
+    `name` varchar(250) NOT NULL default ''  comment '游戏名称',
+    `name_en` varchar(250) NOT NULL default ''  comment '拼音简写',
+    `icon` varchar(250) NOT NULL default ''  comment '图标',
+    `desc` text NOT NULL default ''  comment '描述',
+    `category` varchar(250) NOT NULL default ''  comment '类型',
+    `rank` varchar(250) NOT NULL default ''  comment '分级:ABC3类',
+    `os` int(2) NOT NULL default '0'  comment '系统类别:默认为1android',
+    `common_sign_key` char(250) NOT NULL default ''  comment '普通签名key',
+    `confirm_sign_key` char(255) NOT NULL default ''  comment '确认接口签名key',
+    `pay_sign_key` char(255) NOT NULL default ''  comment '冲值签名key',
+    `pay_callback` varchar(255) NOT NULL default ''  comment '冲值回调url',
+    `coin_unit` varchar(255) NOT NULL default ''  comment '游戏币名称:如钻石',
+    `coin_rate` int(11) NOT NULL default '0'  comment '兑换率:1元人民币兑换多少游戏币',
+    `ucode` int(11) NOT NULL default '0'  comment '原始ucode:对应渠道标记为0',
+    `version` varchar(255) NOT NULL default ''  comment '版本',
+    `package_url` varchar(255) NOT NULL default ''  comment '包地址',
+    `create_time` int(11) NOT NULL default '0'  comment '创建时间戳',
+    `update_time` int(11) NOT NULL default '0'  comment '更新时间戳',
+    `create_by` varchar(255) NOT NULL default ''  comment '创建者',
+    `update_by` varchar(255) NOT NULL default ''  comment '更新者', 
     PRIMARY KEY  (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='成本提交表' AUTO_INCREMENT=1;
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='游戏渠道包' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `game_config_switch`;
+CREATE TABLE `game_config_switch` (
+    `game_id` int(11) NOT NULL default '0'  comment '游戏id',
+    `ad_stat_switch` int(2) NOT NULL default '0'  comment '广告统计app开关:1开启;2关闭',
+    `ad_stat_key` varchar(255) NOT NULL default ''  comment '广告统计参数',
+    `weixin_switch` int(2) NOT NULL default '0'  comment '微信开关:1开启;2关闭',
+    `weixin_app_id` varchar(255) NOT NULL default ''  comment 'app id',
+    `weixin_app_key` varchar(255) NOT NULL default ''  comment 'app key',
+    `weixin_app_secret` varchar(255) NOT NULL default ''  comment 'app secret',
+    `show_platform_switch` int(2) NOT NULL default '0'  comment '平台闪屏开关:游戏启动动画是否播放平台logo',
+    `bind_mobile_when_pay_switch` int(2) NOT NULL default '0'  comment '充值邦定手机提示',
+    `one_key_registe_switch` int(2) NOT NULL default '0'  comment '一键注册开关',
+    `create_time` int(11) NOT NULL default '0'  comment '创建时间戳',
+    `update_time` int(11) NOT NULL default '0'  comment '更新时间戳',
+    `create_by` varchar(255) NOT NULL default ''  comment '创建者',
+    `update_by` varchar(255) NOT NULL default ''  comment '更新者', 
+    PRIMARY KEY  (`game_id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='游戏开关' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '平台用户id',
+    `game_id` int(11) NOT NULL default '0'  comment '游戏id',
+    `game_order_id` varchar(255) NOT NULL default ''  comment '游戏订单号',
+    `ucode` int(11) NOT NULL default '0'  comment '渠道标示',
+    `subucode` varchar(255) NOT NULL default ''  comment '子渠道标示',
+    `server_id` varchar(255) NOT NULL default ''  comment '游戏服务器',
+    `role_name` varchar(255) NOT NULL default ''  comment '游戏角色名',
+    `desc` varchar(255) NOT NULL default ''  comment '订单描述',
+    `order_coin` int(11) NOT NULL default '0'  comment '游戏币数量',
+    `order_money` float(11,2) NOT NULL default '0'  comment '订单金额',
+    `pay_channel_id` int(2) NOT NULL default '0'  comment '支付方式:0-平台币;pay_channel里的id',
+    `pay_point` int(11) NOT NULL default '0'  comment '支付平台币数量',
+    `pay_point_free` int(11) NOT NULL default '0'  comment '支付的平台赠送平台币数量',
+    `pay_money` float(11,2) NOT NULL default '0'  comment '实际支付金额',
+    `extra` varchar(255) NOT NULL default ''  comment '透传字段:SDK提交过来需透传的字段',
+    `pay_virtual_point` int(11) NOT NULL default '0'  comment '支付的虚拟货币',
+    `create_time` int(11) NOT NULL default '0'  comment '创建时间戳',
+    `update_time` int(11) NOT NULL default '0'  comment '更新时间戳',
+    `status` int(2) NOT NULL default '0'  comment '订单状态:1-已创建；2-已提交第三方；3-第三方充值成功；4-调用游戏后台接口下发游戏币成功；5-等待继续支付；6-支付超时；7-支付失败', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='订单' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `user_point`;
+CREATE TABLE `user_point` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment 'user表用户id',
+    `point` float(11,2) NOT NULL default '0'  comment '平台币',
+    `point_free` int(11) NOT NULL default '0'  comment '赠送的平台币数量',
+    `update_time` int(11) NOT NULL default '0'  comment '更新时间戳',
+    `last_pay_game_id` int(11) NOT NULL default '0'  comment '最近充值游戏',
+    `last_pay_server_id` varchar(255) NOT NULL default ''  comment '最近充值游戏服务器',
+    `last_pay_channel_id` int(11) NOT NULL default '0'  comment '最近付费渠道id',
+    `last_pay_money` float(11,2) NOT NULL default '0'  comment '最近充值金额', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='平台币' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `user_point_log`;
+CREATE TABLE `user_point_log` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '平台用户id',
+    `before_point` int(11) NOT NULL default '0'  comment '变更前平台币',
+    `point` int(11) NOT NULL default '0'  comment '变更的平台币',
+    `after_point` int(11) NOT NULL default '0'  comment '变更后的平台币',
+    `before_point_free` int(11) NOT NULL default '0'  comment '变更前赠送平台币',
+    `point_free` int(11) NOT NULL default '0'  comment '变更的赠送平台币',
+    `after_point_free` int(11) NOT NULL default '0'  comment '变更后的赠送平台币',
+    `type` varchar(255) NOT NULL default ''  comment '变更类型',
+    `desc` varchar(255) NOT NULL default ''  comment '变更说明',
+    `create_time` int(11) NOT NULL default '0'  comment '变更时间戳', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='平台币日志' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `order_log`;
+CREATE TABLE `order_log` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '平台用户id',
+    `order_id` int(11) NOT NULL default '0'  comment 'order表id',
+    `action_name` varchar(255) NOT NULL default ''  comment '动作名称',
+    `action_param` varchar(255) NOT NULL default ''  comment '动作参数',
+    `action_res` varchar(255) NOT NULL default ''  comment '动作结果',
+    `create_time` int(11) NOT NULL default '0'  comment '时间戳', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='订单变更日志' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `user_virtual_point`;
+CREATE TABLE `user_virtual_point` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '用户id',
+    `game_id` int(11) NOT NULL default '0'  comment '游戏id',
+    `type` int(2) NOT NULL default '0'  comment '类型',
+    `point` int(11) NOT NULL default '0'  comment '余额', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='限定币' AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `user_virtual_point_log`;
+CREATE TABLE `user_virtual_point_log` (
+    `id` int(11) NOT NULL  auto_increment comment 'ID',
+    `user_id` int(11) NOT NULL default '0'  comment '平台用户id',
+    `game_id` int(11) NOT NULL default '0'  comment '游戏id',
+    `before_point` int(11) NOT NULL default '0'  comment '变更前虚拟币',
+    `point` int(11) NOT NULL default '0'  comment '变更的虚拟币',
+    `after_point` int(11) NOT NULL default '0'  comment '变更后的虚拟币',
+    `type` varchar(255) NOT NULL default ''  comment '变更类型',
+    `desc` varchar(255) NOT NULL default ''  comment '变更说明',
+    `create_time` int(11) NOT NULL default '0'  comment '变更时间戳', 
+    PRIMARY KEY  (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='限定币变更日志' AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `power_user`;
 CREATE TABLE `power_user` (
@@ -272,7 +251,6 @@ CREATE TABLE `power_role` (
     `power_role_id` int(10) unsigned NOT NULL  auto_increment comment 'ID编号',
     `power_role_name` char(30) NOT NULL   comment '角色名称',
     `content` text    comment '角色权限内容',
-    `company_ids` varchar(500) NOT NULL   comment '可浏览公司',
     `created_time` int(10) unsigned    comment '创建时间', 
     PRIMARY KEY  (`power_role_id`)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='角色管理' AUTO_INCREMENT=1;

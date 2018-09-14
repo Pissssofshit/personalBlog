@@ -106,7 +106,7 @@ EOF;
 		foreach($this->_tableNode->columns->column as $column) {
 			if ($column['type'] == "boolean") {
 				//$li .= "{{assign var=\"{$column['name']}\" value=\$dict_boolean[\$detail.{$column['name']}]}}";
-                $li .="<?php \${$column['name']}= isset(\$dict_boolean[\$detail.{$column['name']}])?\$dict_boolean[\$detail.{$column['name']}]:'';?>";
+                $li .="<?php \${$column['name']}= isset(\$dict_boolean[\$detail['{$column['name']}']])?\$dict_boolean[\$detail['{$column['name']}']]:'';?>";
 				$li .= "<li><label class=\"display_name\">{$column['displayName']}:</label><span>{{\${$column['name']}}}</span></li>";
 				continue;
 			}
@@ -116,11 +116,11 @@ EOF;
 				<li><label class="display_name">{$column['displayName']}:</label>
 				<span>
 		        <table style="border:1px solid #CCCCCC; clear:none; width:200px">
-	                @if(isset(\$power_list)&&!empty(\$power_list)
+	                @if(isset(\$power_list)&&!empty(\$power_list))
 				    @foreach(\$power_list as \$key=>\$power)
 				    <tr>
 				    	<td style="text-align:left;">
-					    	@if(isset(\$detail.content.\$key))
+					    	@if(isset(\$detail["content"][\$key]))
 					    	{{\$power.name}}
 					    	@endif
 				    	</td>
