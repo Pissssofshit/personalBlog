@@ -29,20 +29,40 @@
     <script>
         if($(".searchflow").prop("scrollHeight")-$(".searchflow").prop("clientHeight")>20){
             $(".showopenicon").css("display","inline-block");
-            var heightu = $(".searchflow").prop("scrollHeight")-32;
-            var heightup = heightu+"px";
-            $(".showcloseicon").css("top",heightup);
         }
-        $(".showopenicon").click(function(){
-            $(".searchflow").css("overflow","visible");
-            $(".showopenicon").css("display","none");
-            $(".showcloseicon").css("display","inline-block");
-        })
+        function showanimate(searchflow,searchflow,visible,height){
+            $("."+searchflow).animate(
+                { height:height},
+                { duration: 1000,
+                    queue: false,
+                    easing: 'easeOutExpo',
 
-        $(".showcloseicon").click(function(){
-            $(".searchflow").css("overflow","hidden");
-            $(".showcloseicon").css("display","none");
-            $(".showopenicon").css("display","inline-block");
+                    step: function() {
+                        var nowheit = $(".searchflow").prop("clientHeight");
+//                        var nowheitadd = (nowheit+16)+"px";
+//                        $("."+searchflow).css("height",nowheitadd);
+//                        $("."+searchflow).css("overflow",visible);
+                    },
+
+                    complete: function() {
+                        $("."+searchflow).css("overflow",visible);
+                    }
+                }
+            );
+        }
+        $(".search_canvas").on("click",".showopenicon",function(){
+            var heihtu = $(".searchflow").prop("scrollHeight");
+          // $(".searchflow").css("overflow","visible");
+           $(this).removeClass("showopenicon").addClass("showcloseicon");
+           $(this).text("收起");
+            showanimate("searchflow","searchflow","visible",heihtu+5);
+        })
+//
+        $(".search_canvas").on("click",".showcloseicon",function(){
+          //  $(".searchflow").css("overflow","hidden");
+            $(this).removeClass("showcloseicon").addClass("showopenicon");
+            $(this).text("展开");
+            showanimate("searchflow","searchflow","hidden",32);
         })
     </script>
 @endverbatim

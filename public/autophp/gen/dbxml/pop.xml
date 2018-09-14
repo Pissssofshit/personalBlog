@@ -214,7 +214,7 @@
 			<column name="material_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="素材id" displayType="text"/>
 			<column name="site_id" type="int(10) unsigned" nullable="false" queryType="precise" displayName="站点id" displayType="text"/>
 			<column name="is_role" type="boolean" default="0" displayName="是否创角" displayType="radio" queryType="precise"/>
-			<column name="is_reg" type="boolean" default="1" displayName="是否新注册用户(滚游戏)" displayType="radio" queryType="precise"/>
+			<column name="is_reg" type="boolean" default="1" displayName="是否新注册用户" displayType="radio" queryType="precise"/>
 			<column name="reg_time" type="int(10) unsigned" nullable="false" queryType="range" displayName="注册时间" displayType="time"/>
 			<column name="subsist_sign" type="varchar(100)" nullable="false" displayName="留存标记" displayType="text"/>
 			<column name="category_id" type="int(4) unsigned" nullable="false" displayName="类型" displayType="text"  queryType="precise"/>

@@ -258,12 +258,10 @@ EOF;
 		if ($li) {
 		$search_box = <<<EOF
 	<fieldset class="search_canvas">
-		<legend>搜索</legend>
+		<legend>搜索  <a class="showopenicon showiconright" style="display: none;">展开</a></legend>
 		<form method="get" action="{{\$action_url}}" exportaction="{{\$action_url}}/export">
-			<ul class="searchlegend searchflow" style="height:32px;overflow: hidden;position:relative;">
-			    <a class="showopenicon"></a>
+			<ul class="searchlegend searchflow" style="height:32px;overflow: hidden;position:relative;">		
 				{$li}
-				<a class="showcloseicon"></a>
 			</ul>
 			<ul class="searchlegend" style="clear:both;">
 				<li><input class="kbutton kbutton_A" type="submit" value="搜  索" id="btn_search" /></li>
