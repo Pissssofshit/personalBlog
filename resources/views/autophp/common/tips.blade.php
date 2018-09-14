@@ -2,8 +2,7 @@
 @section('content')
 	<div class="page-bar">
 		<ol class="breadcrumb" style="margin: 0px">
-			<li><i class="fa fa-home"></i><a href="">rem</a></li>
-			<li class="active">公司列表</li>
+			<li><i class="fa fa-home"></i><a href=""> {{$tip_info["group_name"]}}  </a>/  {{$tip_info["navi_name"]}}</li>
 			<ul style="float:right;">
 				<li style="float:left;"><a href="/autophp/{{$tip_info["module"]}}" class="listshowpng"></a></li>
 				<li style="float:left;"><a href="/autophp/{{$tip_info["module"]}}/create" class="createshow"></a></li>

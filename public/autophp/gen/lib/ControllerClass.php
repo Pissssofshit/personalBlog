@@ -5,6 +5,8 @@ class ControllerClass {
 	private $_tableName;
 	private $_dir;
 	private $_autophpviewdir;
+	private $_navi_name;
+	private $_group_name;
 
 	public function __construct($dir = ""){
 		if ($dir) {
@@ -18,6 +20,10 @@ class ControllerClass {
 	public function code($tableNode) {
 		$this->_tableNode = $tableNode;
 		$this->_tableName = $tableNode['name'];
+
+        $this->_navi_name = $tableNode['comment'];
+        $this->_group_name = $tableNode['group'];
+
 
 		$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $tableNode['name'])));
 
@@ -261,8 +267,7 @@ EOF;
 			\$input = array();
 			{$requests}
 			\$ret = \$this->_m_{$this->_tableName}->insert(\$input);
-
-			\$tip_info = array("module"=>"{$this->_tableName}", "action"=>"添加", "status"=>"\$ret");
+			\$tip_info = array("navi_name"=>"{$this->_navi_name}","group_name"=>"{$this->_group_name}","module"=>"{$this->_tableName}", "action"=>"添加", "status"=>"\$ret");
             \$assign["tip_info"] = \$tip_info;
             \$assign["csrf_token"] = csrf_token();
 			return view("{$this->_autophpviewdir}common.tips",\$assign);
@@ -404,7 +409,7 @@ EOF;
 			{$requests}
 			\$ret = \$this->_m_{$this->_tableName}->update(\$$pk, \$set);
 
-			\$tip_info = array("module"=>"{$this->_tableName}", "action"=>"更新", "status"=>"\$ret");
+			\$tip_info = array("navi_name"=>"{$this->_navi_name}","group_name"=>"{$this->_group_name}","module"=>"{$this->_tableName}", "action"=>"更新", "status"=>"\$ret");
 			\$assign["tip_info"] =\$tip_info;
 			return view("{$this->_autophpviewdir}common.tips",\$assign);
 			
@@ -492,7 +497,7 @@ EOF;
 
 		return \$ret;
 
-		\$tip_info = array("module"=>"{$this->_tableName}", "action"=>"删除", "status"=>"\$ret");
+		\$tip_info = array("navi_name"=>"{$this->_navi_name}","group_name"=>"{$this->_group_name}","module"=>"{$this->_tableName}", "action"=>"删除", "status"=>"\$ret");
 		\$assign["tip_info"]=\$tip_info;
 		view("{$this->_autophpviewdir}common.tips");
 		return;

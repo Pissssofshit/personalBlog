@@ -611,8 +611,7 @@ class Layout {
          @section('content')
          <div class="page-bar">
 				<ol class="breadcrumb" style="margin: 0px">
-					<li><i class="fa fa-home"></i><a href="">{$navi_group}</a></li>
-					<li class="active">{$navi_name}</li>
+					<li><i class="fa fa-home"></i><a href=""> {$navi_group}  </a>/  {$navi_name}</li>
 					<ul style="float:right;">
 					<li style="float:left;"><a href="/autophp/{$table_name}" class="listshowpng"></a></li>
 					<li style="float:left;"><a href="/autophp/{$table_name}/create" class="createshow"></a></li>
