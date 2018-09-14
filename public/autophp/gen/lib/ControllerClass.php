@@ -530,7 +530,7 @@ EOF;
 			}
 
 			if ($is_tip) {
-				$tip_code = '$dict_list[0] = "请选择";';
+				$tip_code = '$dict_list[""] = "请选择";';
 			}
 
 			$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $column['referencedTable'])));

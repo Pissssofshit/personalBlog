@@ -48,7 +48,7 @@ th {
 }*/
 fieldset {
 	margin: 10px 5px;
-	padding:5px;
+	/*padding:5px;*/
 }
 
 .search_canvas li {
@@ -78,9 +78,13 @@ fieldset {
 	margin-top: 0;
 
 }
+.easyui-panel .radio,.checker{
+	display: inline-block;
+	margin-top: 0;
+
+}
 .radio input[type=radio]{
 	margin:0;padding:0;position:relative;vertical-align:top;
-
 }
 /*.searchlegend .radio, .checkbox {*/
 	/*position: relative;*/
@@ -117,7 +121,7 @@ legend {
 
 .list_A { margin-top:10px; }
 .list_A li { list-style:none; line-height:20px; margin-bottom:10px;white-space:nowrap; min-height:20px; _height:20px; }
-.list_A li.ml35 { margin-left:35px; }
+.list_A li.ml35 { margin-left:100px; }
 .list_A li label { display:inline-block; margin:0 5px; vertical-align:middle; }
 .list_A li span.kk_group_checkbox {  width:870px; display:inline-block; white-space:normal; border:1px solid #ddd }
 .list_A li span.kk_group_checkbox label { display:inline-block;  width:180px;  white-space:nowrap; overflow:hidden; font-family: '����', Simsun;}

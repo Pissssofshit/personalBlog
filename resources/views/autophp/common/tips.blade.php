@@ -1,9 +1,15 @@
 @extends('autophp.common.index')
 @section('content')
-		<ul class="clearfix">
-			<li class="admin_tab"><a href="/autophp/{{$tip_info["module"]}}">列  表</a></li>
-			<li class="admin_tab"><a href="/autophp/{{$tip_info["module"]}}/create">添  加</a></li>
-		</ul>
+	<div class="page-bar">
+		<ol class="breadcrumb" style="margin: 0px">
+			<li><i class="fa fa-home"></i><a href="">rem</a></li>
+			<li class="active">公司列表</li>
+			<ul style="float:right;">
+				<li style="float:left;"><a href="/autophp/{{$tip_info["module"]}}" class="listshowpng"></a></li>
+				<li style="float:left;"><a href="/autophp/{{$tip_info["module"]}}/create" class="createshow"></a></li>
+			</ul>
+		</ol>
+	</div>
 		<div class="easyui-panel" border="false" style="padding:1px">
 
 			<fieldset>

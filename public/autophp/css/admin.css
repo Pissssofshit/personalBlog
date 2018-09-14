@@ -138,6 +138,12 @@ fieldset .error-message{    color:red; padding:5px 10px 5px 10px;}
 .pageFen a.current{ color:#ff0000;}
 
 li {list-style:none;padding: 0 8px;}
-.listshowpng{ background:url(../images/listshow.png) left top no-repeat; width:32px; height:32px;display:inline-block;}
-.createshow{ background:url(../images/createshow.png) left top no-repeat; width:32px; height:32px;display:inline-block;}
-.showopenicon{background:url(../images/zhankai.png) right top no-repeat;}
+.panel-body table th,td{
+    text-align: center;
+}
+.listshowpng{ background:url(../images/listshow.png) left top no-repeat; width:16px; height:16px;display: inline-block;}
+.createshow{ background:url(../images/createshow.png) left top no-repeat; width:16px; height:16px;display: inline-block;}
+.showopenicon{background:url(../images/zhankai.png) right 6px no-repeat;width:32px;height:32px;display:none;}
+.showcloseicon{background:url(../images/shouqi.png) right 6px no-repeat;width:32px;height:32px;display:none;position:absolute;}
+.lookdetail{background:url(../images/lookdetail.png) left top no-repeat;width:16px;height:16px;display: inline-block;}
+.editdetail{background:url(../images/editdetail.png) left top no-repeat;width:16px;height:16px;display: inline-block;margin-left:5px;}

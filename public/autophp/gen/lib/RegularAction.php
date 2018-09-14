@@ -61,7 +61,7 @@ class RegularAction
 			try{
 			$ret = $obj->save();
 			}catch(\Exception $e){
-                $ret = false;
+               $ret = false;
             }
 
 			return $ret;	
@@ -294,7 +294,7 @@ EOF;
 				$params[] = "\${$column['name']} = null";
 				$conds[] = <<<EOF
 
-			if (!empty(\${$column['name']})) {
+			if (gettype(\${$column['name']})!=gettype(NULL)) {
 				\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
 
 				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
@@ -337,7 +337,7 @@ EOF;
 				$params[] = "\${$column['name']} = null";
 				$conds[] = <<<EOF
 
-			if (!empty(\${$column['name']})) {
+			if (gettype(\${$column['name']})!=gettype(NULL)) {
 				\$cond["{$column['name']}"] = \${$column['name']}; 
 
 				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';

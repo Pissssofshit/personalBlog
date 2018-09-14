@@ -252,16 +252,18 @@ EOF;
 
 		$th .= "<th>操作</th> \n";
 		$tablename = $this->_tableNode['name'];
-		$td .= "<td><a href=\"/autophp/{$tablename}/{{\$item->{$this->_pk}}}\">查看</a> 
-					<a href=\"/autophp/{$tablename}/{{\$item->{$this->_pk}}}/edit\">编辑</a></td>";
+		$td .= "<td><a href=\"/autophp/{$tablename}/{{\$item->{$this->_pk}}}\" class=\"lookdetail\"></a> 
+					<a href=\"/autophp/{$tablename}/{{\$item->{$this->_pk}}}/edit\" class=\"editdetail\"></a></td>";
 
 		if ($li) {
 		$search_box = <<<EOF
 	<fieldset class="search_canvas">
 		<legend>搜索</legend>
 		<form method="get" action="{{\$action_url}}" exportaction="{{\$action_url}}/export">
-			<ul class="searchlegend searchflow" style="height:32px;overflow: hidden;">
+			<ul class="searchlegend searchflow" style="height:32px;overflow: hidden;position:relative;">
+			    <a class="showopenicon"></a>
 				{$li}
+				<a class="showcloseicon"></a>
 			</ul>
 			<ul class="searchlegend" style="clear:both;">
 				<li><input class="kbutton kbutton_A" type="submit" value="搜  索" id="btn_search" /></li>
@@ -459,7 +461,7 @@ EOF;
 				$input = "<select name=\"{$column['name']}\" id=\"{$column['name']}\">
                             @if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
                            @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
-                            <option value={{\$key}} @if(\$dict_{$refer_table}[0]==\$key) selected  @endif>{{\$val}}</option>
+                            <option  @if(\$dict_{$refer_table}[0]==\$key) selected  @endif value={{\$key}}>{{\$val}}</option>
                            @endforeach
                            @endif
                       
@@ -471,7 +473,7 @@ EOF;
                   $input .= "
                     @if(isset(\$dict_boolean)&&!empty(\$dict_boolean)) 
                     @foreach(\$dict_boolean as \$key=>\$val)
-                    <input type='radio' name=\'{$column['name']}\' @if(\$key==\${$column['name']}) selected @endif value=\$key>{{\$val}}
+                    <input type='radio' name=\"{$column['name']}\" @if(\$key==\${$column['name']}) checked @endif value={{\$key}}>{{\$val}}
                     @endforeach
                     @endif
                     ";
@@ -481,7 +483,7 @@ EOF;
 				$refer_table = $this->_getRefer($column['name']);
 			    $input = "@if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
                         @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
-                    <input type='radio' name=\'{$column['name']}\' @if(\$key==\$dict_{$refer_table}[0]) selected @endif value=\$key>{{\$val}}
+                    <input type='radio' name=\"{$column['name']}\" @if(\$key==\$dict_{$refer_table}[0]) checked @endif value={{\$key}}>{{\$val}}
                     @endforeach 
                     @endif
                     ";
@@ -491,7 +493,7 @@ EOF;
 				$input = "<span class='kk_group_checkbox'>
                     @if(isset(\$dict_{$refer_table}[1])&&!empty(\$dict_{$refer_table}[1])) 
                    @foreach(\$dict_{$refer_table}[1] as \$key=>\$val)
-                    <input type='checkbox' name=\'{$column['name']}[]\' @if(\$key==\$dict_{$refer_table}[0]) selected @endif value=\$key>{{\$val}}
+                    <input type='checkbox' name=\"{$column['name']}[]\" @if(\$key==\$dict_{$refer_table}[0]) checked @endif value={{\$key}}>{{\$val}}
                    @endforeach
                    @endif
                    ";
@@ -511,7 +513,8 @@ EOF;
 	    	<td style="padding-left:35px; text-align:left ">
 	    	@if(isset(\$power["sub"])&&!empty(\$power["sub"])) 
 	        @foreach(\$power["sub"] as \$action)
-	        <input name="content[{{\$key}}][]" type="checkbox" value="{{\$action.url}}" class="box_{{\$key}}" onclick="subbox_check(this)" <!--{if isset(\$detail.content.\$key) && in_array(\$action.url,\$detail.content.\$key)}-->checked<!--{/if}-->/>&nbsp;{{\$action.name}}<br />
+	        <?php \$userkey = isset(\$detail["content"][\$key])?\$detail["content"][\$key]:"";?>
+	        <input name="content[{{\$key}}][]" type="checkbox" value="{{\$action.url}}" class="box_{{\$key}}" onclick="subbox_check(this)" @if(\$userkey && in_array(\$action.url,\$userkey)) checked @endif/>&nbsp;{{\$action.name}}<br />
 	        @endforeach
 	        @endif
 	        </td>

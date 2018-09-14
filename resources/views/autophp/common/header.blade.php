@@ -3,12 +3,19 @@
 <!-- BEGIN HORIZANTAL MENU -->
     <div class="page-logo">
         <div class="menu-toggler sidebar-toggler">
+
        </div>
+
     </div>
-    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+
+    <a href="javascript:;" style="positon:absolute;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+
     </a>
-    <div class="hor-menu hor-menu-light hidden-sm hidden-xs loginus" style="float:right"><!--float:right; -->
-        {{--<a style="color:white;">{{isset($truename)?$truename:""}}</a><a href="{{config('app.wx.login_url')}}/login/logout"><img src="/images/loginout.png" alt="退出" title="退出" id="loginoutu"/></a>--}}
+    <div class="" style="color:white;height:46px;min-height:46px;line-height:46px;float:right;width:80px;text-align:center;">
+        <p>朱小小</p>
+    </div>
+    <div class="hor-menu hor-menu-light hidden-sm hidden-xs loginus" style="float:right;height:46px;min-height:46px;line-height:46px;"><!--float:right; -->
+        {{--<a style="color:white;width:80px;text-align:right;">朱博文</a><!--<a href="{ {config('app.wx.login_url')}}/login/logout"><img src="/images/loginout.png" alt="退出" title="退出" id="loginoutu"/></a>-->--}}
     </div>
     <style>
         a:link {

@@ -28,11 +28,21 @@
 @verbatim
     <script>
         if($(".searchflow").prop("scrollHeight")-$(".searchflow").prop("clientHeight")>20){
-            $(".searchflow").addClass("showopenicon");
+            $(".showopenicon").css("display","inline-block");
+            var heightu = $(".searchflow").prop("scrollHeight")-32;
+            var heightup = heightu+"px";
+            $(".showcloseicon").css("top",heightup);
         }
         $(".showopenicon").click(function(){
-            $(this).css("overflow","visible");
-            $(this).removeClass("showopenicon");
+            $(".searchflow").css("overflow","visible");
+            $(".showopenicon").css("display","none");
+            $(".showcloseicon").css("display","inline-block");
+        })
+
+        $(".showcloseicon").click(function(){
+            $(".searchflow").css("overflow","hidden");
+            $(".showcloseicon").css("display","none");
+            $(".showopenicon").css("display","inline-block");
         })
     </script>
 @endverbatim
