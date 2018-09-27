@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="wxgame"  shortname="wxgame" user="root" password="123456" hosts="%" title="微竞" namespace="com.mjutech.wxgame">
+	<table name="activity" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="赛事活动" group="赛事管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="赛事活动id" displayType="text" />
+			<column name="game_id" type="int(10)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="name" type="varchar(200)" nullable="false" default="" displayName="赛事活动名称" displayType="text"/>
+			<column name="pic" type="varchar(500)" nullable="false" default="" displayName="列表图" displayType="text"/>
+			<column name="description" type="text" nullable="false" displayName="赛事规则" displayType="textarea"/>
+			<column name="add_score" type="int(10)" nullable="false" default="0" displayName="邀请好友奖励分值" displayType="text"/>
+			<column name="max_add" type="int(11)" nullable="false" default="0" displayName="邀请奖励" displayType="text"/>
+			<column name="unit_name" type="varchar(100)" nullable="false" default="" displayName="得分单位" displayType="text"/>
+			<column name="start_time" type="int(10)" nullable="false" default="0" displayName="赛事开始时间" displayType="text"/>
+			<column name="end_time" type="int(10)" nullable="false" default="0" displayName="赛事结束时间" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="是否上架：1上架，2下架" displayType="text"/>
+			<column name="is_use" type="tinyint(1)" nullable="false" default="0" displayName="是否生效：1已生效，2未生效" displayType="text"/>
+			<column name="is_allow" type="tinyint(1)" nullable="false" default="0" displayName="投放用户：0所有用户，1指定游戏区间得分的用户" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="更新时间" displayType="text"/>
+			<column name="operate_name" type="varchar(120)" nullable="false" default="" displayName="操作人" displayType="text"/>
+			<column name="is_delete" type="tinyint(1)" nullable="false" default="0" displayName="是否删除：1是" displayType="text"/>
+			<column name="is_done" type="tinyint(1)" nullable="false" default="0" displayName="是否结算处理：0未处理，1已处理" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_game_id">
+				<column name="game_id" referencedTable="games" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="activity_display_rules" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="投放用户规则" group="赛事管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="" displayType="text" />
+			<column name="activity_id" type="int(10)" nullable="false" default="0" displayName="赛事id" displayType="text"/>
+			<column name="game_id" type="int(10)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="min_score" type="int(10)" nullable="false" default="0" displayName="最小得分" displayType="text"/>
+			<column name="max_score" type="int(10)" nullable="false" default="0" displayName="最大得分" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_activity_id">
+				<column name="activity_id" referencedTable="activity" referencedColumn="id"/>
+			</key>
+			<key type="fk" name="fk_game_id">
+				<column name="game_id" referencedTable="games" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="activity_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="参赛状况完整记录" group="赛事管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="user_id" type="int(10)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="open_id" type="varchar(128)" nullable="false" default="" displayName="用户open_id" displayType="text"/>
+			<column name="activity_id" type="int(10)" nullable="false" default="0" displayName="赛事id" displayType="text"/>
+			<column name="activity_name" type="varchar(100)" nullable="false" default="" displayName="赛事名称" displayType="text"/>
+			<column name="money" type="int(10)" nullable="false" default="0" displayName="奖励的金豆：未参赛或未获奖下为0" displayType="text"/>
+			<column name="type" type="tinyint(1)" nullable="false" default="0" displayName="类型：1未参赛，2未获奖，3已获奖" displayType="text"/>
+			<column name="is_done" type="tinyint(1)" nullable="false" default="0" displayName="是否处理：0未处理，1已处理" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_activity_id">
+				<column name="activity_id" referencedTable="activity" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="activity_reward_rules" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="赛事活动奖励机制" group="赛事管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="activity_id" type="int(10)" nullable="false" default="0" displayName="赛事id" displayType="text"/>
+			<column name="min_score" type="int(10)" nullable="false" default="0" displayName="最少得分" displayType="text"/>
+			<column name="max_score" type="int(10)" nullable="false" default="0" displayName="最大得分" displayType="text"/>
+			<column name="reward" type="int(10)" nullable="false" default="0" displayName="奖励的金豆数" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_activity_id">
+				<column name="activity_id" referencedTable="activity" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="admin_user" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="管理员" group="系统管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="login_name" type="varchar(64)" nullable="false" default="" displayName="登录账号" displayType="text"/>
+			<column name="passwd" type="varchar(256)" nullable="false" default="" displayName="登录密码" displayType="text"/>
+			<column name="real_name" type="varchar(64)" nullable="false" default="" displayName="备注名" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="1" displayName="状态：1启用，2禁用" displayType="text"/>
+			<column name="salt" type="varchar(16)" nullable="false" default="" displayName="随机数" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="创建时间" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="games" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="游戏列表" group="游戏管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="name" type="varchar(200)" nullable="false" default="" displayName="游戏名称" displayType="text"/>
+			<column name="appid" type="varchar(250)" nullable="false" default="" displayName="小游戏appid,给小程序拉起小游戏用的" displayType="text"/>
+			<column name="pic" type="varchar(500)" nullable="false" default="" displayName="logo图" displayType="text"/>
+			<column name="type" type="tinyint(1)" nullable="false" default="0" displayName="游戏类型：默认0无类型，1挑战赛，2竞技赛" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="状态：1上架，2下架" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="更新时间" displayType="text"/>
+			<column name="operate_name" type="varchar(120)" nullable="false" default="" displayName="操作人" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="games_play_logs" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="游戏日志" group="游戏管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="user_id" type="int(10)" nullable="false" default="0" displayName="用户id" queryType="precise" displayType="text" />
+			<column name="activity_id" type="int(10)" nullable="false" default="0" displayName="赛事id" queryType="precise" displayType="text"/>
+			<column name="game_id" type="int(10)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="start_time" type="int(10)" nullable="false" displayName="本次游戏开始玩的时间" displayType="text" />
+			<column name="score" type="int(10)" nullable="false" displayName="最高得分记录" displayType="text" />
+			<column name="times" type="int(10)" nullable="false" displayName="复活次数" displayType="text" />
+			<column name="create_time" type="int(10)" nullable="false"  displayName="产生时间" queryType="range" displayType="time" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_user_id">
+				<column name="user_id" referencedTable="user" referencedColumn="id"/>
+			</key>
+			<key type="fk" name="fk_activity_id">
+				<column name="activity_id" referencedTable="activity" referencedColumn="id"/>
+			</key>
+			<key type="fk" name="fk_game_id">
+				<column name="game_id" referencedTable="games" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="goods" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="商品列表" group="商城管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="type" type="tinyint(1)" nullable="false" default="0" displayName="类型：0实物，1虚拟" displayType="text"/>
+			<column name="name" type="varchar(250)" nullable="false" default="" displayName="商品名称" displayType="text"/>
+			<column name="number" type="int(10)" nullable="false" displayName="剩余库存" displayType="text" />
+			<column name="total_number" type="int(10)" nullable="false" displayName="总库存" displayType="text" />
+			<column name="price" type="int(11)" nullable="false" displayName="价格" displayType="text" />
+			<column name="on_sale" type="tinyint(1)" nullable="false" default="0" displayName="是否限时优惠：0否，1是" displayType="text"/>
+			<column name="thumb" type="varchar(500)" nullable="false" default="" displayName="列表图" displayType="text"/>
+			<column name="pic" type="varchar(500)" nullable="false" default="" displayName="详情图" displayType="text"/>
+			<column name="description" type="text" nullable="false" displayName="商品详情描述" displayType="textarea"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="上下架：1上架，2下架" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="更新时间" displayType="text"/>
+			<column name="operate_name" type="varchar(80)" nullable="false" default="" displayName="操作人" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="goods_on_sale" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="限时价格" group="商城管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="goods_id" type="int(10)" nullable="false" default="0" displayName="商品id" displayType="text"/>
+			<column name="sale_price" type="int(10)" nullable="false" default="0" displayName="限时优惠价" displayType="text"/>
+			<column name="start_time" type="int(10)" nullable="false" default="0" displayName="开始时间" displayType="text"/>
+			<column name="end_time" type="int(10)" nullable="false" default="0" displayName="结束时间" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_goods_id">
+				<column name="goods_id" referencedTable="goods" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="exchanges" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="订单列表" group="商城管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="mid" type="int(10)" nullable="false" displayName="商品id" displayType="text" />
+			<column name="user_id" type="int(10)" nullable="false" displayName="用户id" displayType="text" />
+			<column name="number" type="int(10)" nullable="false" displayName="数量" displayType="text" />
+			<column name="price" type="int(10)" nullable="false" displayName="单价" displayType="text" />
+			<column name="order_money" type="int(10)" nullable="false" displayName="订单价" displayType="text" />
+			<column name="on_sale" type="tinyint(1)" nullable="false" default="0" displayName="是否限时优惠：0否，1是" displayType="text"/>
+			<column name="is_pay" type="tinyint(1)" nullable="false" default="0" displayName="是否支付：0未支付，1已支付" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="状态：1已下单，2已发货" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" displayName="兑换时间" displayType="text" />
+			<column name="description" type="text" nullable="false" displayName="备注" displayType="textarea"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_mid">
+				<column name="mid" referencedTable="goods" referencedColumn="id"/>
+			</key>
+			<key type="fk" name="fk_user_id">
+				<column name="user_id" referencedTable="user" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="notify_send_formid" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="服务通知预发ID" group="模板管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="activity_id" type="int(11)" nullable="false" default="0" displayName="赛事id" displayType="text"/>
+			<column name="user_id" type="int(11)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="form_id" type="varchar(100)" nullable="false" default="" displayName="form_id" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="done" type="tinyint(1)" nullable="false" default="0" displayName="是否使用：0未使用，1已使用" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="notify_send_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="服务通知日志" group="模板管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="template_id" type="varchar(128)" nullable="false" default="" displayName="form_id" displayType="text"/>
+			<column name="content" type="text" nullable="false" displayName="发送的内容" displayType="textarea"/>
+			<column name="create_time" type="int(10)" nullable="false" displayName="发送时间" displayType="text" />
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="notify_template" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="通知模板" group="模板管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="title" type="varchar(120)" nullable="false" default="" displayName="form_id" displayType="text"/>
+			<column name="template_id" type="varchar(250)" nullable="false" default="" displayName="form_id" displayType="text"/>
+			<column name="content" type="text" nullable="false" displayName="发送的内容" displayType="textarea"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="operate_name" type="varchar(120)" nullable="false" default="" displayName="操作人" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="状态：1已下单，2已发货" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="share_themes" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="分享模板" group="模板管理">
+		<columns>
+			<column name="id" type="int(11)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="title" type="varchar(100)" nullable="false" default="" displayName="文案" displayType="text"/>
+			<column name="pic" type="varchar(100)" nullable="false" default="" displayName="封面图" displayType="text"/>
+			<column name="description" type="text" nullable="false" displayName="说明" displayType="textarea"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="operate_name" type="varchar(80)" nullable="false" default="" displayName="操作人" displayType="text"/>
+			<column name="status" type="tinyint(1)" nullable="false" default="0" displayName="状态：1已下单，2已发货" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="用户列表" group="用户管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="nickName" type="varchar(250)" nullable="false" default="" displayName="昵称" displayType="text"/>
+			<column name="gender" type="tinyint(1)" nullable="false" default="0" displayName="性别：0未知，1男，2女" displayType="text"/>
+			<column name="city" type="varchar(500)" nullable="false" default="" displayName="城市" displayType="text"/>
+			<column name="province" type="varchar(500)" nullable="false" default="" displayName="省" displayType="text"/>
+			<column name="country" type="varchar(500)" nullable="false" default="" displayName="国家" displayType="text"/>
+			<column name="avatarUrl" type="varchar(500)" nullable="false" default="" displayName="头像" displayType="text"/>
+			<column name="openId" type="varchar(500)" nullable="false" default="" displayName="openid" displayType="text"/>
+			<column name="unionId" type="varchar(500)" nullable="false" default="" displayName="用户对公众号唯一标识" displayType="text"/>
+			<column name="money" type="int(10)" nullable="false" default="0" displayName="总剩余金豆数" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="添加时间" displayType="text"/>
+			<column name="update_time" type="int(10)" nullable="false" default="0" displayName="更新时间" displayType="text"/>
+			<column name="login_time" type="int(10)" nullable="false" default="0" displayName="当日首次登录时间" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_money_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="金豆流水" group="用户管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="user_id" type="int(10)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="oc" type="tinyint(1)" nullable="false" default="0" displayName="方向：1增，2减" displayType="text"/>
+			<column name="number" type="int(10)" nullable="false" default="0" displayName="变化的数值" displayType="text"/>
+			<column name="mid" type="int(10)" nullable="false" default="0" displayName="关联id" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="产生时间" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_user_id">
+				<column name="user_id" referencedTable="user" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+	<table name="user_score_log" engine="INNODB" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" comment="得分日志" group="用户管理">
+		<columns>
+			<column name="id" type="int(10)" nullable="false" extra="auto_increment" displayName="id" displayType="text" />
+			<column name="user_id" type="int(10)" nullable="false" default="0" displayName="用户id" displayType="text"/>
+			<column name="activity_id" type="int(10)" nullable="false" default="0" displayName="赛事id" displayType="text"/>
+			<column name="game_id" type="int(10)" nullable="false" default="0" displayName="游戏id" displayType="text"/>
+			<column name="start_time" type="int(10)" nullable="false" default="0" displayName="本次游戏开始玩的时间" displayType="text"/>
+			<column name="score" type="int(10)" nullable="false" default="0" displayName="最高得分记录" displayType="text"/>
+			<column name="times" type="int(10)" nullable="false" default="0" displayName="复活次数" displayType="text"/>
+			<column name="create_time" type="int(10)" nullable="false" default="0" displayName="产生时间" displayType="text"/>
+			<column name="type" type="tinyint(1)" nullable="false" default="0" displayName="类型：0玩游戏，1邀请" displayType="text"/>
+			<column name="receive_user_id" type="int(10)" nullable="false" default="0" displayName="被邀请人" displayType="text"/>
+		</columns>
+		<keys>
+			<key type="pk">
+				<column name="id"/>
+			</key>
+			<key type="fk" name="fk_user_id">
+				<column name="user_id" referencedTable="user" referencedColumn="id"/>
+			</key>
+			<key type="fk" name="fk_activity_id">
+				<column name="activity_id" referencedTable="activity" referencedColumn="id"/>
+			</key>
+		</keys>
+	</table>
+</database>
