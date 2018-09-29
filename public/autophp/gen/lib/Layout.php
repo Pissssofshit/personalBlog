@@ -576,6 +576,9 @@ EOF;
 
 		if (!empty($input)) {
 			list($display, $desc) = explode(":",$column['displayName'], 2);
+			if (empty($desc)) {
+			    list($display, $desc) = explode("："",$column['displayName'], 2);
+			}
 
 				if (empty($desc))
 					$li = "<li><label class=\"display_name\">{$display}</label>{$input}</li>";
