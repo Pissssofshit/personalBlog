@@ -69,6 +69,7 @@ fieldset {
 	width: 120px;
 	float: left;
 	text-align: center;
+	overflow: hidden;
 }
 .searchlegend .checker{
 	 display: inline-block;
