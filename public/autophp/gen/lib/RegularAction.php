@@ -259,7 +259,118 @@ EOF;
         
         return $code;
     }
-    
+
+    public function getListexport(){
+        $params = $conds = $joins = array();
+        $refer_tables = array();
+        foreach ($this->_tableNode->keys->key as $key) {
+
+            if ($key['type'] == "fk") {
+                $column = $key->column;
+                $refer_table = "{$column['referencedTable']}";
+
+                if (in_array($refer_table, $refer_tables)) {
+                    continue;
+                }
+
+                if ($this->_tableName == $refer_table) {
+                    continue;
+                }
+
+                array_push($refer_tables, $refer_table);
+
+
+
+                $joins[] = " LEFT JOIN `{$column['referencedTable']}` ON `{$this->_tableName}`.`{$column['name']}` = `{$column['referencedTable']}`.`{$column['referencedColumn']}`";
+            }
+        }
+        //var_dump($refer_tables);
+
+        foreach($this->_tableNode->columns->column as $column) {
+            if (empty($column['queryType']))
+                continue;
+
+            if ($column['queryType'] == "fuzzy") {
+                $params[] = "\${$column['name']} = null";
+                $conds[] = <<<EOF
+
+			if (gettype(\${$column['name']})!=gettype(NULL)) {
+				\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
+
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like :{$column['name']}';
+			}
+EOF;
+            }
+			elseif ($column['queryType'] == "range") {
+                $params[] = "\${$column['name']} = array()";
+                if ($column['displayType'] == "time") {
+                    $time_format = "\$start = strtotime(\$start);
+				\$end = strlen(\$end) > 10 ? \$end : \$end . \" 23:99:99\";
+				\$end = strtotime(\$end);
+					";
+                }
+
+                $conds[] = <<<EOF
+
+			if (!empty(\${$column['name']})) {
+				\$start = \${$column['name']}['start'];
+				\$end = \${$column['name']}['end'];
+
+
+				$time_format
+				if (!empty(\$start)) {
+					\$cond["{$column['name']}_start"] = \$start;
+					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` > :{$column['name']}_start';
+					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` > :{$column['name']}_start' ;
+				}
+
+				if (!empty(\$end)) {
+					\$cond["{$column['name']}_end"] = \$end;
+					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` < :{$column['name']}_end';
+					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` < :{$column['name']}_end';
+				}
+			}
+EOF;
+            }
+            else {
+                $params[] = "\${$column['name']} = null";
+                $conds[] = <<<EOF
+
+			if (gettype(\${$column['name']})!=gettype(NULL)) {
+				\$cond["{$column['name']}"] = \${$column['name']}; 
+
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+			}
+EOF;
+            }
+        }
+        $joins = implode(" ", $joins);
+        $params = implode(", ", $params);
+        $conds = implode("", $conds);
+
+        $order_by = '
+			$sql .= " ORDER BY ' . $this->_pkColumn . ' DESC ";
+		';
+
+        $code = '
+		public function getListexport(' . $params . ') {
+			$cond = [];
+    		$sql = "SELECT `' . $this->_tableName . '`.* FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
+			$c_sql = "SELECT count(*) as `count` FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
+				
+			' . $conds  . $order_by  . '
+			
+			$list =  DB::connection($this->_connection_name)->select($sql, $cond);
+			$count = DB::connection($this->_connection_name)->select($c_sql, $cond)[0];
+
+			return array("list"=>$list, "count"=>$count->count);
+    	}
+    	';
+
+        return $code;
+	}
     public function getlist() {
     	$params = $conds = $joins = array();
 		$refer_tables = array();
