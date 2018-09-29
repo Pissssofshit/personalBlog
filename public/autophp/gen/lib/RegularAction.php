@@ -305,9 +305,9 @@ EOF;
 			elseif ($column['queryType'] == "range") {
                 $params[] = "\${$column['name']} = array()";
                 if ($column['displayType'] == "time") {
-                    $time_format = "\$start = strtotime(\$start);
-				\$end = strlen(\$end) > 10 ? \$end : \$end . \" 23:99:99\";
-				\$end = strtotime(\$end);
+                    $time_format = "\$start = \$start?strtotime(\$start):'';";
+                    $time_format .= "\$end = \$end?(strlen(\$end) > 10 ? \$end : \$end . \" 23:59:59\"):'';
+				\$end = \$end?strtotime(\$end):'';
 					";
                 }
 
@@ -321,14 +321,14 @@ EOF;
 				$time_format
 				if (!empty(\$start)) {
 					\$cond["{$column['name']}_start"] = \$start;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` > :{$column['name']}_start';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` > :{$column['name']}_start' ;
+					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start';
+					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start' ;
 				}
 
 				if (!empty(\$end)) {
 					\$cond["{$column['name']}_end"] = \$end;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` < :{$column['name']}_end';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` < :{$column['name']}_end';
+					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
+					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
 				}
 			}
 EOF;
