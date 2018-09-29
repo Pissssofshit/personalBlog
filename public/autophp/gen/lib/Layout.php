@@ -220,6 +220,9 @@ EOF;
 
 			if (!empty($column['displayName'])) {
 				list($display, $desc) = explode(":",$column['displayName'], 2);
+				if (empty($desc)) {
+				    list($display, $desc) = explode("：",$column['displayName'], 2);
+				}
 
 				if (empty($desc))
 					$th .= "<th>{$column['displayName']}</th> \n";
