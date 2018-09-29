@@ -162,7 +162,7 @@ EOF;
         $code = <<<EOF
 	public function export(Request \$request) {
 		{$requests}
-		\$data = \$this->_m_{$this->_tableName}->getList($params);
+		\$data = \$this->_m_{$this->_tableName}->getListexport($params);
 		\$list = \$data['list'];
 		\$columnnames = '$columnnames';
         {$this->dict()}
