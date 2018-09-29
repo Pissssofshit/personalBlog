@@ -137,6 +137,8 @@ EOF;
         $tablename = $this->_tableNode['comment']?$this->_tableNode['comment']:$this->_tableNode['name'];
         foreach($this->_tableNode->columns->column as $column) {
             $columnnames["{$column['name']}"] ="{$column['displayName']}" ;
+            $columntypes["{$column['name']}"]["displayType"] ="{$column['displayType']}" ;
+            $columntypes["{$column['name']}"]["type"] ="{$column['type']}" ;
             if (empty($column['queryType']))
                 continue;
 
@@ -159,19 +161,25 @@ EOF;
         $requests = implode("\r\n\t\t", $requests);
         $url_params = implode("&", $url_params);
         $columnnames = json_encode($columnnames);
+        $columntypes = json_encode($columntypes);
         $code = <<<EOF
 	public function export(Request \$request) {
 		{$requests}
 		\$data = \$this->_m_{$this->_tableName}->getListexport($params);
 		\$list = \$data['list'];
 		\$columnnames = '$columnnames';
+		\$columntypes = '$columntypes';
         {$this->dict()}
         \$columnnames = json_decode(\$columnnames,true);
+        \$columntypes = json_decode(\$columntypes,true);
         \$columnkeys = array_keys(\$columnnames);
         \$data=[];
         foreach( \$list as \$key=>\$val){
             foreach (\$columnkeys as \$columnfield) {
-                \$data[\$key][\$columnfield] = "\t" . \$val->\$columnfield;
+                \$displaytype =isset(\$columntypes[\$columnfield]["displayType"])?\$columntypes[\$columnfield]["displayType"]:"text";
+                \$cotype =isset(\$columntypes[\$columnfield]["type"])?\$columntypes[\$columnfield]["type"]:"";
+                \$filedvalue = \$displaytype=="time" && preg_match("/int\(\d{2,}\)/",\$cotype)?date('Y-m-d H:i:s',\$val->\$columnfield):\$val->\$columnfield;
+                \$data[\$key][\$columnfield] = "\t" . \$filedvalue;
             }
         }
         \$fileName = "$tablename". date('YmdHis', time()) .'.csv';
