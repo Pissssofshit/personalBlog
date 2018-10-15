@@ -455,7 +455,7 @@ EOF;
 				$input = "<input type=\"password\" maxlength=\"$len\" name=\"{$column['name']}\" id=\"{$column['name']}\" value=\"{{isset(\$detail['{$column['name']}'])?\$detail->{$column['name']}:''}}\"></input>";
 				break;
 			case "textarea":
-				$input = "<textarea name=\"{$column['name']}\" id=\"{$column['name']}\" >{{isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:''}}}</textarea>";
+				$input = "<textarea name=\"{$column['name']}\" id=\"{$column['name']}\" >{{isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:''}}</textarea>";
 				break;
 			case "select":
 				$refer_table = $this->_getRefer($column['name']);
