@@ -78,11 +78,11 @@
                 </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">文档</a>
-                    <a href="https://laracasts.com">Laracasts</a>
                     <a href="/autophp/gen/entry/databasetoxml.php">本地数据库转xml</a>
                     <a href="/autophp/gen/entry/index.php">Autophp</a>
-                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="/blueprint/entry/index.php">apiblueprint demo</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://cs.laravel-china.org/">laravel速查表</a>
                 </div>
             </div>
         </div>
