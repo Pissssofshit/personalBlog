@@ -13,13 +13,12 @@
 
         $app_domain = $_SERVER['HTTP_HOST'];
         $doc_url = $app_domain."/blueprint/doc/xxx.html";
-        $api_url = "xxxxx:9931";
     ?>
     <h3>操作步骤：</h3>
     <ul>
         <li>1、将写好的xxx.md文件上传至 <?php echo $app_path; ?></li>
-        <li>2、系统将会生成相应的文档页面，访问 <?php echo $doc_url; ?></li>
-        <li>3、系统将会生成相应的接口，访问 <?php echo $api_url; ?></li>
+        <li>2、系统将会生成相应的文档页面，访问 <a target="_blank" href="http://<?php echo $doc_url; ?>"><?php echo $doc_url; ?></a></li>
+        <li>3、系统将会生成相应的接口，访问 <a target="_blank" href="http://api.blueprint.ledu.com/order">http://api.blueprint.ledu.com/order</a></li>
     </ul>
 </BODY>
 </HTML>
