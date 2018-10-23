@@ -97,6 +97,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+	],
+
+	'sdk'=>[
+        'url'=>'http://auth.mjutech.com/api',
+		'key'=>'ylSLVRJReZ2',
+		'baseurl'=>'http://auth.mjutech.com'
     ],
 
 ];

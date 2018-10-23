@@ -9,7 +9,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-	"ytake/laravel-smarty":"^2.2"
+		"ytake/laravel-smarty":"^2.2",
+		"mjutech/netdata": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -62,6 +63,10 @@
         "packagist": {
             "type": "composer",
             "url": "https://packagist.phpcomposer.com"
-        }
+        },
+		"local": {
+			"type": "vcs",
+			"url": "https://gitlab.mjutech.com/vendor/netdata.git"
+		}
     }
 }

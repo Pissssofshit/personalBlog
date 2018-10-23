@@ -54,8 +54,7 @@ class SmartyServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-smarty');
         $this->publishes([
             $configPath => $this->resolveConfigurePath() . DIRECTORY_SEPARATOR . 'ytake-laravel-smarty.php',
-		]);
-
+        ]);
 
         $this->app->singleton('smarty.view', function ($app) {
             $smartyTemplate = new Smarty;

@@ -132,8 +132,7 @@ class FileViewFinder implements ViewFinderInterface
                     return $viewPath;
                 }
             }
-		}
-		//var_dump($this->getPossibleViewFiles($name));die();
+        }
 
         throw new InvalidArgumentException("View [{$name}] not found.");
     }
