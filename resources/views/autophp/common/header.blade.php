@@ -11,11 +11,13 @@
     <a href="javascript:;" style="positon:absolute;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
 
     </a>
-    <div class="" style="color:white;height:46px;min-height:46px;line-height:46px;float:right;width:80px;text-align:center;">
-        <p>朱小小</p>
+    <div class="" style="color:white;height:46px;min-height:46px;line-height:46px;float:right;width:120px;text-align:center;">
+		<p>
+			{{$user['userId']}}:{{$user['chsName']}}
+			<a href="{{config('auth.sdk.baseurl')}}/index/logout">登出</a>
+		</p>
     </div>
-    <div class="hor-menu hor-menu-light hidden-sm hidden-xs loginus" style="float:right;height:46px;min-height:46px;line-height:46px;"><!--float:right; -->
-        {{--<a style="color:white;width:80px;text-align:right;">朱博文</a><!--<a href="{ {config('app.wx.login_url')}}/login/logout"><img src="/images/loginout.png" alt="退出" title="退出" id="loginoutu"/></a>-->--}}
+    <div class="hor-menu hor-menu-light hidden-sm hidden-xs loginus" style="float:right;height:46px;min-height:46px;line-height:46px;">
     </div>
     <style>
         a:link {
