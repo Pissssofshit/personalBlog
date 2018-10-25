@@ -54,8 +54,8 @@
 <?php echo "1、当前配置文件：{$db_conf_file},  如需指定文件,可以指定URL参数（如：?xml=dc)。\n";
 	echo "2、新项目按键按序号执行。\n";
 	echo "3、执行完成后设置hosts: 
-	192.168.99.100 {$pname} #windows
-	127.0.0.1	{$pname} #mac";
+	192.168.99.100 {$pname} #win7
+	127.0.0.1	{$pname} #mac、win10";
 ?>
 </pre></div>
 	<form method="post" action="">
