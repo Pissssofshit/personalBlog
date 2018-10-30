@@ -19,4 +19,4 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'zzh'], function(){
 	Route::resource('/zzh', 'ZzhController');
 });
 
-include "autophp.php";
+

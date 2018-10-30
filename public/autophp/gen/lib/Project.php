@@ -89,8 +89,10 @@
 			$menu = $this->_indexmenu();
 			$this->_save($menu, "/app/Http/Controllers/Autophp/IndexController.php");
 
-            $menu = $this->_basemenu();
-            $this->_save($menu, "/app/Http/Controllers/Controller.php");
+			
+            $menu = $this->_constmenu();
+			$this->_save($menu, "/config/const.php");
+			
 			/*
 			$tree_code = $config->admin();
 			//var_dump($tree_code);
@@ -123,6 +125,7 @@ $this->_save($config, "/Configs/admin.power.php");
 				$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $tablename)));
                 $resources[] = "\tRoute::get('/{$tablename}/export', '{$classname}Controller@export');";
 				$resources[] = "\tRoute::resource('/{$tablename}', '{$classname}Controller');";
+				$resources[] = "";
 			}
 
 			$resources = implode("\n", $resources);
@@ -149,7 +152,7 @@ EOF;
             return $code;
 		}
 
-		private function _basemenu() {
+		private function _constmenu() {
 			foreach ($this->_dom->table as $tableNode) {
 				$tablename = $tableNode['name'];
 				$groupname = $tableNode['group'];
@@ -159,37 +162,14 @@ EOF;
 				$resources[$groupkey]['privilege'] = true;
 			}
 
-			$resources = json_encode($resources);
+			$menu = var_export($resources, true);
 
 			$route = <<<EOF
 <?php
-namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Request;
-
-class Controller extends BaseController
-{
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function __construct()
-    {
-		\$tree = '$resources';
-		\$tree = json_decode(\$tree,true);
-        View::share("bar_tree",\$tree);
-        \$project['common']['cdn'] = "http://imagecache.joyport.com/ui";
-        \$requestpath = Request::path();
-        \$requestpath = trim(\$requestpath,"/");
-        \$requestpaths = explode("/",\$requestpath);
-        \$requestpath = isset(\$requestpaths[0])&& isset(\$requestpaths[1])?\$requestpaths[0]."/".\$requestpaths[1]:"";
-        View::share("project",\$project);
-        View::share('request_path',\$requestpath);
-	}
-}
+return [
+	"menu" => $menu,
+];
 
 EOF;
 			return $route;
@@ -348,7 +328,7 @@ EOF;
 			$dir = dirname($file_path);
 			if (!file_exists($dir)) {
 				echo "Create dir: $dir";
-				shell_exec("mkdir -p $dir");
+				shell_exec("mkdir -p $dir 2>&1");
 			}
         	if (!$fh = fopen($file_path, "w")) {
         		die("ERROR: Open file '$file_path' failed \n");

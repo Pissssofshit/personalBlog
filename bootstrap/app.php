@@ -15,6 +15,32 @@ $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
 
+
+$envmark_file = realpath(__DIR__.'/../') . "/envmark.txt";
+if (file_exists($envmark_file)) {
+	$evnmark = trim(file_get_contents($envmark_file));
+	$envend = ".env.development";
+	switch ($evnmark){
+		case "production":
+			$envend = ".env";
+			break;
+		case "test":
+			$envend = ".envtest";
+			break;
+		case "development":
+			$envend = ".envdevelopment";
+			break;
+		case "pre":
+			$envend = ".envpre";
+			break;
+		default:
+			$envend = ".envdevelopment";
+			break;
+	}
+	echo "<div style='color:red'>Current Runtime Enviroment: < $evnmark >; Load Config File: < $envend ></div>";
+	$app->loadEnvironmentFrom($envend);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

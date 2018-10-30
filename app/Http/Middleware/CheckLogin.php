@@ -6,6 +6,7 @@ use App\Http\Models\Autophp\PowerUserModel;
 use APP\Library\Auth\AuthSdk;
 use Closure;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Request;
 
 class CheckLogin
 {
@@ -35,7 +36,7 @@ class CheckLogin
             $user['power_user_id'] = $user_id;
             $user['power_user_name'] = $power_user_name;
             $user['truename'] = $truename;
-            $user['password'] = '123456';
+            $user['password'] = '******';
             $user['power_role_id'] = 1;
             $user['created_time'] = time();
             $power_user_model->insert($user);
@@ -44,7 +45,21 @@ class CheckLogin
         View::share('user', [
             'chsName' => $truename,
             'userId' => $user_id
-        ]);
+		]);
+
+		$tree = Config('const.menu');
+		if (empty($tree)) {
+			throw new \Exception("menu isn't configured!");
+		}
+
+        View::share("bar_tree",$tree);
+        //$project['common']['cdn'] = "http://imagecache.joyport.com/ui";
+        $requestpath = Request::path();
+        $requestpath = trim($requestpath,"/");
+        $requestpaths = explode("/",$requestpath);
+        $requestpath = isset($requestpaths[0])&& isset($requestpaths[1])?$requestpaths[0]."/".$requestpaths[1]:"";
+        //View::share("project",$project);
+        View::share('request_path',$requestpath);
       /*  $res = User::getUserList($user_id);
         if (empty($res) || !isset($res[0])) {
             echo 'No Access!';

@@ -21,11 +21,21 @@
 	$include_path[] = $autophp_lib;
 	set_include_path(implode(PATH_SEPARATOR, $include_path));
 
+	$host = $_SERVER['HTTP_HOST'];
+	$pos = strpos(BASE_PATH, $host);
+	$project_path = substr(BASE_PATH, 0, $pos) . $host;
+
 	$xml = $_GET['xml'];
 	if (!empty($xml))
 		$db_conf_file = BASE_PATH . "/dbxml/{$xml}.xml";
-	else 
-		$db_conf_file = BASE_PATH . "/dbxml/xdwsy.xml";
+	else {
+		list($dbname, $else) = explode(".", $host);
+		$db_conf_file = BASE_PATH . "/dbxml/{$dbname}.xml";
+	}
+
+	if (!file_exists($db_conf_file)) {
+		echo "<pre>数据配置文件：{$db_conf_file}不存在; <br/>请提供：{$db_conf_file}</pre>";die();
+	}
 
 	require_once 'Project.php';
 	$dst_path = $_POST['proj_path'];
@@ -35,7 +45,7 @@
 	$pname = "{$project->getName()}";
 	$pname = "{$_SERVER['SERVER_NAME']}";
 
-	$project_path = "/data/web/yaf/{$pname}";
+	//$project_path = "/data/web/laravel/{$pname}";
 ?>
 
 	<div id="div_gen">
