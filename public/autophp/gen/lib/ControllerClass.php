@@ -210,6 +210,17 @@ EOF;
 
 
 	private function _create() {
+		foreach($this->_tableNode->columns->column as $column) {
+			if ($column['displayType'] == "privilege") {
+					$priv_format = <<<EOF
+			\$power_list = Config('const.power_tree');
+			unset(\$power_list['no_valide']);
+			\$assign['power_list'] = \$power_list;
+EOF;
+				
+			}
+		
+		}
 	
 		$code = <<<EOF
 	public function create(Request \$request) {
@@ -244,12 +255,6 @@ EOF;
 				}
 				elseif ($column['displayType'] == "privilege") {
 					$requests[] = "\$input['{$column['name']}'] = json_encode(\$request->input('{$column['name']}'));";
-					$priv_format = <<<EOF
-			global \$CONFIG_ADMIN;
-			\$power_list = \$CONFIG_ADMIN['power_tree'];
-			unset(\$power_list['no_valide']);
-			\$assign['power_list'] = \$power_list;
-EOF;
 				}
 				else {
 					$requests[] = "\$input['{$column['name']}'] = \$request->input('{$column['name']}');";
@@ -281,7 +286,7 @@ EOF;
 			return view("{$this->_autophpviewdir}common.tips",\$assign);
 		}
 
-		{$this->dict(false, false)} {$priv_format}
+		{$this->dict(false, false)}
 		\$assign["dict_boolean"] = array("否", "是");
 		return view("{$this->_autophpviewdir}{$this->_tableName}_add",\$assign);
 	}
@@ -328,8 +333,7 @@ EOF;
 
 			if ($column['displayType'] == "privilege") {
 				$priv_format = <<<EOF
-		global \$CONFIG_ADMIN;
-		\$power_list = \$CONFIG_ADMIN['power_tree'];
+		\$power_list = Config('const.power_tree');
 		unset(\$power_list['no_valide']);
 		\$assign["csrf_token"] = csrf_token();
 		\$assign["power_list"] = \$power_list;
@@ -346,7 +350,7 @@ EOF;
 		\$detail = \$this->_m_{$this->_tableName}->detail(\$$pk);
 		{$detail_format}
 		\$assign["detail"] = \$detail;
-		{$this->dict(true, false)}
+		{$this->dict(true, true)}
 
 		{$priv_format}
         \$assign["dict_boolean"] =array("否", "是");
@@ -397,8 +401,7 @@ EOF;
 
 			if ($column['displayType'] == "privilege") {
 				$priv_format = <<<EOF
-		global \$CONFIG_ADMIN;
-		\$power_list = \$CONFIG_ADMIN['power_tree'];
+		\$power_list = Config('const.power_tree');
 		unset(\$power_list['no_valide']);
 		\$assign["csrf_token"] =csrf_token();
 		\$assign["power_list"] =\$power_list;
@@ -457,8 +460,7 @@ EOF;
 			elseif ($column['displayType'] == "privilege") {
 				$detail_format[] = "\$detail['{$column['name']}'] = json_decode(\$detail['{$column['name']}'], true);";
 				$priv_format = <<<EOF
-			global \$CONFIG_ADMIN;
-			\$power_list = \$CONFIG_ADMIN['power_tree'];
+			\$power_list = Config('const.power_tree');
 			unset(\$power_list['no_valide']);
 			\$assign["power_list"] = \$power_list;
 EOF;
@@ -504,13 +506,6 @@ EOF;
 		\$ret = \$this->_m_{$this->_tableName}->delete(\$$pk);
 
 		return \$ret;
-
-		\$tip_info = array("navi_name"=>"{$this->_navi_name}","group_name"=>"{$this->_group_name}","module"=>"{$this->_tableName}", "action"=>"删除", "status"=>"\$ret");
-		\$assign["tip_info"]=\$tip_info;
-		view("{$this->_autophpviewdir}common.tips");
-		return;
-        return view("{$this->_autophpviewdir}{$this->_tableName}_delete",\$assign);
-
 	}
 EOF;
 
@@ -543,7 +538,7 @@ EOF;
 			}
 
 			if ($is_tip) {
-				$tip_code = '$dict_list[""] = "请选择";';
+				$tip_code = '$dict_list["-1"] = "请选择";';
 			}
 
 			$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $column['referencedTable'])));

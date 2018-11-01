@@ -91,34 +91,15 @@
 
 			
             $menu = $this->_constmenu();
+			$menu = $config->admin();
 			$this->_save($menu, "/config/const.php");
 			
-			/*
-			$tree_code = $config->admin();
-			//var_dump($tree_code);
+			
 
-			ob_start();
-			var_export($tree_code['bar_tree']);
-			$bar_config = ob_get_contents();
-			ob_end_clean();
-
-			$config = "<?php
-\$CONFIG_ADMIN['bar_tree']={$bar_config};";
-			$this->_save($config, "/Configs/admin.navi.php");
-
-			ob_start();
-			var_export($tree_code['power_tree']);
-			$power_config = ob_get_contents();
-			ob_end_clean();
-
-			$config = "<?php
-\$CONFIG_ADMIN['power_tree']={$power_config};";
-$this->_save($config, "/Configs/admin.power.php");
-			*/
 		}
 
 		private function _route() {
-			$resources = ["\tRoute::get('/', 'IndexController@index');", "\tRoute::get('/welcome', 'IndexController@welcome');", "\t"];
+			$resources = ["\tRoute::get('/index', 'IndexController@index');", "\tRoute::get('/welcome', 'IndexController@welcome');", "\t", "\tRoute::get('/', function(){return redirect('/autophp/index');});", "\t"];
 
 			foreach ($this->_dom->table as $tableNode) {
 				$tablename = $tableNode['name'];

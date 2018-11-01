@@ -18,9 +18,9 @@ $app = new Illuminate\Foundation\Application(
 
 $envmark_file = realpath(__DIR__.'/../') . "/envmark.txt";
 if (file_exists($envmark_file)) {
-	$evnmark = trim(file_get_contents($envmark_file));
+	$envmark = trim(file_get_contents($envmark_file));
 	$envend = ".env.development";
-	switch ($evnmark){
+	switch ($envmark){
 		case "production":
 			$envend = ".env";
 			break;
@@ -37,7 +37,10 @@ if (file_exists($envmark_file)) {
 			$envend = ".envdevelopment";
 			break;
 	}
-	echo "<div style='color:red'>Current Runtime Enviroment: < $evnmark >; Load Config File: < $envend ></div>";
+
+	if (empty($_POST)) {
+		echo "<div style='color:red'>Current Runtime Enviroment: < $envmark >; Load Config File: < $envend ></div>";
+	}
 	$app->loadEnvironmentFrom($envend);
 }
 

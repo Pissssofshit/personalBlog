@@ -121,16 +121,16 @@ EOF;
 				    <tr>
 				    	<td style="text-align:left;">
 					    	@if(isset(\$detail["content"][\$key]))
-					    	{{\$power.name}}
+					    	{{\$power['name']}}
 					    	@endif
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<td style="padding-left:35px; text-align:left ">
 			            @if(isset(\$power["sub"])&&!empty(\$power["sub"]))
-				        @foreach(\$power.sub as \$action)
-					        @if(isset(\$detail["content"][\$key]) && in_array(\$action.url,\$detail["content"][\$key]))
-					        {{\$action.name}}<br />
+				        @foreach(\$power['sub'] as \$action)
+					        @if(isset(\$detail["content"][\$key]) && in_array(\$action['url'],\$detail["content"][\$key]))
+					        {{\$action['name']}}<br />
 					        @endif
 				       @endforeach
 				       @endif
@@ -473,8 +473,8 @@ EOF;
                    $input = "<?php \${$column['name']}= isset(\$detail['{$column['name']}'])?\$detail['{$column['name']}']:{$column['default']};?>";
                   $input .= "
                     @if(isset(\$dict_boolean)&&!empty(\$dict_boolean)) 
-                    @foreach(\$dict_boolean as \$key=>\$val)
-                    <input type='radio' name=\"{$column['name']}\" @if(\$key==\${$column['name']}) checked @endif value={{\$key}}>{{\$val}}
+					@foreach(\$dict_boolean as \$key=>\$val)
+					<input type='radio' name=\"{$column['name']}\" @if(\$key==\${$column['name']}) checked @endif value={{\$key}}>{{\$val}} &nbsp;&nbsp;&nbsp;&nbsp;
                     @endforeach
                     @endif
                     ";
@@ -507,7 +507,7 @@ EOF;
 	    <tr>
 	    	<td style="text-align:left;">
 	        <a style="cursor:pointer"><span onclick="$('#tag_{{\$key}}').toggle();">[+]</span></a>
-	        <input type="checkbox" id="box_{{\$key}}" class="box_tag"/>&nbsp;{{\$power.name}}
+	        <input type="checkbox" id="box_{{\$key}}" class="box_tag"/>&nbsp;{{\$power['name']}}
 	        </td>
 	    </tr>
 	    <tr id="tag_{{\$key}}">
@@ -515,7 +515,7 @@ EOF;
 	    	@if(isset(\$power["sub"])&&!empty(\$power["sub"])) 
 	        @foreach(\$power["sub"] as \$action)
 	        <?php \$userkey = isset(\$detail["content"][\$key])?\$detail["content"][\$key]:"";?>
-	        <input name="content[{{\$key}}][]" type="checkbox" value="{{\$action.url}}" class="box_{{\$key}}" onclick="subbox_check(this)" @if(\$userkey && in_array(\$action.url,\$userkey)) checked @endif/>&nbsp;{{\$action.name}}<br />
+	        <input name="content[{{\$key}}][]" type="checkbox" value="{{\$action['url']}}" class="box_{{\$key}}" onclick="subbox_check(this)" @if(\$userkey && in_array(\$action['url'],\$userkey)) checked @endif/>&nbsp;{{\$action['name']}}<br />
 	        @endforeach
 	        @endif
 	        </td>

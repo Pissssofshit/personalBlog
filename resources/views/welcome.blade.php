@@ -73,17 +73,22 @@
                 </div>
             @endif
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md" style="font-size:32px">
+                    MJUTECH开发框架工具集
                 </div>
-                <div class="links">
-                    <a href="https://laravel.com/docs">文档</a>
-                    <a href="/autophp/gen/entry/databasetoxml.php">本地数据库转xml</a>
-                    <a href="/autophp/gen/entry/index.php">Autophp</a>
-                    <a href="/blueprint/entry/index.php">apiblueprint demo</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                    <a href="https://cs.laravel-china.org/">laravel速查表</a>
-                </div>
+				<div class="links">
+					相关文档：
+                    <a href="https://laravel.com/docs">Laravel官方</a>
+                    <a href="https://github.com/laravel/laravel">Laravel的GitHub源码</a>
+                    <a href="https://cs.laravel-china.org/">Laravel中文速查表</a>
+				</div>
+				<div class="links">
+					相关工具：
+                    <a href="/autophp/gen/entry/databasetoxml.php">数据库转xml</a>
+                    <a href="/autophp/gen/entry/index.php">Autophp代码生成</a>
+					<a href="/blueprint/entry/index.php">apiblueprint接口文档Demo</a>
+					<a href="/autophp">生成的后台入口</a>
+				</div>
             </div>
         </div>
     </body>

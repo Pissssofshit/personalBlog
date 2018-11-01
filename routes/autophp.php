@@ -1,54 +1,53 @@
 <?php 
 Route::group(['namespace'=>'Autophp', 'prefix'=>'autophp'], function(){
-	Route::get('/', 'IndexController@index');
+	Route::get('/index', 'IndexController@index');
 	Route::get('/welcome', 'IndexController@welcome');
 	
-	Route::get('/rem_account/export', 'RemAccountController@export');
-	Route::resource('/rem_account', 'RemAccountController');
-	Route::get('/rem_game/export', 'RemGameController@export');
-	Route::resource('/rem_game', 'RemGameController');
-	Route::get('/rem_site/export', 'RemSiteController@export');
-	Route::resource('/rem_site', 'RemSiteController');
-	Route::get('/cfg_category/export', 'CfgCategoryController@export');
-	Route::resource('/cfg_category', 'CfgCategoryController');
-	Route::get('/rem_plan/export', 'RemPlanController@export');
-	Route::resource('/rem_plan', 'RemPlanController');
-	Route::get('/cfg_mode/export', 'CfgModeController@export');
-	Route::resource('/cfg_mode', 'CfgModeController');
-	Route::get('/sys_plan_material/export', 'SysPlanMaterialController@export');
-	Route::resource('/sys_plan_material', 'SysPlanMaterialController');
-	Route::get('/rem_channel/export', 'RemChannelController@export');
-	Route::resource('/rem_channel', 'RemChannelController');
-	Route::get('/cfg_pay_way/export', 'CfgPayWayController@export');
-	Route::resource('/cfg_pay_way', 'CfgPayWayController');
-	Route::get('/sys_account_site/export', 'SysAccountSiteController@export');
-	Route::resource('/sys_account_site', 'SysAccountSiteController');
-	Route::get('/rem_channel_type/export', 'RemChannelTypeController@export');
-	Route::resource('/rem_channel_type', 'RemChannelTypeController');
-	Route::get('/sys_channel_channeltype/export', 'SysChannelChanneltypeController@export');
-	Route::resource('/sys_channel_channeltype', 'SysChannelChanneltypeController');
-	Route::get('/user/export', 'UserController@export');
-	Route::resource('/user', 'UserController');
-	Route::get('/cfg_subsist_sign/export', 'CfgSubsistSignController@export');
-	Route::resource('/cfg_subsist_sign', 'CfgSubsistSignController');
-	Route::get('/rem_partner/export', 'RemPartnerController@export');
-	Route::resource('/rem_partner', 'RemPartnerController');
-	Route::get('/rem_company/export', 'RemCompanyController@export');
-	Route::resource('/rem_company', 'RemCompanyController');
-	Route::get('/rem_plan_append/export', 'RemPlanAppendController@export');
-	Route::resource('/rem_plan_append', 'RemPlanAppendController');
-	Route::get('/channel_callback/export', 'ChannelCallbackController@export');
-	Route::resource('/channel_callback', 'ChannelCallbackController');
-	Route::get('/pay_log/export', 'PayLogController@export');
-	Route::resource('/pay_log', 'PayLogController');
-	Route::get('/feedback/export', 'FeedbackController@export');
-	Route::resource('/feedback', 'FeedbackController');
-	Route::get('/rem_company/export', 'RemCompanyController@export');
-	Route::resource('/rem_company', 'RemCompanyController');
-	Route::get('/day_plan_cost/export', 'DayPlanCostController@export');
-	Route::resource('/day_plan_cost', 'DayPlanCostController');
+	Route::get('/', function(){return redirect('/autophp/index');});
+	
+	Route::get('/h5_cp_game/export', 'H5CpGameController@export');
+	Route::resource('/h5_cp_game', 'H5CpGameController');
+
+	Route::get('/h5_gm_pt_appid_relation/export', 'H5GmPtAppidRelationController@export');
+	Route::resource('/h5_gm_pt_appid_relation', 'H5GmPtAppidRelationController');
+
+	Route::get('/h5_gm_pt_relation/export', 'H5GmPtRelationController@export');
+	Route::resource('/h5_gm_pt_relation', 'H5GmPtRelationController');
+
+	Route::get('/h5_yun_active/export', 'H5YunActiveController@export');
+	Route::resource('/h5_yun_active', 'H5YunActiveController');
+
+	Route::get('/h5_yun_login_log/export', 'H5YunLoginLogController@export');
+	Route::resource('/h5_yun_login_log', 'H5YunLoginLogController');
+
+	Route::get('/h5_yun_order/export', 'H5YunOrderController@export');
+	Route::resource('/h5_yun_order', 'H5YunOrderController');
+
+	Route::get('/h5_yun_platform/export', 'H5YunPlatformController@export');
+	Route::resource('/h5_yun_platform', 'H5YunPlatformController');
+
+	Route::get('/h5_yun_share_log/export', 'H5YunShareLogController@export');
+	Route::resource('/h5_yun_share_log', 'H5YunShareLogController');
+
+	Route::get('/h5_yun_user/export', 'H5YunUserController@export');
+	Route::resource('/h5_yun_user', 'H5YunUserController');
+
+	Route::get('/h5_yun_user_ad/export', 'H5YunUserAdController@export');
+	Route::resource('/h5_yun_user_ad', 'H5YunUserAdController');
+
+	Route::get('/h5_yun_user_log/export', 'H5YunUserLogController@export');
+	Route::resource('/h5_yun_user_log', 'H5YunUserLogController');
+
+	Route::get('/h5_yun_user_log/export', 'H5YunUserLogController@export');
+	Route::resource('/h5_yun_user_log', 'H5YunUserLogController');
+
+	Route::get('/h5_yun_xcx_user_session/export', 'H5YunXcxUserSessionController@export');
+	Route::resource('/h5_yun_xcx_user_session', 'H5YunXcxUserSessionController');
+
 	Route::get('/power_user/export', 'PowerUserController@export');
 	Route::resource('/power_user', 'PowerUserController');
+
 	Route::get('/power_role/export', 'PowerRoleController@export');
 	Route::resource('/power_role', 'PowerRoleController');
+
 });

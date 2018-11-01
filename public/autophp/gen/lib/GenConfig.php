@@ -73,25 +73,31 @@ EOF;
 				$navi_url = $tableNode['name'];
 				if ($tableNode['group']) {
 					$navi_group = "{$tableNode['group']}";
-					$navi_group_key = substr(md5($navi_group), 0, 6);
+					$navi_group_key = "g_" . substr(md5($navi_group), 0, 6);
 				}
 				else 
 					$navi_group = "default";
 
-				$bar_tree[$navi_group_key]["sub"][]=array("name"=>"{$navi_name}", "url"=>"/admin/{$navi_url}", "privilege"=>true);
-				$bar_tree[$navi_group_key]['name'] = $navi_group;
-				$bar_tree[$navi_group_key]['url'] = "";
-				$bar_tree[$navi_group_key]['privilege'] = true;
+				$bar_tree["$navi_group_key"]["sub"][]=array("name"=>"{$navi_name}", "url"=>"/autophp/{$navi_url}", "privilege"=>true);
+				$bar_tree["$navi_group_key"]['name'] = $navi_group;
+				$bar_tree["$navi_group_key"]['url'] = "";
+				$bar_tree["$navi_group_key"]['privilege'] = true;
 
-				$power_tree[$navi_group_key]["sub"][]=array("name"=>"{$navi_name}", "url"=>"{$navi_url}/*", "privilege"=>true);
-				$power_tree[$navi_group_key]['name'] = $navi_group;
-				$power_tree[$navi_group_key]['url'] = "";
-				$power_tree[$navi_group_key]['privilege'] = true;
+				$power_tree["$navi_group_key"]["sub"][]=array("name"=>"{$navi_name}", "url"=>"{$navi_url}/*", "privilege"=>true);
+				$power_tree["$navi_group_key"]['name'] = $navi_group;
+				$power_tree["$navi_group_key"]['url'] = "";
+				$power_tree["$navi_group_key"]['privilege'] = true;
 			}
 
 			$power_tree["no_valide"] = array("index/*", "login/*");
 
-			return array("bar_tree" => $bar_tree, "power_tree" => $power_tree);
+			$tree = ["bar_tree"=>$bar_tree, "power_tree"=>$power_tree];
+
+			$menu = var_export($tree, true);
+			$menu = "<?php
+return $menu;";
+
+			return $menu;
 		}
     }
 ?>
