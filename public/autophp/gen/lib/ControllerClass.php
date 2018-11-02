@@ -124,7 +124,7 @@ EOF;
         {$this->dict()}
         {$detail}
         \$details = isset(\$details)?\$details:[];
-        \$assigns = ["detail"=>\$details,"list"=>\$list,"dict_boolean"=>array("否", "是"),"page_html"=>\$page_html,"action_url"=>\$action_url,"csrf_token"=>csrf_token()];
+        \$assigns = ["detail"=>\$details,"list"=>\$list, "count"=>\$count, "dict_boolean"=>array("否", "是"),"page_html"=>\$page_html,"action_url"=>\$action_url,"csrf_token"=>csrf_token()];
 		\$assign = isset(\$assign)?array_merge(\$assign,\$assigns):\$assigns;
 		return view("{$this->_autophpviewdir}{$this->_tableName}_list",\$assign);
 	}

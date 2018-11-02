@@ -279,7 +279,7 @@ EOF;
 {$search_box}
 
 	<fieldset>
-		<legend>列表</legend>
+		<legend>列表 <span style="width:200px; text-align:right; float:right">记录数:{{\$count}}</span></legend>
 		<div class="panel panel-default">
 			<div class="panel-body" style="padding:2px;">
 		<table class="table table-striped withInsideBorder table-hover" style="text-align: center;background-color: #F2F2F2">
