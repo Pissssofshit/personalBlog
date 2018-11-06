@@ -380,15 +380,15 @@
 
 
 	<!--权限管理开始//-->
-	<table name="power_user"  engine="MyISAM" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+	<table name="power_user"  engine="InnoDB" comment="用户管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
 		<columns>
 			<column name="power_user_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
 			<column name="power_user_name"  type="char(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
 			<column name="truename" type="char(30)" nullable="false" displayName="真实姓名" displayType="text"/>
 			<column name="password" type="char(32)" nullable="false" displayName="密码" displayType="text"/>
 			<column name="power_role_id" type="int(10)"  displayName="角色类型" displayType="select" />
-			<column name="is_root"  type="boolean" displayName="是否超管：0否，1是" default="0" displayType="radio"  queryType="precise"/>
-			<column name="is_admin"  type="boolean" displayName="是否普管：0否，1是" default="0" displayType="radio"  queryType="precise"/>
+			<column name="is_root"  type="boolean" displayName="是否超管：0否，1是" default="0" displayType="radio"  queryType="precise" version="1.1"/>
+			<column name="is_admin"  type="boolean" displayName="是否普管：0否，1是" default="0" displayType="radio"  queryType="precise" version="1.1"/>
 			<column name="last_login_time" type="int(10) unsigned" nullable="true" displayName="最后登陆时间" displayType="time"/>
 			<column name="login_count" type="int(10) unsigned" nullable="true" default="0" displayName="登陆次数" displayType="text"/>
 			<column name="created_time" type="int(10) unsigned" nullable="true" displayName="创建时间" displayType="time" track="create"/>
@@ -407,7 +407,7 @@
 		</init_data>
 	</table>
 	
-	<table name="power_role"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
+	<table name="power_role"  engine="InnoDB" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
 		<columns>
 			<column name="power_role_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号"/>
 			<column name="power_role_name"  type="char(30)" nullable="false" displayName="角色名称" displayType="text"/>
@@ -420,23 +420,5 @@
 			</key>		
 		</keys>
 	</table>
-
-	<!--
-	<table name="power_user_type"  engine="MyISAM" comment="角色管理" charset="utf8" autoIncrementStartFrom="1" enableCache="false" isDict="true" group="权限管理">
-		<columns>
-			<column name="power_user_type_id"  type="int(10) unsigned" nullable="false" extra="auto_increment" displayName="ID编号" displayType="text"/>
-			<column name="power_user_type_name"  type="varchar(30)" nullable="false" displayName="用户帐号" displayType="text" queryType="fuzzy"/>
-			<column name="desc"  type="varchar(1000)" nullable="true" displayName="描述说明" displayType="textarea" />
-		</columns>
-		<keys>
-			<key type="pk">
-				<column name="power_user_type_id" />
-			</key>
-		</keys>
-		<init_datasql>
-			
-		</init_datasql>
-	</table>
-	-->
 
 </database>

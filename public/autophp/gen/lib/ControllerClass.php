@@ -136,9 +136,7 @@ EOF;
     private function _export() {
         $tablename = $this->_tableNode['comment']?$this->_tableNode['comment']:$this->_tableNode['name'];
         foreach($this->_tableNode->columns->column as $column) {
-            $columnnames["{$column['name']}"] ="{$column['displayName']}" ;
-            $columntypes["{$column['name']}"]["displayType"] ="{$column['displayType']}" ;
-            $columntypes["{$column['name']}"]["type"] ="{$column['type']}" ;
+            $column_info[] = "\$column_info[\"{$column['name']}\"] = [\"name\"=>\"{$column['displayName']}\", \"displayType\"=>\"{$column['displayType']}\", \"type\"=>\"{$column['type']}\"];" ;
             if (empty($column['queryType']))
                 continue;
 
@@ -158,32 +156,19 @@ EOF;
         }
 
         $params = implode(", ", $params);
-        $requests = implode("\r\n\t\t", $requests);
+        $requests = implode("\n\t\t", $requests);
         $url_params = implode("&", $url_params);
-        $columnnames = json_encode($columnnames);
-        $columntypes = json_encode($columntypes);
         $code = <<<EOF
 	public function export(Request \$request) {
 		{$requests}
-		\$data = \$this->_m_{$this->_tableName}->getListexport($params);
-		\$list = \$data['list'];
-		\$columnnames = '$columnnames';
-		\$columntypes = '$columntypes';
-        {$this->dict()}
-        \$columnnames = json_decode(\$columnnames,true);
-        \$columntypes = json_decode(\$columntypes,true);
-        \$columnkeys = array_keys(\$columnnames);
-        \$data=[];
-        foreach( \$list as \$key=>\$val){
-            foreach (\$columnkeys as \$columnfield) {
-                \$displaytype =isset(\$columntypes[\$columnfield]["displayType"])?\$columntypes[\$columnfield]["displayType"]:"text";
-                \$cotype =isset(\$columntypes[\$columnfield]["type"])?\$columntypes[\$columnfield]["type"]:"";
-                \$filedvalue = \$displaytype=="time" && preg_match("/int\(\d{2,}\)/",\$cotype)?date('Y-m-d H:i:s',\$val->\$columnfield):\$val->\$columnfield;
-                \$data[\$key][\$columnfield] = "\t" . \$filedvalue;
-            }
-        }
-        \$fileName = "$tablename". date('YmdHis', time()) .'.csv';
-        Utils::export(\$fileName, \$columnnames, \$data, "");
+		\$data = \$this->_m_{$this->_tableName}->exportList($params);
+		\$list = \$data['data'];
+		\$title = \$data['title'];
+
+		{$this->dict()}
+
+        \$fileName = "$tablename-". date('YmdHis', time()) .'.csv';
+        Utils::export(\$fileName, \$title, \$list, "");
 	}
 EOF;
         return trim($code);
@@ -467,7 +452,7 @@ EOF;
 			}
 		}
 
-		$detail_format = implode("\r\n\t\t\t", $detail_format);
+		$detail_format = implode("\r\n\t\t", $detail_format);
 
 		$code = <<<EOF
 	public function show(\$$pk) {
@@ -544,6 +529,7 @@ EOF;
 			$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $column['referencedTable'])));
 			
 			$code .= <<<EOF
+
 		\$m_{$column['referencedTable']} = new \\App\\Http\\Models\\Autophp\\{$classname}Model();
 		\$dict_list = \$m_{$column['referencedTable']}->dict();
 		{$tip_code}

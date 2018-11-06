@@ -21,7 +21,8 @@ class Utils{
         }
         self::exportto($fileNames, $showdata);
 	}
-    static function exportto($filename,$data){
+	static function exportto($filename,$data){
+		ob_end_clean();
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");

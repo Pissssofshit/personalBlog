@@ -50,22 +50,21 @@ class RegularAction
 		$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $this->_tableName)));
 
         $insert = '
-        public function insert(array $data) {
-			' . $resutlData . '	
+	public function insert(array $data) {
+		' . $resutlData . '	
+		$obj = new ' . $classname . '();
 
-			$obj = new ' . $classname . '();
-
-			foreach ($data as $key=>$value) {
-				$obj->$key=$value;
-			}
-			try{
+		foreach ($data as $key=>$value) {
+			$obj->$key=$value;
+		}
+		try{
 			$ret = $obj->save();
-			}catch(\Exception $e){
-               $ret = false;
-            }
+		}catch(\Exception $e){
+		   $ret = false;
+		}
 
-			return $ret;	
-    	}
+		return $ret;	
+	}
 ';
         
         return $insert;
@@ -92,20 +91,20 @@ class RegularAction
 		$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $this->_tableName)));
         
         $update = '
-       	public function update($' . $this->_pkColumn . ', array $data) {
-			' . $resutlData . '	
-			$obj = ' . $classname . '::find($' . $this->_pkColumn . ');
+	public function update($' . $this->_pkColumn . ', array $data) {
+		' . $resutlData . '	
+		$obj = ' . $classname . '::find($' . $this->_pkColumn . ');
 
-			foreach ($data as $key=>$value) {
-				$obj->$key=$value;
-			}
-			try{
+		foreach ($data as $key=>$value) {
+			$obj->$key=$value;
+		}
+		try{
 			$ret = $obj->save();
-			}catch(\Exception $e){
-                $ret = false;
-            }
-			return $ret;	
-    	}
+		}catch(\Exception $e){
+			$ret = false;
+		}
+		return $ret;	
+	}
 ';
         
         return $update;
@@ -129,11 +128,11 @@ class RegularAction
 
 
         $delete = '
-       	public function delete($' . $this->_pkColumn . ') {
-			return ' . $classname . '::destroy($' . $this->_pkColumn . ');
+	public function delete($' . $this->_pkColumn . ') {
+		return ' . $classname . '::destroy($' . $this->_pkColumn . ');
 
-    	}
-		';
+	}
+	';
         
         return $delete;
     }
@@ -156,19 +155,19 @@ class RegularAction
 			$cache_delete = "\$this->_cache->delete(\"$cache_key\");";
 		}
         $remove = '
-        	public function remove($' . $this->_pkColumn . ') {
-            	$data["is_deleted"] = 1;
-            	$where = $this->_db->quoteInto("' . $this->_pkColumn . ' = ?" , $' . $this->_pkColumn . ');
-            
-            	if($this->_db->update("' . $this->_tableName . '", $data, $where)) {
-					' . $cache_delete . '
-            		return $' . $this->_pkColumn . ';
-    			}
-    			else {
-    				return false;
-    			}
-			}
-		';
+	public function remove($' . $this->_pkColumn . ') {
+		$data["is_deleted"] = 1;
+		$where = $this->_db->quoteInto("' . $this->_pkColumn . ' = ?" , $' . $this->_pkColumn . ');
+	
+		if($this->_db->update("' . $this->_tableName . '", $data, $where)) {
+			' . $cache_delete . '
+			return $' . $this->_pkColumn . ';
+		}
+		else {
+			return false;
+		}
+	}
+';
         
         return $remove;
     }
@@ -176,12 +175,12 @@ class RegularAction
     public function count()
     {
         $code = '
-        public function count() {
-    		$sql = "SELECT count(*) FROM `'. $this->_tableName  . '`";
-    			
-    		return DB::select($sql);
-    	}
-        ';
+	public function count() {
+		$sql = "SELECT count(*) FROM `'. $this->_tableName  . '`";
+			
+		return DB::select($sql);
+	}
+	';
         
         return $code;
     }
@@ -205,18 +204,18 @@ EOF;
 		$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $this->_tableName)));
 
     	$code = '
-    	public function detail($' . $this->_pkColumn . ') {
-			' . trim($cache_get) . '
-    		if (empty($' . $this->_pkColumn . ')) {
-    			return false;
-			}
+	public function detail($' . $this->_pkColumn . ') {
+		' . trim($cache_get) . '
+		if (empty($' . $this->_pkColumn . ')) {
+			return false;
+		}
 
 
-    		$detail = ' . $classname . '::find($' . $this->_pkColumn . ');
-			' . trim($cache_set) . '
-			return $detail;
-    	}
-    	';
+		$detail = ' . $classname . '::find($' . $this->_pkColumn . ');
+		' . trim($cache_set) . '
+		return $detail;
+	}
+	';
     	
     	return $code;
     }
@@ -229,9 +228,9 @@ EOF;
 		if ($this->_isDict && $this->_enableCache) {
 			$cache_key = trim($this->_tableNode['name']) . "_dict";
 			$cache_get = "\$dict = \$this->_cache->get('$cache_key');
-				if (!empty(\$dict)) {
-					return unserialize(\$dict);
-				}
+		if (!empty(\$dict)) {
+			return unserialize(\$dict);
+		}
 			";
 
 			$cache_set = "\$this->_cache->add('$cache_key', serialize(\$dict));";
@@ -240,21 +239,21 @@ EOF;
 		$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $this->_tableName)));
     	
     	$code = '
-        public function dict() {
-			' . $cache_get .'
+	public function dict() {
+		' . $cache_get .'
 
-			$all =  ' . $classname . '::all();
+		$all =  ' . $classname . '::all();
 
-			$dict = array();
-			foreach ($all as $row) {
-					//$index = $row["' . $this->_pkColumn . '"];
-				$row = $row->toArray();
-				$index = array_shift($row);
-				$dict[$index] = array_shift($row);
-			}
-				' . $cache_set .'
-			return $dict;
-    	}
+		$dict = array();
+		foreach ($all as $row) {
+				//$index = $row["' . $this->_pkColumn . '"];
+			$row = $row->toArray();
+			$index = array_shift($row);
+			$dict[$index] = array_shift($row);
+		}
+			' . $cache_set .'
+		return $dict;
+	}
 ';
         
         return $code;
@@ -286,7 +285,10 @@ EOF;
         }
         //var_dump($refer_tables);
 
-        foreach($this->_tableNode->columns->column as $column) {
+		foreach($this->_tableNode->columns->column as $column) {
+			$column_info[] = "\$column_info[\"{$column['name']}\"] = [\"name\"=>\"{$column['displayName']}\", \"displayType\"=>\"{$column['displayType']}\", \"type\"=>\"{$column['type']}\"];" ;
+
+
             if (empty($column['queryType']))
                 continue;
 
@@ -294,12 +296,12 @@ EOF;
                 $params[] = "\${$column['name']} = null";
                 $conds[] = <<<EOF
 
-			if (gettype(\${$column['name']})!=gettype(NULL)) {
-				\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
+		if (gettype(\${$column['name']})!=gettype(NULL)) {
+			\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
 
-				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
-				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like :{$column['name']}';
-			}
+			\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
+			\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like :{$column['name']}';
+		}
 EOF;
             }
 			elseif ($column['queryType'] == "range") {
@@ -313,61 +315,82 @@ EOF;
 
                 $conds[] = <<<EOF
 
-			if (!empty(\${$column['name']})) {
-				\$start = \${$column['name']}['start'];
-				\$end = \${$column['name']}['end'];
+		if (!empty(\${$column['name']})) {
+			\$start = \${$column['name']}['start'];
+			\$end = \${$column['name']}['end'];
 
 
-				$time_format
-				if (!empty(\$start)) {
-					\$cond["{$column['name']}_start"] = \$start;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start' ;
-				}
-
-				if (!empty(\$end)) {
-					\$cond["{$column['name']}_end"] = \$end;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
-				}
+			$time_format
+			if (!empty(\$start)) {
+				\$cond["{$column['name']}_start"] = \$start;
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start' ;
 			}
+
+			if (!empty(\$end)) {
+				\$cond["{$column['name']}_end"] = \$end;
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
+			}
+		}
 EOF;
             }
             else {
                 $params[] = "\${$column['name']} = null";
                 $conds[] = <<<EOF
 
-			if (gettype(\${$column['name']})!=gettype(NULL)) {
-				\$cond["{$column['name']}"] = \${$column['name']}; 
+		if (gettype(\${$column['name']})!=gettype(NULL)) {
+			\$cond["{$column['name']}"] = \${$column['name']}; 
 
-				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
-				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
-			}
+			\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+			\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+		}
 EOF;
             }
         }
         $joins = implode(" ", $joins);
         $params = implode(", ", $params);
-        $conds = implode("", $conds);
+		$conds = implode("", $conds);
+		$column_info = implode("\n\t\t",$column_info);
+
 
         $order_by = '
-			$sql .= " ORDER BY ' . $this->_pkColumn . ' DESC ";
+		$sql .= " ORDER BY ' . $this->_pkColumn . ' DESC ";
 		';
 
         $code = '
-		public function getListexport(' . $params . ') {
-			$cond = [];
-    		$sql = "SELECT `' . $this->_tableName . '`.* FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
-			$c_sql = "SELECT count(*) as `count` FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
-				
-			' . $conds  . $order_by  . '
+	public function exportList(' . $params . ') {
+		$cond = [];
+		$sql = "SELECT `' . $this->_tableName . '`.* FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
+		$c_sql = "SELECT count(*) as `count` FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
 			
-			$list =  DB::connection($this->_connection_name)->select($sql, $cond);
-			$count = DB::connection($this->_connection_name)->select($c_sql, $cond)[0];
+		' . $conds  . $order_by  . '
 
-			return array("list"=>$list, "count"=>$count->count);
-    	}
-    	';
+
+		$list =  DB::connection($this->_connection_name)->select($sql, $cond);
+		$count = DB::connection($this->_connection_name)->select($c_sql, $cond)[0];
+
+		' . $column_info . '
+
+		$output = [];
+
+		foreach( $list as $key=>$row){			
+			$title = [];
+			foreach ($row as $column => $value) {
+				$title[] = $column_info[$column]["name"];
+				if ($column_info[$column]["displayType"] == "time" && preg_match("/int\(\d{2,}\)/", $column_info[$column]["type"])) {
+					$output[$key][$column] = date("Y-m-d H:i:s", $value);
+				}
+				else {
+					$output[$key][$column] = "$value";
+				}
+            }
+        }
+		
+
+		return array("count"=>$count, "data"=>$output, "title"=>$title);
+	}
+	';
 
         return $code;
 	}
@@ -405,12 +428,12 @@ EOF;
 				$params[] = "\${$column['name']} = null";
 				$conds[] = <<<EOF
 
-			if (gettype(\${$column['name']})!=gettype(NULL)) {
-				\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
+		if (gettype(\${$column['name']})!=gettype(NULL)) {
+			\$cond["{$column['name']}"] = "%\${$column['name']}%"; 
 
-				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
-				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like :{$column['name']}';
-			}
+			\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like  :{$column['name']}';
+			\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` like :{$column['name']}';
+		}
 EOF;
 			}
 			elseif ($column['queryType'] == "range") {
@@ -424,23 +447,23 @@ EOF;
 
 				$conds[] = <<<EOF
 
-			if (!empty(\${$column['name']})) {
-				\$start = \${$column['name']}['start'];
-				\$end = \${$column['name']}['end'];
+		if (!empty(\${$column['name']})) {
+			\$start = \${$column['name']}['start'];
+			\$end = \${$column['name']}['end'];
 
 
-				$time_format
-				if (!empty(\$start)) {
-					\$cond["{$column['name']}_start"] = \$start;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start' ;
-				}
+			$time_format
+			if (!empty(\$start)) {
+				\$cond["{$column['name']}_start"] = \$start;
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` >= :{$column['name']}_start' ;
+			}
 
-				if (!empty(\$end)) {
-					\$cond["{$column['name']}_end"] = \$end;
-					\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
-					\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
-				}
+			if (!empty(\$end)) {
+				\$cond["{$column['name']}_end"] = \$end;
+				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
+				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` <= :{$column['name']}_end';
+			}
 			}
 EOF;
 			}
@@ -448,12 +471,12 @@ EOF;
 				$params[] = "\${$column['name']} = null";
 				$conds[] = <<<EOF
 
-			if (gettype(\${$column['name']})!=gettype(NULL)) {
-				\$cond["{$column['name']}"] = \${$column['name']}; 
+		if (gettype(\${$column['name']})!=gettype(NULL)) {
+			\$cond["{$column['name']}"] = \${$column['name']}; 
 
-				\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
-				\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
-			}
+			\$sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+			\$c_sql .= ' AND `{$this->_tableName}`.`{$column['name']}` = :{$column['name']}';
+		}
 EOF;
 			}
 		}
@@ -473,19 +496,19 @@ EOF;
 		';
 
     	$code = '
-		public function getList(' . $params . ') {
-			$cond = [];
-    		$sql = "SELECT `' . $this->_tableName . '`.* FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
-			$c_sql = "SELECT count(*) as `count` FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
-				
-			' . $conds  . $order_by .  $sql_limit . '
+	public function getList(' . $params . ') {
+		$cond = [];
+		$sql = "SELECT `' . $this->_tableName . '`.* FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
+		$c_sql = "SELECT count(*) as `count` FROM `' . $this->_tableName . '`' . $joins . ' WHERE 1=1";
 			
-			$list =  DB::connection($this->_connection_name)->select($sql, $cond);
-			$count = DB::connection($this->_connection_name)->select($c_sql, $cond)[0];
+		' . $conds  . $order_by .  $sql_limit . '
+		
+		$list =  DB::connection($this->_connection_name)->select($sql, $cond);
+		$count = DB::connection($this->_connection_name)->select($c_sql, $cond)[0];
 
-			return array("list"=>$list, "count"=>$count->count);
-    	}
-    	';
+		return array("list"=>$list, "count"=>$count->count);
+	}
+	';
 
 		return $code;
     }
@@ -503,34 +526,34 @@ EOF;
     	}
 
     	$code = '
-    		public function getTree() {
+		public function getTree() {
 
-				$data = $this->getList();
-				if (empty($data["list"])) {
-					return;
-				}
+			$data = $this->getList();
+			if (empty($data["list"])) {
+				return;
+			}
 
-				$records = $data["list"];
-				foreach ($records as $record)
-				{
-					$tree[$record["' . $this->_pkColumn . '"]] = $record;
-				}
+			$records = $data["list"];
+			foreach ($records as $record)
+			{
+				$tree[$record["' . $this->_pkColumn . '"]] = $record;
+			}
+			
+			$ids = array();
+			
+			foreach ($records as $record)
+			{
+				$tree[$record["pid"]]["children"][$record["' . $this->_pkColumn . '"]] = &$tree[$record["' . $this->_pkColumn . '"]];
 				
-				$ids = array();
+				array_push($ids, $record["module_id"]);
 				
-				foreach ($records as $record)
-				{
-					$tree[$record["pid"]]["children"][$record["' . $this->_pkColumn . '"]] = &$tree[$record["' . $this->_pkColumn . '"]];
-					
-					array_push($ids, $record["module_id"]);
-					
-					if(!isset($root) || in_array($root, $ids))
-						$root = $record["pid"];
-				}
+				if(!isset($root) || in_array($root, $ids))
+					$root = $record["pid"];
+			}
 
-				return $tree[$root];
-    		}
-    	';
+			return $tree[$root];
+		}
+	';
 
 		return $code;
 	}

@@ -82,6 +82,8 @@
 			$config = new GenConfig($this->_dom);
 			$code = $config->code();
 			$this->_save($code, "/.env");
+			$this->_save($code, "/.envdevelopment");
+			$this->_save($code, "/.envtest");
 
 			$route = $this->_route();
 			$this->_save($route, "/routes/autophp.php");

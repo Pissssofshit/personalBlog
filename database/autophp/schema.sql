@@ -299,7 +299,7 @@ CREATE TABLE `power_user` (
     `updated_time` int(10) unsigned    comment '更新时间', 
     PRIMARY KEY  (`power_user_id`), 
     KEY fk_user_role(`power_role_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户管理' AUTO_INCREMENT=1;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户管理' AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `power_role`;
 CREATE TABLE `power_role` (
@@ -308,4 +308,4 @@ CREATE TABLE `power_role` (
     `content` text    comment '角色权限内容',
     `created_time` int(10) unsigned    comment '创建时间', 
     PRIMARY KEY  (`power_role_id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='角色管理' AUTO_INCREMENT=1;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色管理' AUTO_INCREMENT=1;
