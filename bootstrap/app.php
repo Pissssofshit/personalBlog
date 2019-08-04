@@ -39,8 +39,8 @@ if (file_exists($envmark_file)) {
 	}
 
 	if (empty($_POST)) {
-		ob_start();
-		echo "<div style='color:red'>Current Runtime Enviroment: < $envmark >; Load Config File: < $envend ></div>";
+//		ob_start();
+//		echo "<div style='color:red'>Current Runtime Enviroment: < $envmark >; Load Config File: < $envend ></div>";
 	}
 	$app->loadEnvironmentFrom($envend);
 }

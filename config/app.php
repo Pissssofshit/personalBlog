@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,9 +161,9 @@ return [
 		App\Providers\RouteServiceProvider::class,
 
 		// add smarty extension
-		Ytake\LaravelSmarty\SmartyServiceProvider::class, 
-		// add artisan commands  
-		Ytake\LaravelSmarty\SmartyConsoleServiceProvider::class, 
+		Ytake\LaravelSmarty\SmartyServiceProvider::class,
+		// add artisan commands
+		Ytake\LaravelSmarty\SmartyConsoleServiceProvider::class,
     ],
 
     /*

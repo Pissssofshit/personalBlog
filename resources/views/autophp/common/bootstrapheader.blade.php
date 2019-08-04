@@ -6,10 +6,10 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
-{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>--}}
-{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>--}}
-{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>--}}
-{{--<link href="{{$project['common']['cdn']}}/assets/global/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />--}}
+{{--<link href="{{$project['common']['cdn']}}/assets_bakup/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets_bakup/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets_bakup/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>--}}
+{{--<link href="{{$project['common']['cdn']}}/assets_bakup/global/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />--}}
 
 <link href="/autophp/css/bootstrapcss/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="/autophp/css/bootstrapcss/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>

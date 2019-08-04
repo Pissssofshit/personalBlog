@@ -14,6 +14,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
+        //侧边栏数据 后期添加
+        view()->composer('posts._sidebar', function ($view) {
+            $view->with('archives', []);
+        });
     }
 
     /**

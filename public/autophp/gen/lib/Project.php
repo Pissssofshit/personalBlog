@@ -6,19 +6,19 @@
 	require_once 'Layout.php';
 	require_once 'Server.php';
 	require_once 'GenThrift.php';
-    
+
     class Project
     {
     	private $_dst_path;
         private $_dom;
 		private $_version;
-        
+
         public function __construct($tableXmlPath) {
             if(file_exists($tableXmlPath)) {
                 $this->_dom = new SimpleXMLElement($tableXmlPath, NULL, TRUE);
 				$this->_version = $this->_dom['version'];
 			}
-            else 
+            else
                 die("can't read configure file : $tableXmlPath");
 		}
 
@@ -26,25 +26,25 @@
 		public function getName() {
 			return $this->_dom['name'];
 		}
-		
+
 		public function server($domain, $http_server, $server_path, $web_path) {
 			$server = new Server($domain, $web_path);
 			$server->$http_server($server_path);
-			
+
 			return true;
 		}
 
 
 		public function tables() {
 			foreach ($this->_dom->table as $tableNode) {
-				
+
 				if (trim($tableNode['version']) == trim($this->_version)) {
 					$tables[] = $tableNode['name'];
 				}
 			}
 			return $tables;
 		}
-        
+
         public function gen(){
 			//$this->_thrift();
 			//$this->_schema();
@@ -55,7 +55,7 @@
 				$this->_model($tableNode);
 				//$this->_view($tableNode);
             }
-            
+
             return true;
 		}
 
@@ -76,7 +76,7 @@
 			$this->_save($code, "/database/autophp/relationship{$this->_version}.sql");
 		}
 
-			
+
 
 		private function _config() {
 			$config = new GenConfig($this->_dom);
@@ -91,12 +91,12 @@
 			$menu = $this->_indexmenu();
 			$this->_save($menu, "/app/Http/Controllers/Autophp/IndexController.php");
 
-			
+
             $menu = $this->_constmenu();
 			$menu = $config->admin();
 			$this->_save($menu, "/config/const.php");
-			
-			
+
+
 
 		}
 
@@ -211,7 +211,7 @@ EOF;
 			$code = $model->db_model($tableNode, $db_name);
 			$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $tableNode['name'])));
 			$this->_save($code, "/app/Database/Models/{$classname}.php");
-			
+
 			$code = $model->code($tableNode, $db_name);
 			$classname = str_replace(" ", "", ucwords(str_replace("_", " ", $tableNode['name'])));
 			$this->_save($code, "/app/Http/Models/Autophp/{$classname}Model.php");
@@ -228,7 +228,7 @@ EOF;
 		public function test() {
 			foreach ($this->_dom->table as $tableNode) {
           		$content = new Content($tableNode);
-			
+
 				echo $content->_list();
 				echo $content->_add();
 				exit();
@@ -263,22 +263,22 @@ EOF;
 					$this->_view($tableNode);
 				}
 			}
-			
+
 			return true;
 		}
 
 		public function importdb($username = "root", $password = "", $host = "localhost", $with_relation = false) {
 			$schema_file = $this->_dst_path . "/database/autophp/schema.sql";
 			$relationship_file = $this->_dst_path . "/database/autophp/relationship.sql";
-			
+
 			if (!empty($password)) {
 				$password = "-p{$password}";
 			}
 			$cmd = "/usr/local/mysql/bin/mysql -u{$username} {$password} -h{$host}< $schema_file";
 			echo $cmd;
 			echo exec($cmd, $out);
-			
-			
+
+
 			if ($with_relation) {
 				$cmd = "/usr/local/mysql/bin/mysql -u{$username} {$password} -h{$host}< $relationship_file";
 				echo exec($cmd, $out);
@@ -294,18 +294,18 @@ EOF;
         public function setSrcPath($path) {
         	$this->_src_path = $path;
         }
-        
+
         private function _save($file_content, $file_name) {
         	if (empty($this->_dst_path)) {
         		die("DST_PATH must setting");
         	}
-        	
+
 			$path = $this->_dst_path;
 			if (!file_exists($path)) {
 
 				die("DST_PATH is not exist! \n");
         	}
-        	
+
 			$file_path = $path . $file_name;
 
 			$dir = dirname($file_path);
@@ -316,11 +316,11 @@ EOF;
         	if (!$fh = fopen($file_path, "w")) {
         		die("ERROR: Open file '$file_path' failed \n");
         	}
-        	
+
         	if(fwrite($fh, $file_content) === FALSE){
                 die("ERROR: Write file '$file_path' failed \n");
             }
-            
+
             fclose($fh);
         }
     }
