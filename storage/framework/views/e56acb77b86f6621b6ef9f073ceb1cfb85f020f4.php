@@ -5,7 +5,7 @@
     <div class="card-body">
         <article class="text-muted">
             这是我的个人博客
-            <a class="text-info" href="https://broqiang.github.io" target="_blank">broqiang.github.io</a> 访问
+
         </article>
     </div>
 </div>

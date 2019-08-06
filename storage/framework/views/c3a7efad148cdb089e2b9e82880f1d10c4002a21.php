@@ -6,7 +6,8 @@
                     <a class="text-muted" href=""><?php echo e($post->title); ?></a>
                 </h3>
                 <h5 class="card-subtitle my-4">
-                    <a href="" class="font-italic text-info">
+                    <a href="<?php echo e(url('article/show/'.$post->id)); ?>" class="font-italic text-info">
+                        <?php echo e($post->authorId); ?>
 
                     </a>
                     <small class="font-italic text-muted mx-3" title="发布时间">

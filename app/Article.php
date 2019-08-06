@@ -14,4 +14,7 @@ class Article extends Model
     public static function getArticleList(){
         return self::orderBy('time','desc');
     }
+    public static function getArticle($id){
+        return self::where('id','=',$id)->first();
+    }
 }

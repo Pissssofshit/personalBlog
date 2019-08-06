@@ -26,14 +26,14 @@
             </span>
         </a>
         <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-{{--            @if(Auth::user()->is_admin)--}}
-{{--                <a class="dropdown-item" href="{{ route('admins.index') }}">--}}
-{{--                    <i class="fa fa-cog fa-fw mr-1"></i>--}}
-{{--                    后台管理--}}
-{{--                </a>--}}
+{{--            @if(Auth::user()->isadmin())--}}
+                <a class="dropdown-item" href="{{ url('admin/index') }}">
+                    <i class="fa fa-cog fa-fw mr-1"></i>
+                    后台管理
+                </a>
 {{--            @endif--}}
 
-            <a class="dropdown-item" href="">
+            <a class="dropdown-item" href="{{ url('user/show/'.Auth::id()) }}">
                 <i class="fa fa-user fa-fw mr-1"></i>
                 个人中心
             </a>

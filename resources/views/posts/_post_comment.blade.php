@@ -1,6 +1,6 @@
 <div class="card my-3">
     <div class="card-body">
-        <form action="{{ route('posts.comment',$post->id) }}" method="POST">
+        <form action="{{ url('article/'.$post->id.'/postComment') }}" method="POST">
             @csrf
             <div class="form-group">
                 <textarea class="form-control" name="content" rows="5" required
@@ -16,6 +16,6 @@
                     <button type="submit" class="btn btn-success pull-right">提交</button>
                 </div>
             @endguest
-        </form>        
+        </form>
     </div>
 </div>

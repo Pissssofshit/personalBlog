@@ -27,8 +27,20 @@ class HomeController extends Controller
     {
 //        $posts = null;
         $posts = Article::getArticleList()->paginate(10);
+        foreach ($posts as &$post){
+            $post->comments = [];
+        }
 //        var_dump($posts);
 //        die;
         return view('posts.index',compact('posts'));
+    }
+
+    public function show(Article $article, Request $request)
+    {
+//        $post->visit($request);
+
+//        $post->body = $markdown->convertMarkdownToHtml($post->body);
+
+        return view('posts.show', compact('article'));
     }
 }

@@ -15,15 +15,19 @@
 //    return view('welcome');
 //});
 
-
 Route::group(['namespace'=>'Backend'],function() {
-    Route::get('/', 'HomeController@home')->name('home');
-//    Route::any('/home',['as'=>'home','uses'=>'HomeController@home']);
-//    Route::any('/home',['as'=>'ttt','uses'=>'HomeController@home']);
-//    Route::any('/home',['as'=>'home','uses'=>'HomeController@home']);
-//    Route::any('/home','HomeController@home')->name('pages.show');
-//    Route::any('/home','HomeController@home')->name('feeds.main');
+    Route::get('/article/show/{id}', 'ArticleController@show');
+    Route::any('/article/{id}/postComment', 'ArticleController@postComment');
+    Route::get('/user/show/{id}', 'UsersController@index');
 });
+
+
+Route::group(['namespace'=>'Admins'],function() {
+    Route::get('/admin/index', 'HomeController@index');
+//    Route::any('/article/{id}/postComment', 'ArticleController@postComment');
+//    Route::get('/user/show/{id}', 'UsersController@index');
+});
+
 
 //Route::get('/home','Backend\HomeController@home')->name('pages.show');
 //Route::get('/home','Backend\HomeController@home')->name('feeds.main');
@@ -47,6 +51,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/post/article', 'HomeController@index')->name('home');

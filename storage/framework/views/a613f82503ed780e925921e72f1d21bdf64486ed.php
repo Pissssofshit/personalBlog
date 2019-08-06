@@ -28,13 +28,13 @@
         </a>
         <div aria-labelledby="navbarDropdown" class="dropdown-menu">
 
+                <a class="dropdown-item" href="<?php echo e(url('admin/index')); ?>">
+                    <i class="fa fa-cog fa-fw mr-1"></i>
+                    后台管理
+                </a>
 
 
-
-
-
-
-            <a class="dropdown-item" href="">
+            <a class="dropdown-item" href="<?php echo e(url('user/show/'.Auth::id())); ?>">
                 <i class="fa fa-user fa-fw mr-1"></i>
                 个人中心
             </a>

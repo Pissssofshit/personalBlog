@@ -6,8 +6,8 @@
                     <a class="text-muted" href="">{{ $post->title }}</a>
                 </h3>
                 <h5 class="card-subtitle my-4">
-                    <a href="" class="font-italic text-info">
-{{--                        {{ $post->user->name }}--}}
+                    <a href="{{ url('article/show/'.$post->id) }}" class="font-italic text-info">
+                        {{ $post->authorId }}
                     </a>
                     <small class="font-italic text-muted mx-3" title="发布时间">
                         <i class="fa fa-clock-o"></i>
