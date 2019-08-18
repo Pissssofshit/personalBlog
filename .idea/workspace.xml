@@ -1,48 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/UsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/_admins_header.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/app.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/articles/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/articles/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/categories/create_edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/categories/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/comments/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/comments/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/posts/create_edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/posts/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/skills/create_edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/skills/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/tutorials/create_edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/tutorials/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/tutorials/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/users/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/_comments.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/_follow_articles.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/_show_info.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/_sidebar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/comments.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/edit_avatar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/edit_password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/follows.blade.php" afterDir="false" />
+    <list default="true" id="cc9fce97-fe87-4965-9b35-66188b22c588" name="Default" comment="后台初步">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Article.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/_header_right.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/_header_right.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/_comments.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_comments.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/_post_comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_post_comment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/_admins_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/_admins_header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/comments/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/comments/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/comments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/comments/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/posts/create_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/posts/create_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/posts/_post_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_post_list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a613f82503ed780e925921e72f1d21bdf64486ed.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a613f82503ed780e925921e72f1d21bdf64486ed.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/c3a7efad148cdb089e2b9e82880f1d10c4002a21.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c3a7efad148cdb089e2b9e82880f1d10c4002a21.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/e56acb77b86f6621b6ef9f073ceb1cfb85f020f4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e56acb77b86f6621b6ef9f073ceb1cfb85f020f4.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,18 +125,18 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Admins" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\project\front\laravel-autophp-blade\app\Models" />
       <recent name="F:\project\front\laravel-autophp-blade\app\Http\Controllers\Admins" />
       <recent name="F:\project\front\laravel-autophp-blade\resources\views" />
       <recent name="F:\project\front\laravel-autophp-blade\app\Http\Controllers\Backend" />
       <recent name="F:\project\front\laravel-autophp-blade\app\Http\Models" />
-      <recent name="F:\project\front\laravel-autophp-blade\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mohong\zanphp\h5test.local.com\public\autophp\css" />
@@ -204,7 +177,13 @@
       <workItem from="1536889909801" duration="24075000" />
       <workItem from="1564760596109" duration="30131000" />
       <workItem from="1564957800770" duration="5751000" />
-      <workItem from="1565045161522" duration="4656000" />
+      <workItem from="1565045161522" duration="5406000" />
+      <workItem from="1565134190052" duration="2824000" />
+      <workItem from="1565654507908" duration="1940000" />
+      <workItem from="1565737775197" duration="3776000" />
+      <workItem from="1565790508161" duration="1201000" />
+      <workItem from="1565825444283" duration="2884000" />
+      <workItem from="1565879091292" duration="3666000" />
     </task>
     <task id="LOCAL-00001" summary="尚待完善：个人介绍&#10;尚待完成：评论、后台管理">
       <created>1564961967155</created>
@@ -213,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564961967155</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="后台初步">
+      <created>1565050467635</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1565050467635</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +220,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="尚待完善：个人介绍&#10;尚待完成：评论、后台管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="尚待完善：个人介绍&#10;尚待完成：评论、后台管理" />
+    <MESSAGE value="后台初步" />
+    <option name="LAST_COMMIT_MESSAGE" value="后台初步" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

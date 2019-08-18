@@ -10,13 +10,16 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="mx-2 ">
-                    <a class="nav-link" href="">个人资料修改</a>
+                    <a class="nav-link" href="{{url('/admin/articlemanager')}}">文章管理</a>
                 </li>
                 <li class="mx-2 ">
-                    <a class="nav-link" href="">发布博文</a>
+                    <a class="nav-link" href="{{url('/admin/usermanager')}}">人员管理</a>
                 </li>
                 <li class="mx-2 ">
-                    <a class="nav-link" href="">留言管理</a>
+                    <a class="nav-link" href="{{url('/admins/create_article')}}">发布博文</a>
+                </li>
+                <li class="mx-2 ">
+                    <a class="nav-link" href="{{url('/admin/commentmanager')}}">留言管理</a>
                 </li>
 {{--                --}}
 {{--                <li class="nav-item dropdown mx-2">--}}

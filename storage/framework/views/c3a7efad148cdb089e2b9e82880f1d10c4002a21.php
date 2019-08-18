@@ -7,11 +7,12 @@
                 </h3>
                 <h5 class="card-subtitle my-4">
                     <a href="<?php echo e(url('article/show/'.$post->id)); ?>" class="font-italic text-info">
-                        <?php echo e($post->authorId); ?>
+                        <?php echo e($post->author["name"]); ?>
 
                     </a>
                     <small class="font-italic text-muted mx-3" title="发布时间">
                         <i class="fa fa-clock-o"></i>
+                        <?php echo e($post->time); ?>
 
                     </small>
                 </h5>

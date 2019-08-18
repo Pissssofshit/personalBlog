@@ -1,12 +1,6 @@
-@extends('admins.app')
+<?php $__env->startSection('title', '编辑评论'); ?>
 
-{{--@section('css')--}}
-{{--    {!! editormd_css() !!}--}}
-{{--@stop--}}
-
-@section('title', '编辑评论')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="card">
         <div class="card-header bg-white">
@@ -15,27 +9,27 @@
             </p>
         </div>
         <div class="card-body p-4 text-muted">
-{{--            <div class="card-title">--}}
-{{--                <h3>{{ $comment->post->title }}</h3>--}}
-{{--            </div>--}}
-{{--            <hr>--}}
-            <form method="POST" action="{{ url('/admins/comments/update/'.$comment->id) }}">
 
-                @csrf
-                @isset($comment)
+
+
+
+            <form method="POST" action="<?php echo e(url('/admins/comments/update/'.$comment->id)); ?>">
+
+                <?php echo csrf_field(); ?>
+                <?php if(isset($comment)): ?>
                     <input type="hidden" name="_method" value="PUT">
-                @endisset
+                <?php endif; ?>
 
                 <div class="form-group">
                     <label for="content">评论内容</label>
 
-                    <textarea  class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" rows="5" required>{{ old('content', isset($comment) ? $comment->content : '') }}</textarea>
+                    <textarea  class="form-control <?php echo e($errors->has('content') ? ' is-invalid' : ''); ?>" name="content" rows="5" required><?php echo e(old('content', isset($comment) ? $comment->content : '')); ?></textarea>
 
-                    @if ($errors->has('content'))
+                    <?php if($errors->has('content')): ?>
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('content') }}</strong>
+                            <strong><?php echo e($errors->first('content')); ?></strong>
                         </span>
-                    @endif
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group my-3">
@@ -47,9 +41,9 @@
         </div>
     </div>
 </div>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
     $('.js-btn-del').on('click',function(){
         var obj = $(this).children('form');
@@ -60,4 +54,6 @@
     });
 
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admins.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,8 +1,6 @@
-@extends('admins.app')
+<?php $__env->startSection('title', '用户列表'); ?>
 
-@section('title', '用户列表')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid">
     <div class="card text-muted">
         <div class="card-header bg-white">
@@ -11,7 +9,7 @@
                 <div class="p-2 bd-highlight">用户列表</div>
             </div>
         </div>
-        @if(isset($users) && count($users))
+        <?php if(isset($users) && count($users)): ?>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -21,56 +19,58 @@
                                 <th scope="col">姓名</th>
                                 <th scope="col">邮箱</th>
                                 <th scope="col">头像</th>
-{{--                                <th scope="col">关注</th>--}}
-{{--                                <th scope="col">评论</th>--}}
+
+
                                 <th scope="col">创建时间</th>
                                 <th scope="col">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <th scope="row">{{ $user->id }}</th>
-                                    <td class="text-truncate" style="max-width: 150px;" title="{{ $user->name }}">
+                                    <th scope="row"><?php echo e($user->id); ?></th>
+                                    <td class="text-truncate" style="max-width: 150px;" title="<?php echo e($user->name); ?>">
                                         <a class="text-info" href="" target="_blank">
-                                            {{ $user->name }}
+                                            <?php echo e($user->name); ?>
+
                                         </a>
                                     </td>
-                                    <td>{{ $user->email }}</td>
-                                    <td><img src="{{ $user->avatar }}" alt="头像" width="32"></td>
-{{--                                    <td></td>--}}
-{{--                                    <td></td>--}}
-                                    <td title="{{ $user->created_at }}">{{ $user->created_at}}</td>
+                                    <td><?php echo e($user->email); ?></td>
+                                    <td><img src="<?php echo e($user->avatar); ?>" alt="头像" width="32"></td>
+
+
+                                    <td title="<?php echo e($user->created_at); ?>"><?php echo e($user->created_at); ?></td>
                                     <td>
                                         <button class="btn btn-danger btn-sm m-1 js-btn-del" data-id="12">
                                             <i class="fa fa-trash-o"></i> 删除
                                             <form class="d-none" action="" method="POST">
-                                                @csrf
+                                                <?php echo csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                             </form>
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="card-footer bg-white">
-                {{ $users->links() }}
+                <?php echo e($users->links()); ?>
+
             </div>
-        @else
+        <?php else: ?>
             <div class="card-body">
                 <p class="text-muted">
                     没有任何文章 ～
                 </p>
             </div>
-        @endif
+        <?php endif; ?>
     </div>
 </div>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
     $('.js-btn-del').on('click',function(){
         var oForm = $(this).children('form');
@@ -79,4 +79,6 @@
         });
     });
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admins.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

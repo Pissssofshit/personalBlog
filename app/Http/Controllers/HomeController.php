@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\ArticleBakup;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,9 +28,15 @@ class HomeController extends Controller
     {
 //        $posts = null;
         $posts = Article::getArticleList()->paginate(10);
+//        var_dump($posts);
         foreach ($posts as &$post){
             $post->comments = [];
+//            var_dump($post->authorId);
+//            die;
+            $post->author = Users::getUser($post->authorId);
         }
+        unset($post);
+
 //        var_dump($posts);
 //        die;
         return view('posts.index',compact('posts'));

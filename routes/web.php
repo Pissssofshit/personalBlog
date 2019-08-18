@@ -24,22 +24,18 @@ Route::group(['namespace'=>'Backend'],function() {
 
 Route::group(['namespace'=>'Admins'],function() {
     Route::get('/admin/index', 'HomeController@index');
+    Route::get('/admin/usermanager', 'UserController@index');
+    Route::get('/admin/commentmanager', 'HomeController@commentManager');
+
+    Route::get('/admins/comments/{id}/edit', 'HomeController@commentEditIndex');
+    Route::get('/admins/create_article', 'HomeController@createArticle');
+    Route::any('/admins/posts/store', 'HomeController@saveArticle');
+    Route::any('/admins/comments/update/{id}', 'HomeController@updateComment');
+    Route::any('/admins/comments/delete/{id}', 'HomeController@deleteComment');
 //    Route::any('/article/{id}/postComment', 'ArticleController@postComment');
 //    Route::get('/user/show/{id}', 'UsersController@index');
 });
 
-
-//Route::get('/home','Backend\HomeController@home')->name('pages.show');
-//Route::get('/home','Backend\HomeController@home')->name('feeds.main');
-
-
-//Route::get('/home/selfintro',function(){
-//    return view('home');
-//})->name('ttt');
-
-//Route::get('/home/selfintros',function(){
-//    return view('home');
-//})->name('home');
 
 Route::group(['namespace'=>'Backend', 'prefix'=>'zzh'], function(){
 	Route::resource('/zzh', 'ZzhController');

@@ -1,8 +1,6 @@
-@extends('admins.app')
+<?php $__env->startSection('title', '评论管理'); ?>
 
-@section('title', '评论管理')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid">
     <div class="card text-muted">
         <div class="card-header bg-white">
@@ -11,7 +9,7 @@
                 <div class="p-2 bd-highlight">评论管理</div>
             </div>
         </div>
-        @if(isset($comments) && count($comments))
+        <?php if(isset($comments) && count($comments)): ?>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -26,51 +24,54 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($comments as $comment)
+                            <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <th scope="row">{{ $comment->id }}</th>
-                                    <td class="text-truncate" style="max-width: 150px;" title="{{ $comment->content }}">{{ $comment->content }}</td>
-                                    <td class="text-truncate" style="max-width: 150px;" title="{{ $comment->title }}">
+                                    <th scope="row"><?php echo e($comment->id); ?></th>
+                                    <td class="text-truncate" style="max-width: 150px;" title="<?php echo e($comment->content); ?>"><?php echo e($comment->content); ?></td>
+                                    <td class="text-truncate" style="max-width: 150px;" title="<?php echo e($comment->title); ?>">
                                         <a class="text-info" href="" target="_blank">
-                                            {{ $comment->title }}
+                                            <?php echo e($comment->title); ?>
+
                                         </a>
                                     </td>
                                     <td>
                                         <i class="fa fa-user mr-1 text-info"></i>
                                         <a class="text-info" href="">
-                                            {{ $comment->name }}
+                                            <?php echo e($comment->name); ?>
+
                                         </a>
                                     </td>
-                                    <td title="{{ $comment->created_at }}">{{ $comment->created_at }}</td>
+                                    <td title="<?php echo e($comment->created_at); ?>"><?php echo e($comment->created_at); ?></td>
                                     <td>
-                                        <a class="btn btn-info btn-sm m-1" href="{{ url('/admins/comments/'.$comment->id.'/edit') }}">
+                                        <a class="btn btn-info btn-sm m-1" href="<?php echo e(url('/admins/comments/'.$comment->id.'/edit')); ?>">
                                             <i class="fa fa-edit"></i> 编辑
                                         </a>
-                                        <a class="btn btn-info btn-sm m-1" href="{{ url('/admins/comments/delete/'.$comment->id) }}">
+                                        <a class="btn btn-info btn-sm m-1" href="<?php echo e(url('/admins/comments/delete/'.$comment->id)); ?>">
                                             <i class="fa fa-edit"></i> 删除
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="card-footer bg-white">
-                {{ $comments->links() }}
+                <?php echo e($comments->links()); ?>
+
             </div>
-        @else
+        <?php else: ?>
             <div class="card-body">
                 <p class="text-muted">
                     没有任何分类 ～
                 </p>
             </div>
-        @endif
+        <?php endif; ?>
     </div>
 </div>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
     $('.js-btn-del').on('click',function(){
         var oForm = $(this).children('form');
@@ -79,4 +80,6 @@
         });
     });
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admins.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
